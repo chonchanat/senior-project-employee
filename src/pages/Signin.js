@@ -13,8 +13,8 @@ function Signin() {
     const dispatch = useDispatch();
 
     const [user, setUser] = useState({
-        email: "",
-        password: "",
+        email: "a",
+        password: "a",
     });
 
     function handlerSignin() {

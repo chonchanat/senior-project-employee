@@ -1,7 +1,6 @@
 import { useState } from 'react';
 
 import { BlockDesktop, BlockDesktopLeft, BlockDesktopRight, HeadDesktop, ContentDesktop, HeadContentDesktop } from '../components/Block'
-import { StaticNavbar } from '../components/Navbar'
 import SideMenuDesktop from '../components/SideMenu/SideMenuDesktop';
 import { Button } from '../components/Button';
 import CustomerForm from '../components/Form/CustomerForm';
@@ -59,7 +58,6 @@ function CustomerAccount() {
 
     return (
         <div>
-            <StaticNavbar />
             <BlockDesktop>
                 <BlockDesktopLeft>
                     <SideMenuDesktop />

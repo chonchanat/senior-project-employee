@@ -10,7 +10,7 @@ function BlockMobile({ children }) {
 
 function BlockDesktop({ children }) {
     return (
-        <div className="bg-bg-desktop min-w-[1024px] flex min-h-screen pt-[50px]">
+        <div className="bg-bg-desktop px-0 min-w-[1024px] max-w-[1920px] mx-auto flex min-h-screen xl:px-20">
             {children}
         </div>
     );
@@ -18,7 +18,7 @@ function BlockDesktop({ children }) {
 
 function BlockDesktopLeft({ children }) {
     return (
-        <div className="py-4 flex">
+        <div className="py-4 flex justify-center">
             {children}
         </div>
     );
@@ -26,7 +26,7 @@ function BlockDesktopLeft({ children }) {
 
 function BlockDesktopRight({ children }) {
     return (
-        <div className="py-4 w-full flex flex-col">
+        <div className="py-4 w-full flex flex-col items-center">
             {children}
         </div>
     );
@@ -34,7 +34,7 @@ function BlockDesktopRight({ children }) {
 
 function HeadDesktop({ children }) {
     return (
-        <div className="bg-fha-desktop py-4 px-8 mr-4 mb-4 rounded-xl drop-shadow-xl text-white text-xl font-bold xl:max-w-[1280px]">
+        <div className="bg-fha-desktop py-4 px-8 mr-4 mb-4 rounded-xl drop-shadow-xl text-white text-xl font-bold w-full xl:max-w-[1280px]">
             {children}
         </div>
     );
@@ -42,7 +42,7 @@ function HeadDesktop({ children }) {
 
 function ContentDesktop({ children }) {
     return (
-        <div className="h-full bg-white pt-3 px-8 mr-4 rounded-xl drop-shadow-xl xl:max-w-[1280px]">
+        <div className="h-full bg-white pt-3 px-8 mr-4 rounded-xl drop-shadow-xl w-full xl:max-w-[1280px]">
             {children}
         </div>
     );

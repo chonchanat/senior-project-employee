@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { BlockDesktop, BlockDesktopLeft, BlockDesktopRight, HeadDesktop, ContentDesktop, HeadContentDesktop } from '../components/Block';
-import { StaticNavbar } from '../components/Navbar';
 import SideMenuDesktop from '../components/SideMenu/SideMenuDesktop';
 import SettingForm from '../components/Form/SettingForm';
 import { DropdownButton } from '../components/Dropdown';
@@ -40,7 +39,6 @@ function Setting() {
 
     return (
         <div>
-            <StaticNavbar />
             <BlockDesktop>
                 <BlockDesktopLeft>
                     <SideMenuDesktop />

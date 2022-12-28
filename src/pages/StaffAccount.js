@@ -1,7 +1,6 @@
 import { useState } from 'react';
 
 import { BlockDesktop, BlockDesktopLeft, BlockDesktopRight, HeadDesktop, ContentDesktop, HeadContentDesktop } from '../components/Block'
-import { StaticNavbar } from '../components/Navbar'
 import SideMenuDesktop from '../components/SideMenu/SideMenuDesktop';
 import { Button } from '../components/Button';
 import StaffForm from '../components/Form/StaffForm';
@@ -57,7 +56,6 @@ function StaffAccount() {
 
     return (
         <div>
-            <StaticNavbar />
             <BlockDesktop>
                 <BlockDesktopLeft>
                     <SideMenuDesktop />

@@ -70,7 +70,7 @@ function SideMenuDesktop() {
                 </div>
             </div>
 
-            <div className="w-[50px] h-[800px] px-1 flex flex-col bg-fha-desktop rounded-xl drop-shadow-xl mx-4 block xl:hidden">
+            <div className="w-[50px] h-full px-1 flex flex-col bg-fha-desktop rounded-xl drop-shadow-xl mx-4 block xl:hidden">
                 <div className="h-[100px] border-b-2 border-white flex justify-center items-center">
                     <CgProfile size="40px" color="white" />
                 </div>

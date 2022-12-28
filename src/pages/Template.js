@@ -1,11 +1,9 @@
 import { BlockDesktop, BlockDesktopLeft, BlockDesktopRight, HeadDesktop, ContentDesktop, HeadContentDesktop } from '../components/Block'
-import { StaticNavbar } from '../components/Navbar'
 import SideMenuDesktop from '../components/SideMenu/SideMenuDesktop';
 
 function Template() {
     return (
         <div>
-            <StaticNavbar />
             <BlockDesktop>
                 <BlockDesktopLeft>
                     <SideMenuDesktop />

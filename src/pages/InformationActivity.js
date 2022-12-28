@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import { BlockDesktop, BlockDesktopLeft, BlockDesktopRight, HeadDesktop, ContentDesktop, HeadContentDesktop } from '../components/Block';
-import { StaticNavbar } from '../components/Navbar';
 import SideMenuDesktop from '../components/SideMenu/SideMenuDesktop';
 import InformationForm from '../components/Form/InformationForm';
 import {
@@ -117,7 +116,6 @@ function InformationActivity() {
 
     return (
         <div>
-            <StaticNavbar />
             <BlockDesktop>
                 <BlockDesktopLeft>
                     <SideMenuDesktop />
