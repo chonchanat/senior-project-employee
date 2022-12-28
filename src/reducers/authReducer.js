@@ -1,16 +1,9 @@
-const initialState = {
-    auth: {
-        email: "",
-        password: "",
-    },
-}
+const initialState = null
 
 const authReducer = (state = initialState, action) => {
     switch (action.type) {
         case 'SET_AUTH':
-            return {
-                auth: action.payload
-            };
+            return action.payload;
 
         default:
             return state;

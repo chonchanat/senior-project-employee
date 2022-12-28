@@ -12,6 +12,7 @@ module.exports = {
         "accept": "#5FC356",
         "decline": "#F96A6A",
         "hover": "#F8F8F8",
+        "light-blue": "#E5E7EB",
       },
       visibility: ["group-hover"],
     },

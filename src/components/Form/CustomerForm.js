@@ -14,7 +14,6 @@ function CustomerForm({ setState }) {
 
     function handlerSubmit(event) {
         event.preventDefault();
-        console.log(form);
     }
 
     return (
@@ -49,7 +48,7 @@ function CustomerForm({ setState }) {
                     <ButtonSubmit title="Submit" bgColor="bg-accept" width="w-[200px]" />
                     <div className="w-[60px]" />
                     <div onClick={() => setState(false)}>
-                        <Button title="Cancel" bgColor="bg-decline" width="w-[200px]" />
+                        <Button bgColor="bg-decline" width="w-[200px]">Cancel</Button>
                     </div>
                 </div>
             </form>

@@ -3,10 +3,10 @@ import { Navigate } from "react-router-dom";
 
 function PrivateRoute({ children }) {
 
-    const { auth } = useSelector(state => state.authReducer);
-    console.log("auth :", auth);
+    const reducers = useSelector(state => state);
+    // console.log(reducers);
 
-    return auth ? children : <Navigate to="/signin"/>;
+    return reducers.authReducer ? children : <Navigate to="/signin"/>;
 }
 
 export default PrivateRoute;

@@ -76,7 +76,7 @@ function CustomerAccount() {
                             </div>
                             <div className={`${state ? "invisible" : "visible"}`}
                                 onClick={() => setState(true)}>
-                                <Button title="สร้างบัญชีพนักงาน" bgColor="bg-[#D9D9D9]" textColor="text-black" font="font-normal" width="w-[150px]" />
+                                <Button bgColor="bg-[#D9D9D9]" textColor="text-black" font="font-normal" width="w-[150px]">สร้างบัญชีพนักงาน</Button>
                             </div>
                         </HeadContentDesktop>
                         {

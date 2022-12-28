@@ -17,4 +17,4 @@ const errorFetch = (error) => {
     };
 }
 
-export { startFetch, endFetch, errorFetch};
+export { startFetch, endFetch, errorFetch };
