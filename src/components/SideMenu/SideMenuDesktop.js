@@ -8,9 +8,14 @@ import { MdPeople } from 'react-icons/md';
 import { GiBilledCap } from 'react-icons/gi';
 import { IoMdSettings } from 'react-icons/io';
 
+import { useDispatch } from 'react-redux';
+import { setAuth } from '../../actions/authActions';
+
 function SideMenuDesktop() {
 
     const navigate = useNavigate();
+
+    const dispatch = useDispatch();
 
     return (
         <div className="h-full">
@@ -56,8 +61,9 @@ function SideMenuDesktop() {
                             <IoMdSettings size="20px" />
                             <p className="pl-2">ตั้งค่าบัญชี</p>
                         </div>
-                        <div className="px-5 py-3 rounded-md hover:bg-white hover:text-black flex cursor-pointer">
-                            <BiLogOut size="20px" />
+                        <div className="px-5 py-3 rounded-md hover:bg-white hover:text-black flex cursor-pointer"
+                            onClick={() => dispatch(setAuth(null))}>
+                            <BiLogOut size="20px"/>
                             <p className="pl-2">ออกจากระบบ</p>
                         </div>
                     </div>

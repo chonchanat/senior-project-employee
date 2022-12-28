@@ -8,22 +8,22 @@ import {
   RouterProvider,
 } from "react-router-dom";
 
-// import { Provider } from 'react-redux';
-// import { createStore, applyMiddleware } from 'redux';
-// import { composeWithDevTools } from 'redux-devtools-extension';
-// import thunk from 'redux-thunk';
-// import { rootReducer } from './reducers/rootReducer';
+import { Provider } from 'react-redux';
+import { createStore, applyMiddleware } from 'redux';
+import { composeWithDevTools } from 'redux-devtools-extension';
+import thunk from 'redux-thunk';
+import { rootReducer } from './reducers/rootReducer';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
-// const middlewares = [thunk]
-// const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(...middlewares)))
+const middlewares = [thunk]
+const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(...middlewares)))
 
 root.render(
   <React.StrictMode>
-    {/* <Provider store={store}> */}
+    <Provider store={store}>
       <RouterProvider router={App} />
-    {/* </Provider> */}
+    </Provider>
   </React.StrictMode>
 );
 

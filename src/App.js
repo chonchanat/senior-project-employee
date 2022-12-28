@@ -5,6 +5,7 @@ import {
   Navigate
 } from "react-router-dom";
 
+import PrivateRoute from './privateRoute';
 import Signin from './pages/Signin';
 import StaffActivity from './pages/StaffActivity';
 import StaffAccount from './pages/StaffAccount';
@@ -19,23 +20,23 @@ const App = createBrowserRouter([
   },
   {
     path: "/staff-activity",
-    element: <StaffActivity />,
+    element: <PrivateRoute><StaffActivity /></PrivateRoute>,
   },
   {
     path: "/staff-account",
-    element: <StaffAccount />,
+    element: <PrivateRoute><StaffAccount /></PrivateRoute>,
   },
   {
     path: "/staff-customer-account",
-    element: <CustomerAccount />,
+    element: <PrivateRoute><CustomerAccount /></PrivateRoute>,
   },
   {
     path: "/staff-activity/:id",
-    element: <InformationActivity />,
+    element: <PrivateRoute><InformationActivity /></PrivateRoute>,
   },
   {
     path: "/staff-setting",
-    element: <Setting />,
+    element: <PrivateRoute><Setting /></PrivateRoute>,
   },
   {
     path: "/*",
