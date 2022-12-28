@@ -1,13 +1,29 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
 import App from './App';
+import './index.css';
 import reportWebVitals from './reportWebVitals';
 
+import {
+  RouterProvider,
+} from "react-router-dom";
+
+// import { Provider } from 'react-redux';
+// import { createStore, applyMiddleware } from 'redux';
+// import { composeWithDevTools } from 'redux-devtools-extension';
+// import thunk from 'redux-thunk';
+// import { rootReducer } from './reducers/rootReducer';
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
+// const middlewares = [thunk]
+// const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(...middlewares)))
+
 root.render(
   <React.StrictMode>
-    <App />
+    {/* <Provider store={store}> */}
+      <RouterProvider router={App} />
+    {/* </Provider> */}
   </React.StrictMode>
 );
 
