@@ -74,7 +74,7 @@ function StaffAccount() {
                             </div>
                             <div className={`${state ? "invisible" : "visible"}`}
                                 onClick={() => setState(true)}>
-                                <Button bgColor="bg-[#D9D9D9]" textColor="text-black" font="font-normal" width="w-[150px]">สร้างบัญชีพนักงาน</Button>
+                                <Button bgColor="bg-yellow" textColor="text-black" font="font-normal" width="w-[150px]">สร้างบัญชีพนักงาน</Button>
                             </div>
                         </HeadContentDesktop>
                         {

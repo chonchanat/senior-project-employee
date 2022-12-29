@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { BlockDesktop, BlockDesktopLeft, BlockDesktopRight, HeadDesktop, ContentDesktop, HeadContentDesktop } from '../components/Block';
 import SideMenuDesktop from '../components/SideMenu/SideMenuDesktop';
 import SettingForm from '../components/Form/SettingForm';
-import { DropdownButton } from '../components/Dropdown';
 import Spinner from '../components/Spinner';
 
 import { MdCheck, MdClose } from 'react-icons/md'
@@ -13,12 +12,12 @@ import { fetchSettingAccount } from '../actions/authActions';
 function HandlerEditState({ state, setState, acceptEdit, declineEdit }) {
     return (
         <div className={`${state.editState ? "hidden" : "block flex"}`}>
-            <DropdownButton click={() => { setState({ ...state, editState: true }); acceptEdit() }}>
-                <MdCheck size="28px" />
-            </DropdownButton>
-            <DropdownButton click={() => { setState({ ...state, editState: true }); declineEdit() }}>
+            <div className="p-1 cursor-pointer text-accept" onClick={() => { setState({ ...state, editState: true }); acceptEdit() }}>
+                <MdCheck size="28px"/>
+            </div>
+            <div className="p-1 cursor-pointer text-decline" onClick={() => { setState({ ...state, editState: true }); declineEdit() }}>
                 <MdClose size="28px" />
-            </DropdownButton>
+            </div>
         </div>
     );
 }
