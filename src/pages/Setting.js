@@ -3,19 +3,20 @@ import { BlockDesktop, BlockDesktopLeft, BlockDesktopRight, HeadDesktop, Content
 import SideMenuDesktop from '../components/SideMenu/SideMenuDesktop';
 import SettingForm from '../components/Form/SettingForm';
 import { DropdownButton } from '../components/Dropdown';
-
-import StaffData from '../fakeData/StaffData';
+import Spinner from '../components/Spinner';
 
 import { MdCheck, MdClose } from 'react-icons/md'
 
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchSettingAccount } from '../actions/authActions';
 
 function HandlerEditState({ state, setState, acceptEdit, declineEdit }) {
     return (
         <div className={`${state.editState ? "hidden" : "block flex"}`}>
-            <DropdownButton click={() => {setState({ ...state, editState: true }); acceptEdit()}}>
+            <DropdownButton click={() => { setState({ ...state, editState: true }); acceptEdit() }}>
                 <MdCheck size="28px" />
             </DropdownButton>
-            <DropdownButton click={() => {setState({ ...state, editState: true }); declineEdit()}}>
+            <DropdownButton click={() => { setState({ ...state, editState: true }); declineEdit() }}>
                 <MdClose size="28px" />
             </DropdownButton>
         </div>
@@ -24,17 +25,20 @@ function HandlerEditState({ state, setState, acceptEdit, declineEdit }) {
 
 function Setting() {
 
-    const [data, setData] = useState(StaffData[0]);
-    const [backupData, setBackupdata] = useState(data);
+    const dispatch = useDispatch();
+    const authReducer = useSelector(state => state.authReducer);
+    const statusReducer = useSelector(state => state.statusReducer);
+
+    const [backupData, setBackupdata] = useState(authReducer);
     const [state, setState] = useState({
         editState: true,
     });
 
     function acceptEdit() {
-        setBackupdata(data);
+        dispatch(fetchSettingAccount(backupData))
     }
     function declineEdit() {
-        setData(backupData);
+        setBackupdata(authReducer);
     }
 
     return (
@@ -50,12 +54,16 @@ function Setting() {
                     <ContentDesktop>
                         <HeadContentDesktop>
                             <p className="py-2">ตั้งค่าบัญชี</p>
-                            <p className={`text-sm cursor-pointer ${state.editState? "block": "hidden"}`} onClick={() => setState({ ...state, editState: false})}>แก้ไขบัญชี</p>
-                            <HandlerEditState state={state} setState={setState} acceptEdit={acceptEdit} declineEdit={declineEdit}/>
+                            <p className={`text-sm cursor-pointer ${state.editState ? "block" : "hidden"}`} onClick={() => setState({ ...state, editState: false })}>แก้ไขบัญชี</p>
+                            <HandlerEditState state={state} setState={setState} acceptEdit={acceptEdit} declineEdit={declineEdit} />
                         </HeadContentDesktop>
                         <div>
-                            <SettingForm data={data} setData={setData} state={state} />
+                            <SettingForm data={backupData} setBackupdata={setBackupdata} state={state} />
                         </div>
+                        {statusReducer.loading &&
+                            <div className="flex justify-center text-accept mt-4">
+                                    <Spinner color="accept"/><label>กำลังบันทึก</label>
+                            </div>}
                     </ContentDesktop>
                 </BlockDesktopRight>
             </BlockDesktop>

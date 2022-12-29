@@ -8,7 +8,7 @@ import { MdPeople } from 'react-icons/md';
 import { GiBilledCap } from 'react-icons/gi';
 import { IoMdSettings } from 'react-icons/io';
 
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setAuth } from '../../actions/authActions';
 
 function SideMenuDesktop() {
@@ -16,6 +16,7 @@ function SideMenuDesktop() {
     const navigate = useNavigate();
 
     const dispatch = useDispatch();
+    const authReducer = useSelector(state => state.authReducer);
 
     return (
         <div className="h-full">
@@ -25,8 +26,8 @@ function SideMenuDesktop() {
                         <CgProfile size="56px" color="black" />
                     </div>
                     <div className="truncate pt-1">
-                        <p className="text-xl font-bold">Chonchanat Tubtiang</p>
-                        <p>Adminstrator</p>
+                        <p className="text-lg font-bold">{authReducer.name} {authReducer.lastname}</p>
+                        <p>{authReducer.role}</p>
                     </div>
                 </div>
                 <div className="h-[75%] py-4 font-bold text-white">
@@ -83,7 +84,8 @@ function SideMenuDesktop() {
                 </div>
                 <div className="h-[120px] py-4 border-t-2 border-white text-white flex-col flex items-center justify-center">
                     <IoMdSettings size="28px" className="mb-4 cursor-pointer hover:text-black"/>
-                    <BiLogOut size="28px" className="cursor-pointer hover:text-black"/>
+                    <BiLogOut size="28px" className="cursor-pointer hover:text-black"
+                        onClick={() => dispatch(setAuth(null))}/>
                 </div>
             </div>
         </div>

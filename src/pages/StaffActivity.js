@@ -81,7 +81,7 @@ function StaffActivity() {
                             </div>
                             <div className={`${state ? "invisible" : "visible"}`}
                                 onClick={() => setState(true)}>
-                                <Button bgColor="bg-[#D9D9D9]" textColor="text-black" font="font-normal" width="w-[150px]">เพิ่มกิจกรรม</Button>
+                                <Button bgColor="bg-yellow" textColor="text-black" font="font-normal" width="w-[150px]">เพิ่มกิจกรรม</Button>
                             </div>
                         </HeadContentDesktop>
                         {

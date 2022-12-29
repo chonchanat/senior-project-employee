@@ -16,4 +16,20 @@ function signin(email, password) {
     })
 }
 
-export { signin };
+function settingAccount(dataUser) {
+    return new Promise((resolve, reject) => {
+        const foundUser = StaffData.find(
+            (user) => user.id === dataUser.id
+        )
+
+        setTimeout(() => {
+            if (foundUser) {
+                resolve(dataUser);
+            } else {
+                reject('Save failed');
+            }
+        }, 2000)
+    })
+}
+
+export { signin, settingAccount };

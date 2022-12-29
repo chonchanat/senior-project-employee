@@ -16,8 +16,8 @@ function TableBody({ children }) {
 
 function TableRow({ children, condition }) {
     return (
-        <div className={`relative flex justify-around items-center border-b-2 border-[#E0E0E0] ${condition === "head" ? "pb-4" : "py-4 hover:bg-[#F4F4F4]"} group`}>
-            <div className={`absolute left-0 w-[6px] h-full bg-fha-desktop invisible ${condition === "head" ? "" : "group-hover:visible"}`} />
+        <div className={`relative flex justify-around items-center border-b-2 border-[#E0E0E0] ${condition === "head" ? "pb-4" : "py-3 hover:bg-[#F4F4F4]"} group`}>
+            <div className={`absolute left-0 w-[6px] h-full bg-yellow invisible ${condition === "head" ? "" : "group-hover:visible"}`} />
             {children}
         </div>
     );
