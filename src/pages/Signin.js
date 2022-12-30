@@ -32,10 +32,14 @@ function Signin() {
         email: "",
         password: "",
     });
+    const [noti, setNoti] = useState(null);
 
     function handlerSignin() {
         if (user.email && user.password) {
+            setNoti(null);
             dispatch(fetchAuthAsync(user.email, user.password));
+        } else {
+            setNoti("Please enter your email and password");
         }
     }
 
@@ -45,7 +49,7 @@ function Signin() {
                 <div className="w-96 h-full px-10 pb-20 pt-16">
                     <div className="pb-16 text-center text-3xl font-bold">
                         <p className="">Ku Que</p>
-                        <p className="text-2xl">Staff Login</p>
+                        <p className="text-xl">Employee Login</p>
                     </div>
                     <div>
                         <div className="pb-6">
@@ -59,7 +63,7 @@ function Signin() {
                             <input className="w-full bg-light-blue py-2 px-4 rounded-md"
                                 placeholder="password"
                                 onChange={(e) => setUser({ ...user, password: e.target.value })} />
-                            <p className="h-[28px] text-right text-sm text-decline pt-2">{statusReducer.error}</p>
+                            <p className="h-[28px] text-right text-sm text-decline pt-2">{noti ? noti : statusReducer.error}</p>
                         </div>
 
                         <Button bgColor="bg-accept" font="font-bold" click={handlerSignin}>
@@ -69,7 +73,7 @@ function Signin() {
                                 "Login"
                             }
                         </Button>
-                        <p className="text-right text-sm pt-2 hover:underline">Forget Password?</p>
+                        <p className="text-right text-sm pt-2 hover:underline cursor-pointer">Forget Password?</p>
 
                     </div>
                 </div>
