@@ -1,4 +1,5 @@
-import StaffData from "../fakeData/StaffData"
+import StaffData from '../fakeData/StaffData';
+import ActivityData from '../fakeData/ActivityData';
 
 function signin(email, password) {
     return new Promise((resolve, reject) => {
@@ -32,4 +33,12 @@ function settingAccount(dataUser) {
     })
 }
 
-export { signin, settingAccount };
+function getActivityAPI() {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve(ActivityData);
+        }, 1000)
+    })
+}
+
+export { signin, settingAccount, getActivityAPI };

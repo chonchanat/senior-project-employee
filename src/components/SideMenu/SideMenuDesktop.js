@@ -20,8 +20,8 @@ function SideMenuDesktop() {
 
     return (
         <div className="h-full">
-            <div className="w-[50px] h-full bg-fha-desktop rounded-xl drop-shadow-xl mx-4 xl:w-[300px] xl:px-6 xl:pt-6 xl:pb-4 hidden xl:block">
-                <div className="h-[10%] border-b-2 border-white flex">
+            <div className="w-[50px] h-full bg-fha-desktop rounded-xl drop-shadow-xl mx-4 xl:w-[300px] xl:px-6 xl:pt-6 xl:pb-4 hidden xl:flex flex-col">
+                <div className="border-b-2 border-white flex pb-6">
                     <div className="pr-2">
                         <CgProfile size="56px" color="black" />
                     </div>
@@ -30,7 +30,7 @@ function SideMenuDesktop() {
                         <p>{authReducer.role}</p>
                     </div>
                 </div>
-                <div className="h-[75%] py-4 font-bold text-white">
+                <div className="h-[100%] py-4 font-bold text-white">
                     <div className="px-5 py-3 rounded-md hover:bg-white hover:text-black flex cursor-pointer">
                         <AiFillHome size="20px" />
                         <p className="pl-2">หน้าหลัก</p>
@@ -55,18 +55,16 @@ function SideMenuDesktop() {
                         <p className="pl-2">กิจกรรมทั้งหมด</p>
                     </div>
                 </div>
-                <div className="h-[15%] border-t-2 border-white">
-                    <div className="h-[75%] py-4 font-bold text-white">
-                        <div className="px-5 py-3 rounded-md hover:bg-white hover:text-black flex cursor-pointer"
-                            onClick={() => navigate("/staff-setting")}>
-                            <IoMdSettings size="20px" />
-                            <p className="pl-2">ตั้งค่าบัญชี</p>
-                        </div>
-                        <div className="px-5 py-3 rounded-md hover:bg-white hover:text-black flex cursor-pointer"
-                            onClick={() => dispatch(setAuth(null))}>
-                            <BiLogOut size="20px"/>
-                            <p className="pl-2">ออกจากระบบ</p>
-                        </div>
+                <div className="pt-4 font-bold text-white border-t-2 border-white">
+                    <div className="px-5 py-3 rounded-md hover:bg-white hover:text-black flex cursor-pointer"
+                        onClick={() => navigate("/staff-setting")}>
+                        <IoMdSettings size="20px" />
+                        <p className="pl-2">ตั้งค่าบัญชี</p>
+                    </div>
+                    <div className="px-5 py-3 rounded-md hover:bg-white hover:text-black flex cursor-pointer"
+                        onClick={() => dispatch(setAuth(null))}>
+                        <BiLogOut size="20px" />
+                        <p className="pl-2">ออกจากระบบ</p>
                     </div>
                 </div>
             </div>
@@ -76,16 +74,16 @@ function SideMenuDesktop() {
                     <CgProfile size="40px" color="white" />
                 </div>
                 <div className="h-full py-4 font-bold text-white flex-col flex items-center pt-10">
-                    <AiFillHome size="28px" className="mb-6 cursor-pointer hover:text-black"/>
-                    <RiArtboardFill size="28px" className="mb-6 cursor-pointer hover:text-black"/>
-                    <MdPeople size="28px" className="mb-6 cursor-pointer hover:text-black"/>
-                    <GiBilledCap size="28px" className="mb-6 cursor-pointer hover:text-black"/>
-                    <RiGamepadFill size="28px" className="mb-6 cursor-pointer hover:text-black"/>
+                    <AiFillHome size="28px" className="mb-6 cursor-pointer hover:text-black" />
+                    <RiArtboardFill size="28px" className="mb-6 cursor-pointer hover:text-black" />
+                    <MdPeople size="28px" className="mb-6 cursor-pointer hover:text-black" />
+                    <GiBilledCap size="28px" className="mb-6 cursor-pointer hover:text-black" />
+                    <RiGamepadFill size="28px" className="mb-6 cursor-pointer hover:text-black" />
                 </div>
                 <div className="h-[120px] py-4 border-t-2 border-white text-white flex-col flex items-center justify-center">
-                    <IoMdSettings size="28px" className="mb-4 cursor-pointer hover:text-black"/>
+                    <IoMdSettings size="28px" className="mb-4 cursor-pointer hover:text-black" />
                     <BiLogOut size="28px" className="cursor-pointer hover:text-black"
-                        onClick={() => dispatch(setAuth(null))}/>
+                        onClick={() => dispatch(setAuth(null))} />
                 </div>
             </div>
         </div>
