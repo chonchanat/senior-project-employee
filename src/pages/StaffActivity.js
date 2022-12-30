@@ -1,74 +1,17 @@
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { startFetch, endFetch } from '../actions/statusActions';
 
 import { BlockDesktop, BlockDesktopLeft, BlockDesktopRight, HeadDesktop, ContentDesktop, HeadContentDesktop } from '../components/Block';
 import SideMenuDesktop from '../components/SideMenu/SideMenuDesktop';
 import { Button } from '../components/Button';
 import ActivityForm from '../components/Form/ActivityForm';
-import {
-    TableHead,
-    TableBody,
-    TableRow,
-    DataSection,
-} from '../components/Table/Table'
-import { ButtonTransparent } from '../components/Button';
-import Spinner from '../components/Spinner'
-
-import { IoMdSettings } from 'react-icons/io';
+import ActivityInfo from '../components/Info/ActivityInfo';
+import ActivityTable from '../components/Table/ActivityTable';
 
 import { getActivityAPI } from '../api/fakeAPI';
 
-function ActivityTable({ activityData }) {
-
-    const navigate = useNavigate();
-    const statusReducer = useSelector(state => state.statusReducer);
-
-    function handlerClick(id) {
-        navigate(`/staff-activity/${id}`);
-    }
-
-    return (
-
-        statusReducer.loading ?
-            <div className="flex justify-center py-10">
-                <Spinner color="black" />
-                <label>กำลังโหลดข้อมูล</label>
-            </div>
-            :
-            <div>
-                <TableRow condition="head">
-                    <TableHead>Code</TableHead>
-                    <TableHead>ชื่อ</TableHead>
-                    <TableHead>สถานะการให้บริการ</TableHead>
-                    <TableHead>จำนวนคิว</TableHead>
-                    <TableHead>เรทติ้ง</TableHead>
-                    <TableHead>Action</TableHead>
-                </TableRow>
-                <DataSection width="max-h-[560px]">
-                    {activityData.map((row, index) =>
-                        <TableRow key={index}>
-                            <TableBody>{row.code}</TableBody>
-                            <TableBody>{row.name}</TableBody>
-                            <TableBody>{row.status}</TableBody>
-                            <TableBody>{row.duration}</TableBody>
-                            <TableBody>{row.rating}</TableBody>
-                            <TableBody>
-                                <ButtonTransparent click={() => handlerClick(row.id)}>
-                                    <IoMdSettings size="24px" />
-                                </ButtonTransparent>
-                            </TableBody>
-                        </TableRow>
-                    )}
-                </DataSection>
-                <p className="text-sm text-right my-4 text-[#7d7d7d]">กิจกรรมทั้งหมด {activityData.length} กิจกรรม</p>
-            </div>
-
-
-    );
-}
 
 function StaffActivity() {
     const dispatch = useDispatch();
@@ -86,8 +29,14 @@ function StaffActivity() {
     }, [dispatch])
 
 
-    const [state, setState] = useState(false);
+    const [page, setPage] = useState("Table");
     const [activityData, setActivityData] = useState([]);
+    const [selectData, setSelectData] = useState(null);
+
+    function handlerSelect(id) {
+        const foundActivity = activityData.find((data) => data.id === id);
+        setSelectData(foundActivity);
+    }
 
     return (
         <div>
@@ -101,27 +50,32 @@ function StaffActivity() {
                     </HeadDesktop>
                     <ContentDesktop>
                         <HeadContentDesktop>
-                            <div className="flex py-2">
-                                <p className="mr-2 cursor-pointer"
-                                    onClick={() => setState(false)}
-                                >รายชื่อกิจกรรม</p>
-                                <p className={`${state ? "block" : "hidden"} font-normal`}>/ เพิ่มกิจกรรม</p>
-                            </div>
-                            <div className={`${state ? "invisible" : "visible"}`}
-                                onClick={() => setState(true)}>
+                            <p className="mr-2 cursor-pointer py-2"
+                                onClick={() => { setPage("Table"); setSelectData(null) }}>
+                                รายชื่อกิจกรรม
+                                <label className={`${page !== "Form" && "hidden"} font-normal`}
+                                    onClick={(e) => e.stopPropagation()}> / เพิ่มกิจกรรม</label>
+                                <label className={`${page !== "Info" && "hidden"} font-normal`}
+                                    onClick={(e) => e.stopPropagation()}> / {selectData && selectData.name}</label>
+                            </p>
+                            <div className={`${page === "Table" ? "visible" : "invisible"}`}
+                                onClick={() => setPage("Form")}>
                                 <Button bgColor="bg-yellow" textColor="text-black" font="font-normal" width="w-[150px]">เพิ่มกิจกรรม</Button>
                             </div>
                         </HeadContentDesktop>
                         {
-                            state ?
-                                <ActivityForm setState={setState} />
+                            page === "Table" ?
+                                <ActivityTable activityData={activityData} setPage={setPage} handlerSelect={handlerSelect} />
                                 :
-                                <ActivityTable activityData={activityData} />
+                                page === "Form" ?
+                                    <ActivityForm setPage={setPage} />
+                                    :
+                                    <ActivityInfo selectData={selectData} />
                         }
                     </ContentDesktop>
                 </BlockDesktopRight>
             </BlockDesktop>
-        </div>
+        </div >
     );
 }
 

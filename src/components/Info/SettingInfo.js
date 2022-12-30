@@ -1,4 +1,4 @@
-function SettingForm({ data, setBackupdata, state }) {
+function SettingInfo({ data, setBackupdata, state }) {
 
     return (
         <div className="flex flex-col items-center">
@@ -36,4 +36,4 @@ function SettingForm({ data, setBackupdata, state }) {
     );
 }
 
-export default SettingForm;
+export default SettingInfo;

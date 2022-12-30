@@ -10,8 +10,8 @@ import Signin from './pages/Signin';
 import StaffActivity from './pages/StaffActivity';
 import StaffAccount from './pages/StaffAccount';
 import CustomerAccount from './pages/CustomerAccount';
-import InformationActivity from './pages/InformationActivity';
 import Setting from './pages/Setting';
+import InfoStaff from './pages/InfoStaff';
 
 const App = createBrowserRouter([
   {
@@ -31,13 +31,14 @@ const App = createBrowserRouter([
     element: <PrivateRoute><CustomerAccount /></PrivateRoute>,
   },
   {
-    path: "/staff-activity/:id",
-    element: <PrivateRoute><InformationActivity /></PrivateRoute>,
-  },
-  {
     path: "/staff-setting",
     element: <PrivateRoute><Setting /></PrivateRoute>,
   },
+  {
+    path: "/staff-account/:id",
+    element: <PrivateRoute><InfoStaff /></PrivateRoute>
+  },
+
   {
     path: "/*",
     element: <Navigate to="/signin" />,

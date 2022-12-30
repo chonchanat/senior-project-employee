@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { BlockDesktop, BlockDesktopLeft, BlockDesktopRight, HeadDesktop, ContentDesktop, HeadContentDesktop } from '../components/Block';
 import SideMenuDesktop from '../components/SideMenu/SideMenuDesktop';
-import SettingForm from '../components/Form/SettingForm';
+import SettingInfo from '../components/Info/SettingInfo';
 import Spinner from '../components/Spinner';
 
 import { MdCheck, MdClose } from 'react-icons/md'
@@ -57,7 +57,7 @@ function Setting() {
                             <HandlerEditState state={state} setState={setState} acceptEdit={acceptEdit} declineEdit={declineEdit} />
                         </HeadContentDesktop>
                         <div>
-                            <SettingForm data={backupData} setBackupdata={setBackupdata} state={state} />
+                            <SettingInfo data={backupData} setBackupdata={setBackupdata} state={state} />
                         </div>
                         {statusReducer.loading &&
                             <div className="flex justify-center text-accept mt-4">
