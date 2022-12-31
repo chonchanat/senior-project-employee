@@ -26,7 +26,7 @@ function BlockDesktopLeft({ children }) {
 
 function BlockDesktopRight({ children }) {
     return (
-        <div className="py-4 w-full flex flex-col items-center">
+        <div className="py-4 w-full flex flex-col items-center h-screen">
             {children}
         </div>
     );
@@ -42,7 +42,7 @@ function HeadDesktop({ children }) {
 
 function ContentDesktop({ children }) {
     return (
-        <div className="h-full bg-white pt-3 px-8 mr-4 rounded-xl drop-shadow-xl w-full xl:max-w-[1280px]">
+        <div className="flex flex-col h-[91%] bg-white pt-3 px-8 mr-4 rounded-xl drop-shadow-xl w-full xl:max-w-[1280px]">
             {children}
         </div>
     );

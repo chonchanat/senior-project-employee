@@ -6,7 +6,7 @@ import { BlockDesktop, BlockDesktopLeft, BlockDesktopRight, HeadDesktop, Content
 import SideMenuDesktop from '../components/SideMenu/SideMenuDesktop';
 import { Button } from '../components/Button';
 import ActivityForm from '../components/Form/ActivityForm';
-import ActivityInfo from '../components/Info/ActivityInfo';
+import ActivityInformation from '../components/Info/ActivityInformation';
 import ActivityTable from '../components/Table/ActivityTable';
 
 import { getActivityAPI } from '../api/fakeAPI';
@@ -70,7 +70,7 @@ function StaffActivity() {
                                 page === "Form" ?
                                     <ActivityForm setPage={setPage} />
                                     :
-                                    <ActivityInfo selectData={selectData} />
+                                    <ActivityInformation selectData={selectData} />
                         }
                     </ContentDesktop>
                 </BlockDesktopRight>

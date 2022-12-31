@@ -10,6 +10,8 @@ import { ButtonTransparent } from '../Button';
 import Spinner from '../Spinner'
 
 import { IoMdSettings } from 'react-icons/io';
+import { RiRunFill, RiNotification3Fill } from 'react-icons/ri';
+import { BsCone } from 'react-icons/bs';
 
 function ActivityTable({ activityData, setPage, handlerSelect }) {
 
@@ -21,6 +23,16 @@ function ActivityTable({ activityData, setPage, handlerSelect }) {
         handlerSelect(id);
     }
 
+    function handlerStatus(status) {
+        if (status === "open") {
+            return <RiRunFill size="24px" className="text-accept" title="open"/>;
+        } else if (status === "temporarily closed") {
+            return <RiNotification3Fill size="24px" className="text-yellow" title="temporarily closed"/>
+        } else if (status === "closed") {
+            return <BsCone size="24px" className="text-decline" title="closed"/>;
+        }
+    }
+
     return (
         statusReducer.loading ?
             <div className="flex justify-center py-10">
@@ -28,7 +40,7 @@ function ActivityTable({ activityData, setPage, handlerSelect }) {
                 <label>กำลังโหลดข้อมูล</label>
             </div>
             :
-            <div>
+            <div className="h-full flex flex-col overflow-auto">
                 <TableRow condition="head">
                     <TableHead>Code</TableHead>
                     <TableHead>ชื่อ</TableHead>
@@ -37,12 +49,12 @@ function ActivityTable({ activityData, setPage, handlerSelect }) {
                     <TableHead>เรทติ้ง</TableHead>
                     {authReducer.role === "administrator" && <TableHead>Action</TableHead>}
                 </TableRow>
-                <DataSection width="max-h-[560px]">
+                <DataSection width="">
                     {activityData.map((row, index) =>
                         <TableRow key={index}>
                             <TableBody>{row.code}</TableBody>
                             <TableBody>{row.name}</TableBody>
-                            <TableBody>{row.status}</TableBody>
+                            <TableBody>{handlerStatus(row.status)}</TableBody>
                             <TableBody>{row.duration}</TableBody>
                             <TableBody>{row.rating}</TableBody>
                             {authReducer.role === "administrator" &&
