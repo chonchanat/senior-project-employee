@@ -16,7 +16,16 @@ const StaffData = [
         password: "12345",
         phone: "09xxxxxxx",
         role: "administrator",
-    },  
+    },
+    {
+        id: "f2k41fsg35456erg23",
+        name: "Staff",
+        lastname: "1",
+        email: "per43_za@hotmail.com",
+        password: "12345",
+        phone: "09xxxxxxx",
+        role: "staff",
+    },
 ]
 
 export default StaffData;

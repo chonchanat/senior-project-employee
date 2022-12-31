@@ -1,3 +1,5 @@
+import { useSelector } from "react-redux";
+
 function TableHead({ children }) {
     return (
         <p className="text-sm text-center text-[#7d7d7d] w-[20%]">
@@ -7,8 +9,9 @@ function TableHead({ children }) {
 }
 
 function TableBody({ children }) {
+    const authReducer = useSelector(state => state.authReducer);
     return (
-        <p className="flex justify-center w-[20%] last:invisible group-hover:visible">
+        <p className={`flex justify-center w-[20%] ${authReducer.role === "administrator" && "last:invisible group-hover:visible"}`}>
             {children}
         </p>
     );

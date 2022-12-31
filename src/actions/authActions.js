@@ -1,4 +1,4 @@
-import { startFetch, endFetch, errorFetch } from './statusActions';
+import { startFetch, endFetch, errorFetch, startUpdateFetch, endUpdateFetch } from './statusActions';
 
 import { signin, settingAccount } from '../api/fakeAPI';
 
@@ -29,24 +29,24 @@ function fetchAuthAsync(email, password) {
     }
 }
 
-function fetchSettingAccount(dateUser) {
+function fetchUpdateAccount(dateUser) {
     return async function (dispatch) {
         try {
-            dispatch(startFetch());
+            dispatch(startUpdateFetch());
 
             const user = await settingAccount(dateUser);
 
             if (user) {
                 dispatch(setAuth(user));
                 dispatch(errorFetch(''));
-                dispatch(endFetch());
+                dispatch(endUpdateFetch());
             }
         } catch (error) {
             dispatch(setAuth(null));
             dispatch(errorFetch(error));
-            dispatch(endFetch());
+            dispatch(endUpdateFetch());
         }
     }
 }
 
-export { setAuth, fetchAuthAsync, fetchSettingAccount };
+export { setAuth, fetchAuthAsync, fetchUpdateAccount };

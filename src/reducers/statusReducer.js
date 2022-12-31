@@ -1,5 +1,6 @@
 const initialState = {
     loading: false,
+    updating: false,
     error: '',
 }
 
@@ -21,6 +22,18 @@ const statusReducer = (state = initialState, action) => {
             return {
                 ...state,
                 error: action.payload,
+            };
+
+        case 'FETCH_START_UPDATE':
+            return {
+                ...state,
+                updating: true,
+            };
+
+        case 'FETCH_END_UPDATE':
+            return {
+                ...state,
+                updating: false,
             };
 
         default:

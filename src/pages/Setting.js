@@ -7,7 +7,7 @@ import Spinner from '../components/Spinner';
 import { MdCheck, MdClose } from 'react-icons/md'
 
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchSettingAccount } from '../actions/authActions';
+import { fetchUpdateAccount } from '../actions/authActions';
 
 function HandlerEditState({ state, setState, acceptEdit, declineEdit }) {
     return (
@@ -34,7 +34,7 @@ function Setting() {
     });
 
     function acceptEdit() {
-        dispatch(fetchSettingAccount(backupData))
+        dispatch(fetchUpdateAccount(backupData))
     }
     function declineEdit() {
         setBackupdata(authReducer);
@@ -59,7 +59,7 @@ function Setting() {
                         <div>
                             <SettingInfo data={backupData} setBackupdata={setBackupdata} state={state} />
                         </div>
-                        {statusReducer.loading &&
+                        {statusReducer.updating &&
                             <div className="flex justify-center text-accept mt-4">
                                     <Spinner color="accept"/><label>กำลังบันทึก</label>
                             </div>}

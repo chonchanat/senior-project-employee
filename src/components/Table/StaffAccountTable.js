@@ -15,6 +15,7 @@ import { RiDeleteBin5Line } from 'react-icons/ri';
 function StaffAccountTable({ accountData, setPage, handlerSelect }) {
 
     const statusReducer = useSelector(state => state.statusReducer);
+    const authReducer = useSelector(state => state.authReducer);
 
     function handlerClick(id) {
         setPage("Info");
@@ -33,7 +34,7 @@ function StaffAccountTable({ accountData, setPage, handlerSelect }) {
                     <TableHead>ID</TableHead>
                     <TableHead>Name</TableHead>
                     <TableHead>Role</TableHead>
-                    <TableHead>Action</TableHead>
+                    {authReducer.role === "administrator" && <TableHead>Action</TableHead>}
                 </TableRow>
                 <DataSection width="max-h-[560px]">
                     {accountData.map((row, index) =>
@@ -41,15 +42,17 @@ function StaffAccountTable({ accountData, setPage, handlerSelect }) {
                             <TableBody>{row.id}</TableBody>
                             <TableBody>{row.name}</TableBody>
                             <TableBody>{row.role}</TableBody>
-                            <TableBody>
-                                <ButtonTransparent color="accept" click={() => handlerClick(row.id)}>
-                                    <HiOutlinePencil size="24px" />
-                                </ButtonTransparent>
-                                <div className="w-[16px]" />
-                                <ButtonTransparent color="decline">
-                                    <RiDeleteBin5Line size="24px" />
-                                </ButtonTransparent>
-                            </TableBody>
+                            {authReducer.role === "administrator" &&
+                                <TableBody>
+                                    <ButtonTransparent color="accept" click={() => handlerClick(row.id)}>
+                                        <HiOutlinePencil size="24px" />
+                                    </ButtonTransparent>
+                                    <div className="w-[16px]" />
+                                    <ButtonTransparent color="decline">
+                                        <RiDeleteBin5Line size="24px" />
+                                    </ButtonTransparent>
+                                </TableBody>
+                            }
                         </TableRow>
                     )}
                 </DataSection>

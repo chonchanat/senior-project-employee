@@ -29,8 +29,8 @@ function Signin() {
     }, [authReducer, navigate]);
 
     const [user, setUser] = useState({
-        email: "",
-        password: "",
+        email: "chonchanat.t@ku.th",
+        password: "12345",
     });
     const [noti, setNoti] = useState(null);
 
@@ -54,14 +54,16 @@ function Signin() {
                     <div>
                         <div className="pb-6">
                             <p className="pb-2">Email</p>
-                            <input className="w-full bg-light-blue py-2 px-4 rounded-md"
+                            <input className="w-full bg-light-blue py-2 px-4 rounded-md" type="email"
                                 placeholder="email"
+                                value={user.email}
                                 onChange={(e) => setUser({ ...user, email: e.target.value })} />
                         </div>
                         <div className="pb-6">
                             <p className="pb-2">Password</p>
-                            <input className="w-full bg-light-blue py-2 px-4 rounded-md"
+                            <input className="w-full bg-light-blue py-2 px-4 rounded-md" type="password"
                                 placeholder="password"
+                                value={user.password}
                                 onChange={(e) => setUser({ ...user, password: e.target.value })} />
                             <p className="h-[28px] text-right text-sm text-decline pt-2">{noti ? noti : statusReducer.error}</p>
                         </div>

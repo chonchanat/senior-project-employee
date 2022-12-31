@@ -17,4 +17,16 @@ const errorFetch = (error) => {
     };
 }
 
-export { startFetch, endFetch, errorFetch };
+const startUpdateFetch = () => {
+    return {
+        type: 'FETCH_START_UPDATE',
+    };
+}
+
+const endUpdateFetch = () => {
+    return {
+        type: 'FETCH_END_UPDATE',
+    };
+}
+
+export { startFetch, endFetch, errorFetch, startUpdateFetch, endUpdateFetch };
