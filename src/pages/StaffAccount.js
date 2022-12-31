@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { startFetch, endFetch } from '../actions/statusActions';
 
 import { BlockDesktop, BlockDesktopLeft, BlockDesktopRight, HeadDesktop, ContentDesktop, HeadContentDesktop } from '../components/Block'
 import SideMenuDesktop from '../components/SideMenu/SideMenuDesktop';
@@ -8,7 +9,7 @@ import StaffForm from '../components/Form/StaffForm';
 import StaffAccountTable from '../components/Table/StaffAccountTable';
 import StaffAccountInfo from '../components/Info/StaffAccountInfo';
 
-import StaffData from '../fakeData/StaffData';
+import { getStaffAPI } from '../api/fakeAPI';
 
 function StaffAccount() {
 
@@ -16,15 +17,15 @@ function StaffAccount() {
     const authReducer = useSelector(state => state.authReducer);
 
     useEffect(() => {
-        async function getActivity() {
-            // dispatch(startFetch());
+        async function getAccount() {
+            dispatch(startFetch());
 
-            // const data = await getActivityAPI();
-            setAccountData(StaffData);
+            const data = await getStaffAPI();
+            setAccountData(data);
 
-            // dispatch(endFetch());
+            dispatch(endFetch());
         }
-        getActivity();
+        getAccount();
     }, [dispatch])
 
 

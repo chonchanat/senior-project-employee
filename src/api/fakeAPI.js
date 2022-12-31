@@ -1,5 +1,6 @@
 import StaffData from '../fakeData/StaffData';
 import ActivityData from '../fakeData/ActivityData';
+import CustomerData from '../fakeData/CustomerData';
 
 function signin(email, password) {
     return new Promise((resolve, reject) => {
@@ -37,8 +38,24 @@ function getActivityAPI() {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
             resolve(ActivityData);
+        }, 500)
+    })
+}
+
+function getStaffAPI() {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve(StaffData);
+        }, 500)
+    })
+}
+
+function getCustomerAPI() {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve(CustomerData);
         }, 1000)
     })
 }
 
-export { signin, settingAccount, getActivityAPI };
+export { signin, settingAccount, getActivityAPI, getStaffAPI, getCustomerAPI };
