@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import { Button, ButtonSubmit } from '../Button';
 
-function CustomerForm({ setState }) {
+function CustomerForm({ setPage }) {
 
     const [form, setForm] = useState({
         phone: "",
@@ -47,7 +47,7 @@ function CustomerForm({ setState }) {
                 <div className="flex justify-center mt-10">
                     <ButtonSubmit title="Submit" bgColor="bg-accept" width="w-[200px]" />
                     <div className="w-[60px]" />
-                    <div onClick={() => setState(false)}>
+                    <div onClick={() => setPage("Table")}>
                         <Button bgColor="bg-decline" width="w-[200px]">Cancel</Button>
                     </div>
                 </div>

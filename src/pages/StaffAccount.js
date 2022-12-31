@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { BlockDesktop, BlockDesktopLeft, BlockDesktopRight, HeadDesktop, ContentDesktop, HeadContentDesktop } from '../components/Block'
 import SideMenuDesktop from '../components/SideMenu/SideMenuDesktop';
@@ -13,6 +13,7 @@ import StaffData from '../fakeData/StaffData';
 function StaffAccount() {
 
     const dispatch = useDispatch();
+    const authReducer = useSelector(state => state.authReducer);
 
     useEffect(() => {
         async function getActivity() {
@@ -56,7 +57,7 @@ function StaffAccount() {
                                 <label className={`${page !== "Info" && "hidden"} font-normal`}
                                     onClick={(e) => e.stopPropagation()}> / แก้ไขบัญชีพนักงาน</label>
                             </p>
-                            <div className={`${page === "Table" ? "visible" : "invisible"}`}
+                            <div className={`${authReducer.role === "administrator" && page === "Table" ? "visible" : "invisible"}`}
                                 onClick={() => setPage("Form")}>
                                 <Button bgColor="bg-yellow" textColor="text-black" font="font-normal" width="w-[150px]">สร้างบัญชีพนักงาน</Button>
                             </div>
