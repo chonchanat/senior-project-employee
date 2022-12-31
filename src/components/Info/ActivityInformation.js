@@ -87,14 +87,14 @@ function HandlerEditState({ state, setState, acceptEdit, declineEdit }) {
 
 function ActivityQueueTable({ data }) {
     return (
-        <div>
+        <div className="h-full flex flex-col overflow-auto">
             <TableRow condition="head">
                 <TableHead>No.</TableHead>
                 <TableHead>Customer ID</TableHead>
                 <TableHead>จำนวนผู้เข้าร่วม</TableHead>
                 <TableHead>Action</TableHead>
             </TableRow>
-            <DataSection width="h-[280px] ">
+            <DataSection width="h-[280px]">
                 {data.map((row, index) =>
                     <TableRow key={index}>
                         <TableBody>{row.id}</TableBody>

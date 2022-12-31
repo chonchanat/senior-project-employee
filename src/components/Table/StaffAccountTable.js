@@ -29,14 +29,14 @@ function StaffAccountTable({ accountData, setPage, handlerSelect }) {
                 <label>กำลังโหลดข้อมูล</label>
             </div>
             :
-            <div>
+            <div className="h-full flex flex-col overflow-auto">
                 <TableRow condition="head">
                     <TableHead>ID</TableHead>
                     <TableHead>Name</TableHead>
                     <TableHead>Role</TableHead>
                     {authReducer.role === "administrator" && <TableHead>Action</TableHead>}
                 </TableRow>
-                <DataSection width="max-h-[560px]">
+                <DataSection width="">
                     {accountData.map((row, index) =>
                         <TableRow key={index}>
                             <TableBody>{row.id}</TableBody>

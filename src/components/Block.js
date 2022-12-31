@@ -34,7 +34,7 @@ function BlockDesktopRight({ children }) {
 
 function HeadDesktop({ children }) {
     return (
-        <div className="bg-fha-desktop py-4 px-8 mr-4 mb-4 rounded-xl drop-shadow-xl text-white text-xl font-bold w-full xl:max-w-[1280px]">
+        <div className="bg-fha-desktop py-4 px-8 mr-4 mb-4 rounded-xl drop-shadow-xl text-white text-xl font-bold w-full xl:max-w-[1280px] h-[60px]">
             {children}
         </div>
     );
@@ -42,7 +42,7 @@ function HeadDesktop({ children }) {
 
 function ContentDesktop({ children }) {
     return (
-        <div className="flex flex-col h-[91%] bg-white pt-3 px-8 mr-4 rounded-xl drop-shadow-xl w-full xl:max-w-[1280px]">
+        <div className="flex flex-col bg-white py-3 px-8 mr-4 rounded-xl drop-shadow-xl w-full xl:max-w-[1280px] " style={{height:`calc(100% - 77px)`}}>
             {children}
         </div>
     );
@@ -50,7 +50,7 @@ function ContentDesktop({ children }) {
 
 function HeadContentDesktop({ children }) {
     return (
-        <div className="pb-3 mb-4 border-b-2 border-[#E0E0E0] flex justify-between items-center">
+        <div className="pb-3 mb-4 border-b-2 border-[#E0E0E0] flex justify-between items-center h-[54px]">
             {children}
         </div>
     );

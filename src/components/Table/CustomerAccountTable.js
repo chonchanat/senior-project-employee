@@ -24,7 +24,7 @@ function CustomerAccountTable({ accountData, handlerSelect }) {
                 <label>กำลังโหลดข้อมูล</label>
             </div>
             :
-            <div>
+            <div className="h-full flex flex-col overflow-auto">
                 <TableRow condition="head">
                     <TableHead>ID</TableHead>
                     <TableHead>Member</TableHead>
@@ -32,7 +32,7 @@ function CustomerAccountTable({ accountData, handlerSelect }) {
                     <TableHead>Time</TableHead>
                     {authReducer.role === "administrator" && <TableHead>Action</TableHead>}
                 </TableRow>
-                <DataSection width="max-h-[560px]">
+                <DataSection width="">
                     {accountData.map((row, index) =>
                         <TableRow key={index}>
                             <TableBody>{row.id}</TableBody>
