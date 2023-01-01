@@ -4,6 +4,8 @@ import { Button, ButtonSubmit } from '../Button';
 
 import { AiOutlinePicture } from 'react-icons/ai';
 
+import { postActivityAPI } from '../../api/ActivityAPI';
+
 function ActivityForm({ setPage }) {
 
     const [form, setForm] = useState({
@@ -16,6 +18,7 @@ function ActivityForm({ setPage }) {
 
     function handlerSubmit(event) {
         event.preventDefault();
+        postActivityAPI(form);
     }
 
     return (
