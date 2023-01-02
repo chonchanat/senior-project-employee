@@ -15,6 +15,8 @@ import { BsCone } from 'react-icons/bs';
 
 function ActivityTable({ activityData, setPage, handlerSelect }) {
 
+    // console.log(activityData.length === 0)
+    // console.log(statusReducer.loading && activityData)
     const statusReducer = useSelector(state => state.statusReducer);
     const authReducer = useSelector(state => state.authReducer);
 
@@ -25,11 +27,11 @@ function ActivityTable({ activityData, setPage, handlerSelect }) {
 
     function handlerStatus(status) {
         if (status === "open") {
-            return <RiRunFill size="24px" className="text-accept" title="open"/>;
+            return <RiRunFill size="24px" className="text-accept" title="open" />;
         } else if (status === "temporarily closed") {
-            return <RiNotification3Fill size="24px" className="text-yellow" title="temporarily closed"/>
+            return <RiNotification3Fill size="24px" className="text-yellow" title="temporarily closed" />
         } else if (status === "closed") {
-            return <BsCone size="24px" className="text-decline" title="closed"/>;
+            return <BsCone size="24px" className="text-decline" title="closed" />;
         }
     }
 
@@ -50,21 +52,26 @@ function ActivityTable({ activityData, setPage, handlerSelect }) {
                     {authReducer.role === "administrator" && <TableHead>Action</TableHead>}
                 </TableRow>
                 <DataSection width="">
-                    {activityData.map((row, index) =>
-                        <TableRow key={index}>
-                            <TableBody>{row.code}</TableBody>
-                            <TableBody>{row.name}</TableBody>
-                            <TableBody>{handlerStatus(row.status)}</TableBody>
-                            <TableBody>{row.duration}</TableBody>
-                            <TableBody>{row.rating}</TableBody>
-                            {authReducer.role === "administrator" &&
-                                <TableBody>
-                                    < ButtonTransparent click={() => handlerClick(row.id)}>
-                                        <IoMdSettings size="24px" />
-                                    </ButtonTransparent>
-                                </TableBody>}
-                        </TableRow>
-                    )
+                    {activityData.length ?
+                        activityData.map((row, index) =>
+                            <TableRow key={index}>
+                                <TableBody>{row.code}</TableBody>
+                                <TableBody>{row.name}</TableBody>
+                                <TableBody>{handlerStatus(row.status)}</TableBody>
+                                <TableBody>{row.duration}</TableBody>
+                                <TableBody>{row.rating}</TableBody>
+                                {authReducer.role === "administrator" &&
+                                    <TableBody>
+                                        < ButtonTransparent click={() => handlerClick(row.id)}>
+                                            <IoMdSettings size="24px" />
+                                        </ButtonTransparent>
+                                    </TableBody>}
+                            </TableRow>
+                        )
+                        :
+                        <div className="flex justify-center py-10 border-b-2 border-[#E0E0E0]">
+                            <label>ไม่มีรายชื่อกิจกรรม</label>
+                        </div>
                     }
                 </DataSection >
                 <p className="text-sm text-right my-4 text-[#7d7d7d]">กิจกรรมทั้งหมด {activityData.length} กิจกรรม</p>
