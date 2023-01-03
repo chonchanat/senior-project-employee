@@ -13,6 +13,8 @@ import CustomerAccount from './pages/CustomerAccount';
 import Setting from './pages/Setting';
 import InfoStaff from './pages/InfoStaff';
 
+import Test from './pages/test';
+
 const App = createBrowserRouter([
   {
     path: "/signin",
@@ -39,6 +41,10 @@ const App = createBrowserRouter([
     element: <PrivateRoute><InfoStaff /></PrivateRoute>
   },
 
+  {
+    path: "/test",
+    element: <Test />,
+  },
   {
     path: "/*",
     element: <Navigate to="/signin" />,

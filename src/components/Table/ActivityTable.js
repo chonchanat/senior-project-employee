@@ -15,8 +15,6 @@ import { BsCone } from 'react-icons/bs';
 
 function ActivityTable({ activityData, setPage, handlerSelect }) {
 
-    // console.log(activityData.length === 0)
-    // console.log(statusReducer.loading && activityData)
     const statusReducer = useSelector(state => state.statusReducer);
     const authReducer = useSelector(state => state.authReducer);
 

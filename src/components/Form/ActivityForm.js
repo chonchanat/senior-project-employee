@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
 
 import { Button, ButtonSubmit } from '../Button';
 
@@ -7,6 +8,9 @@ import { AiOutlinePicture } from 'react-icons/ai';
 import { postActivityAPI } from '../../api/ActivityAPI';
 
 function ActivityForm({ setPage }) {
+
+    const activityReducer = useSelector(state => state.activityReducer);
+    console.log(activityReducer)
 
     const [form, setForm] = useState({
         name: "",
@@ -62,6 +66,13 @@ function ActivityForm({ setPage }) {
                             </div>
                         </label>
                     </div>
+                    {/* {
+                        activityReducer.map((data) => (
+                            <div key={data.code}>
+                                <p>{data.name}</p>
+                            </div>
+                        ))
+                    } */}
                 </div>
 
                 <div className="flex justify-center mt-10">

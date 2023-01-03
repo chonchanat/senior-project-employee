@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { startFetch, endFetch } from '../actions/statusActions';
+import { setActivity } from '../actions/activityActions';
 
 import { BlockDesktop, BlockDesktopLeft, BlockDesktopRight, HeadDesktop, ContentDesktop, HeadContentDesktop } from '../components/Block';
 import SideMenuDesktop from '../components/SideMenu/SideMenuDesktop';
@@ -22,6 +23,7 @@ function StaffActivity() {
 
             const data = await getActivityAPI();
             setActivityData(data);
+            dispatch(setActivity(data))
 
             dispatch(endFetch());
         }
