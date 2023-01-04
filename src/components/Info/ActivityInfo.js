@@ -14,43 +14,43 @@ function ActivityInfo({ data, setData, state, children }) {
                 </div>
                 <div className="flex justify-between items-center mb-4">
                     จำนวนผู้เข้าร่วม
-                    <label className="w-[360px] flex justify-between items-center">
+                    <div className="w-[360px] flex justify-between items-center">
                         <input type="number" className="h-[36px] border-black rounded-md border px-6"
                             value={data.size}
                             disabled={state.editState}
                             onChange={(e) => setData({ ...data, size: e.target.value })} />
                         <label>คน/รอบ</label>
-                    </label>
+                    </div>
                 </div>
                 <div className="flex justify-between items-center mb-4">
                     ระยะเวลาเล่น
-                    <label className="w-[360px] flex justify-between items-center">
+                    <div className="w-[360px] flex justify-between items-center">
                         <input type="number" className="h-[36px] border-black rounded-md border px-6"
                             value={data.duration}
                             disabled={state.editState}
                             onChange={(e) => setData({ ...data, duration: e.target.value })} />
                         <label>นาที/รอบ</label>
-                    </label>
+                    </div>
                 </div>
                 <div className="flex justify-between items-center mb-4">
                     ระยะเวลารอ
-                    <label className="w-[360px] flex justify-between items-center">
+                    <div className="w-[360px] flex justify-between items-center">
                         <input type="number" className="h-[36px] border-black rounded-md border px-6"
                             value={data.waitingTime}
                             disabled={state.editState}
                             onChange={(e) => setData({ ...data, waitingTime: e.target.value })} />
                         <label>นาที</label>
-                    </label>
+                    </div>
                 </div>
                 <div className="flex justify-between items-center mb-4">
-                จำนวนดาว
-                    <label className="w-[360px] flex justify-between items-center">
-                    <input type="number" className="h-[36px] border-black rounded-md border px-6"
+                    จำนวนดาว
+                    <div className="w-[360px] flex justify-between items-center">
+                        <input type="number" className="h-[36px] border-black rounded-md border px-6"
                             value={data.star}
                             disabled={state.editState}
                             onChange={(e) => setData({ ...data, star: e.target.value })} />
                         <label>ดวง/คน</label>
-                    </label>
+                    </div>
                 </div>
                 {children}
             </div>
