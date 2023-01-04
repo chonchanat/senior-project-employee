@@ -10,8 +10,6 @@ import { ButtonTransparent } from '../Button';
 import Spinner from '../Spinner'
 
 import { IoMdSettings } from 'react-icons/io';
-import { RiRunFill, RiNotification3Fill } from 'react-icons/ri';
-import { BsCone } from 'react-icons/bs';
 
 function ActivityTable({ activityData, setPage, handlerSelect }) {
 
@@ -25,11 +23,11 @@ function ActivityTable({ activityData, setPage, handlerSelect }) {
 
     function handlerStatus(status) {
         if (status === "open") {
-            return <RiRunFill size="24px" className="text-accept" title="open" />;
+            return "bg-accept";
         } else if (status === "temporarily closed") {
-            return <RiNotification3Fill size="24px" className="text-yellow" title="temporarily closed" />
+            return "bg-yellow";
         } else if (status === "closed") {
-            return <BsCone size="24px" className="text-decline" title="closed" />;
+            return "bg-decline";
         }
     }
 
@@ -55,7 +53,7 @@ function ActivityTable({ activityData, setPage, handlerSelect }) {
                             <TableRow key={index}>
                                 <TableBody>{row.code}</TableBody>
                                 <TableBody>{row.name}</TableBody>
-                                <TableBody>{handlerStatus(row.status)}</TableBody>
+                                <TableBody><div className={`${handlerStatus(row.status)} w-[12px] h-[12px] rounded-full`} title={row.status} /></TableBody>
                                 <TableBody>{row.duration}</TableBody>
                                 <TableBody>{row.rating}</TableBody>
                                 {authReducer.role === "administrator" &&
