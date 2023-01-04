@@ -13,7 +13,6 @@ import ActivityTable from '../components/Table/ActivityTable';
 import { getActivityAPI } from '../api/fakeAPI';
 // import { getActivityAPI } from '../api/ActivityAPI';
 
-
 function StaffActivity() {
     const dispatch = useDispatch();
 

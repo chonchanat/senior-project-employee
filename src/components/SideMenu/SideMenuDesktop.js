@@ -20,7 +20,7 @@ function SideMenuDesktop() {
 
     return (
         <div className="h-full">
-            <div className="w-[50px] h-full bg-fha-desktop rounded-xl drop-shadow-xl mx-4 xl:w-[300px] xl:px-6 xl:pt-6 xl:pb-4 hidden xl:flex flex-col">
+            <div className="w-[50px] h-full bg-fha-desktop rounded-xl shadow-xl mx-4 xl:w-[300px] xl:px-6 xl:pt-6 xl:pb-4 hidden xl:flex flex-col">
                 <div className="border-b-2 border-white flex pb-6">
                     <div className="pr-2">
                         <CgProfile size="56px" color="black" />
@@ -69,7 +69,7 @@ function SideMenuDesktop() {
                 </div>
             </div>
 
-            <div className="w-[50px] h-full px-1 flex flex-col bg-fha-desktop rounded-xl drop-shadow-xl mx-4 block xl:hidden">
+            <div className="w-[50px] h-full px-1 flex flex-col bg-fha-desktop rounded-xl shadow-xl mx-4 block xl:hidden">
                 <div className="h-[100px] border-b-2 border-white flex justify-center items-center">
                     <CgProfile size="40px" color="white" />
                 </div>

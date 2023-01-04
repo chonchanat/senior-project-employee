@@ -1,6 +1,6 @@
 function Button({ children, bgColor, textColor = "text-white", width = "w-full", font, click }) {
     return (
-        <div className={`${bgColor} ${width} ${font} ${textColor} flex justify-center py-2 px-4 rounded-md text-sm drop-shadow-md hover:cursor-pointer`}
+        <div className={`${bgColor} ${width} ${font} ${textColor} flex justify-center py-2 px-4 rounded-md text-sm shadow-md hover:cursor-pointer`}
             onClick={click}>
             {children}
         </div>
@@ -14,7 +14,7 @@ function Button({ children, bgColor, textColor = "text-white", width = "w-full",
 
 function ButtonSubmit({ bgColor, textColor = "text-white", width = "w-full", font, link }) {
     return (
-        <input type="submit" className={`${bgColor} ${width} ${font} ${textColor} py-2 px-4 rounded-md text-sm drop-shadow-md`}>
+        <input type="submit" className={`${bgColor} ${width} ${font} ${textColor} py-2 px-4 rounded-md text-sm shadow-md`}>
         </input>
     );
 }

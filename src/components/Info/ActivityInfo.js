@@ -1,52 +1,58 @@
-function ActivityInfo({ data, setData, state }) {
+function ActivityInfo({ data, setData, state, children }) {
     return (
-        <div className="flex h-[240px] px-10">
-            <div className="w-[40%] flex justify-center items-center">
+        <div className="flex flex-wrap justify-center h-fit">
+            <div className="w-[400px] flex justify-center items-center mb-4">
                 <img src={data.image} alt="activity" width="250px" />
             </div>
-            <div className="w-[60%]">
-                <label className="flex justify-between items-center mb-4">ชื่อกิจกรรม
-                    <input type="text" className={`w-[70%] h-[36px] border-black rounded-md border px-6`}
+            <div className="w-[520px]">
+                <div className="flex justify-between items-center mb-4">
+                    ชื่อกิจกรรม
+                    <input type="text" className="h-[36px] w-[360px] border-black rounded-md border px-6"
                         value={data.name}
                         disabled={state.editState}
                         onChange={(e) => setData({ ...data, name: e.target.value })} />
-                </label>
-                <label className="flex justify-between items-center mb-4">จำนวนผู้เข้าร่วม
-                    <div className="flex justify-between w-[70%]">
+                </div>
+                <div className="flex justify-between items-center mb-4">
+                    จำนวนผู้เข้าร่วม
+                    <label className="w-[360px] flex justify-between items-center">
                         <input type="number" className="h-[36px] border-black rounded-md border px-6"
                             value={data.size}
                             disabled={state.editState}
                             onChange={(e) => setData({ ...data, size: e.target.value })} />
-                        <p className="w-20 flex justify-end items-center">คน/รอบ</p>
-                    </div>
-                </label>
-                <label className="flex justify-between items-center mb-4">ระยะเวลาเล่น
-                    <div className="flex justify-between w-[70%]">
+                        <label>คน/รอบ</label>
+                    </label>
+                </div>
+                <div className="flex justify-between items-center mb-4">
+                    ระยะเวลาเล่น
+                    <label className="w-[360px] flex justify-between items-center">
                         <input type="number" className="h-[36px] border-black rounded-md border px-6"
                             value={data.duration}
                             disabled={state.editState}
                             onChange={(e) => setData({ ...data, duration: e.target.value })} />
-                        <p className="w-20 flex justify-end items-center">นาที/รอบ</p>
-                    </div>
-                </label>
-                <label className="flex justify-between items-center mb-4">ระยะเวลารอ
-                    <div className="flex justify-between w-[70%]">
+                        <label>นาที/รอบ</label>
+                    </label>
+                </div>
+                <div className="flex justify-between items-center mb-4">
+                    ระยะเวลารอ
+                    <label className="w-[360px] flex justify-between items-center">
                         <input type="number" className="h-[36px] border-black rounded-md border px-6"
                             value={data.waitingTime}
                             disabled={state.editState}
                             onChange={(e) => setData({ ...data, waitingTime: e.target.value })} />
-                        <p className="w-20 flex justify-end items-center">นาที</p>
-                    </div>
-                </label>
-                <label className="flex justify-between items-center mb-4">จำนวนดาว
-                    <div className="flex justify-between w-[70%]">
-                        <input type="number" className="h-[36px] border-black rounded-md border px-6"
+                        <label>นาที</label>
+                    </label>
+                </div>
+                <div className="flex justify-between items-center mb-4">
+                จำนวนดาว
+                    <label className="w-[360px] flex justify-between items-center">
+                    <input type="number" className="h-[36px] border-black rounded-md border px-6"
                             value={data.star}
                             disabled={state.editState}
                             onChange={(e) => setData({ ...data, star: e.target.value })} />
-                        <p className="w-20 flex justify-end items-center">ดวง/คน</p>
-                    </div>
-                </label>
+                        <label>ดวง/คน</label>
+                    </label>
+                </div>
+                {children}
             </div>
         </div>
     );

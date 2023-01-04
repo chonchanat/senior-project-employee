@@ -10,6 +10,16 @@ const ActivityData = [
         duration: 5,
         star: 12,
         rating: 5,
+        near: [
+            {
+                name: "ชิงช้าสวรรค์",
+                code: "CPE002",
+            },
+            {
+                name: "บ้านผีสิง",
+                code: "CPE003",
+            },
+        ]
     },
     {
         id: "f56s4rt1fd",
@@ -20,6 +30,7 @@ const ActivityData = [
         duration: 10,
         star: 8,
         rating: 4,
+        near: [],
     },
     {
         id: "bs6t42as42",
@@ -30,6 +41,7 @@ const ActivityData = [
         duration: 10,
         star: 8,
         rating: 4,
+        near: [],
     },
     {
         id: "sb5te64a21",
@@ -40,6 +52,7 @@ const ActivityData = [
         duration: 10,
         star: 6,
         rating: 4,
+        near: [],
     },
     {
         id: "srt6542xz1",
@@ -50,6 +63,7 @@ const ActivityData = [
         duration: 5,
         star: 6,
         rating: 3,
+        near: [],
     },
     {
         id: "2d1ytn51a2",
@@ -60,6 +74,7 @@ const ActivityData = [
         duration: 8,
         star: 10,
         rating: 4,
+        near: [],
     },
     {
         id: "5e41vbt4h8",
@@ -70,6 +85,7 @@ const ActivityData = [
         duration: 10,
         star: 10,
         rating: 4,
+        near: [],
     },
     {
         id: "dn685t24d4",
@@ -80,6 +96,7 @@ const ActivityData = [
         duration: 10,
         star: 10,
         rating: 4,
+        near: [],
     },
 ]
 

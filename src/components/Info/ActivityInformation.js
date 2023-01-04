@@ -1,14 +1,7 @@
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
 
-import { HeadContentDesktop } from '../Block';
 import ActivityInfo from './ActivityInfo';
-import {
-    TableHead,
-    TableBody,
-    TableRow,
-    DataSection,
-} from '../Table/Table'
-import { ButtonTransparent } from '../Button';
 import {
     DropdownButton,
     DropdownBody,
@@ -16,38 +9,71 @@ import {
     Dropdown,
 } from '../Dropdown';
 import Wrapper from '../Wrapper';
+import { MultiSelect, MultiSelectBody } from "../MultiSelect";
 
 import { BsThreeDots } from 'react-icons/bs';
-import { RiDeleteBin5Line } from 'react-icons/ri';
 import { MdCheck, MdClose } from 'react-icons/md'
-
-import CustomerData from '../../fakeData/CustomerData';
 
 function ActivityInformation({ selectData }) {
 
+    const activityReducer = useSelector(state => state.activityReducer);
+
     const [data, setData] = useState(selectData);
     const [backupData, setBackupdata] = useState(data);
+    const [search, setSearch] = useState("");
+    const [multiSelect, setMultiSearch] = useState(selectData.near);
+    console.log(selectData)
     const [state, setState] = useState({
         dropState: false,
         editState: true,
+        multiSearch: false,
     });
 
     function acceptEdit() {
+        setState({ ...state, editState: true })
         setBackupdata(data);
     }
     function declineEdit() {
+        setState({ ...state, editState: true })
         setData(backupData);
     }
+    function handlerClick(data) {
+        const found = multiSelect.find(e => e.code === data.code);
+        if (!found) {
+            setMultiSearch([...multiSelect, data])
+        }
+        setState({ ...state, multiSearch: false });
+        setSearch("");
+    };
 
     return (
         <div className="relative">
+            <Wrapper state={state.dropState}
+                click={() => setState({ ...state, dropState: !state.dropState })} />
+            <Wrapper state={state.multiSearch}
+                click={() => setState({ ...state, multiSearch: false })} />
+
             <HandlerDropdown state={state} setState={setState} />
-            <HandlerEditState state={state} setState={setState} acceptEdit={acceptEdit} declineEdit={declineEdit} />
-            <ActivityInfo data={data} setData={setData} state={state} />
-            <HeadContentDesktop>
-                <p className="pt-4 pb-2">ตารางคิว</p>
-            </HeadContentDesktop>
-            <ActivityQueueTable data={CustomerData}/>
+            <HandlerEdit state={state} acceptEdit={acceptEdit} declineEdit={declineEdit} />
+            <ActivityInfo data={data} setData={setData} state={state} >
+                <div className="flex justify-between items-center">
+                    <p>กิจกรรมใกล้เคียง</p>
+                    <MultiSelect>
+                        <input type="text" className="w-[360px] h-[36px] border-black rounded-md border px-6"
+                            onChange={(e) => setSearch(e.target.value)}
+                            value={search}
+                            disabled={state.editState}
+                            onClick={() => setState({ ...state, multiSearch: true })} />
+                        <MultiSelectBody state={state} data={activityReducer} search={search} click={handlerClick} />
+                        <div className="absolute top-[44px] w-[400px] flex flex-wrap">
+                            {multiSelect.map((data) =>
+                                <p key={data.code} className="flex items-center p-2 mr-2 mb-2 bg-yellow rounded-3xl">{data.name}
+                                    <MdClose className={`text-white ml-1 ${state.editState && "hidden"}`} onClick={() => setMultiSearch(multiSelect.filter(e => e.code !== data.code))} />
+                                </p>)}
+                        </div>
+                    </MultiSelect>
+                </div>
+            </ActivityInfo>
         </div>
     );
 }
@@ -56,8 +82,6 @@ function HandlerDropdown({ state, setState }) {
     return (
         <div className={`absolute right-0 top-[-68px] ${state.editState ? "block" : "hidden"}`}>
             <Dropdown>
-                <Wrapper state={state.dropState}
-                    click={() => setState({ ...state, dropState: !state.dropState })} />
                 <DropdownButton click={() => setState({ ...state, dropState: !state.dropState })}>
                     <BsThreeDots size="28px" />
                 </DropdownButton>
@@ -72,43 +96,15 @@ function HandlerDropdown({ state, setState }) {
     );
 }
 
-function HandlerEditState({ state, setState, acceptEdit, declineEdit }) {
+function HandlerEdit({ state, acceptEdit, declineEdit }) {
     return (
         <div className={`absolute right-0 top-[-68px] ${state.editState ? "hidden" : "block flex"}`}>
-            <DropdownButton click={() => { setState({ ...state, editState: true }); acceptEdit() }}>
+            <DropdownButton click={acceptEdit}>
                 <MdCheck size="28px" className="text-accept" />
             </DropdownButton>
-            <DropdownButton click={() => { setState({ ...state, editState: true }); declineEdit() }}>
+            <DropdownButton click={declineEdit}>
                 <MdClose size="28px" className="text-decline" />
             </DropdownButton>
-        </div>
-    );
-}
-
-function ActivityQueueTable({ data }) {
-    return (
-        <div className="h-full flex flex-col overflow-auto">
-            <TableRow condition="head">
-                <TableHead>No.</TableHead>
-                <TableHead>Customer ID</TableHead>
-                <TableHead>จำนวนผู้เข้าร่วม</TableHead>
-                <TableHead>Action</TableHead>
-            </TableRow>
-            <DataSection width="h-[280px]">
-                {data.map((row, index) =>
-                    <TableRow key={index}>
-                        <TableBody>{row.id}</TableBody>
-                        <TableBody>{row.member}</TableBody>
-                        <TableBody>{row.star}</TableBody>
-                        <TableBody>
-                            <ButtonTransparent color="decline">
-                                <RiDeleteBin5Line size="24px" />
-                            </ButtonTransparent>
-                        </TableBody>
-                    </TableRow>
-                )}
-            </DataSection>
-            <p className="text-sm text-right my-4 text-[#7d7d7d]">จำนวนคิวขณะนี้ <label>{data.length}</label> คิว</p>
         </div>
     );
 }

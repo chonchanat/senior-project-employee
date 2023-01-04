@@ -35,7 +35,6 @@ function ActivityForm({ setPage }) {
     }
 
     function handlerClick(data) {
-        console.log(data)
         const found = multiSelect.find(e => e.code === data.code);
         if (!found) {
             setMultiSearch([...multiSelect, data])
