@@ -54,46 +54,37 @@ function ActivityForm({ setPage }) {
                     <div className="w-[520px]">
                         <div className="flex justify-between items-center mb-4">
                             ชื่อกิจกรรม
-                            <input type="text" className="w-[360px] h-[36px] border-black rounded-md border px-6"
+                            <input type="text" className="w-[364px] h-[36px] border-black rounded-md border px-6"
                                 onChange={(e) => setForm({ ...form, name: e.target.value })} />
                         </div>
                         <div className="flex justify-between items-center mb-4">
-                            จำนวนผู้เข้าร่วม
-                            <div className="w-[360px] flex justify-between items-center">
-                                <input type="number" className="h-[36px] border-black rounded-md border px-6"
-                                    onChange={(e) => setForm({ ...form, size: parseInt(e.target.value) })} />
-                                <label>คน/รอบ</label>
-                            </div>
+                            <p className="w-[104px]">จำนวนผู้เข้าร่วม</p>
+                            <input type="number" className="h-[36px] border-black rounded-md border px-6"
+                                onChange={(e) => setForm({ ...form, size: parseInt(e.target.value) })} />
+                            <p className="w-[80px] text-right">คน/รอบ</p>
                         </div>
                         <div className="flex justify-between items-center mb-4">
-                            ระยะเวลาเล่น
-                            <div className="w-[360px] flex justify-between items-center">
-                                <input type="number" className="h-[36px] border-black rounded-md border px-6"
-                                    onChange={(e) => setForm({ ...form, duration: parseInt(e.target.value) })} />
-                                <label>นาที/รอบ</label>
-                            </div>
+                            <p className="w-[104px]">ระยะเวลาเล่น</p>
+                            <input type="number" className="h-[36px] border-black rounded-md border px-6"
+                                onChange={(e) => setForm({ ...form, duration: parseInt(e.target.value) })} />
+                            <p className="w-[80px] text-right">นาที/รอบ</p>
                         </div>
                         <div className="flex justify-between items-center mb-4">
-                            ระยะเวลารอ
-                            <div className="w-[360px] flex justify-between items-center">
-                                <input type="number" className="h-[36px] border-black rounded-md border px-6"
-                                    onChange={(e) => setForm({ ...form, waitingTime: parseInt(e.target.value) })} />
-                                <label>นาที</label>
-                            </div>
+                            <p className="w-[104px]">ระยะเวลารอ</p>
+                            <input type="number" className="h-[36px] border-black rounded-md border px-6"
+                                onChange={(e) => setForm({ ...form, waitingTime: parseInt(e.target.value) })} />
+                            <p className="w-[80px] text-right">นาที</p>
                         </div>
                         <div className="flex justify-between items-center mb-4">
-                            จำนวนดาว
-                            <div className="w-[360px] flex justify-between items-center">
-                                <input type="number" className="h-[36px] border-black rounded-md border px-6"
-                                    onChange={(e) => setForm({ ...form, star: parseInt(e.target.value) })} />
-                                <label>ดวง/รอบ</label>
-                            </div>
+                            <p className="w-[104px]">จำนวนดาว</p>
+                            <input type="number" className="h-[36px] border-black rounded-md border px-6"
+                                onChange={(e) => setForm({ ...form, star: parseInt(e.target.value) })} />
+                            <p className="w-[80px] text-right">ดวง/รอบ</p>
                         </div>
-
                         <div className="flex justify-between items-center">
                             <p>กิจกรรมใกล้เคียง</p>
                             <MultiSelect>
-                                <input type="text" className="w-[360px] h-[36px] border-black rounded-md border px-6"
+                                <input type="text" className="w-full h-[36px] border-black rounded-md border px-6"
                                     onChange={(e) => setSearch(e.target.value)}
                                     value={search}
                                     onClick={() => setState({ ...state, multiSearch: true })} />
@@ -107,9 +98,7 @@ function ActivityForm({ setPage }) {
                             </MultiSelect>
                         </div>
                     </div>
-
                 </div>
-
                 <div className="flex justify-center mt-[200px]">
                     <ButtonSubmit title="Submit" bgColor="bg-accept" width="w-[200px]" />
                     <div className="w-[60px]" />

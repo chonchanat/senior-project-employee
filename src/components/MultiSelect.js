@@ -1,6 +1,6 @@
 function MultiSelect({ children }) {
     return (
-        <div className="relative w-fit z-50 w-[360px]">
+        <div className="relative w-fit z-50 w-[364px]">
             {children}
         </div>
     );
