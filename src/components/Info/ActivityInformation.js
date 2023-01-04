@@ -21,8 +21,7 @@ function ActivityInformation({ selectData }) {
     const [data, setData] = useState(selectData);
     const [backupData, setBackupdata] = useState(data);
     const [search, setSearch] = useState("");
-    const [multiSelect, setMultiSearch] = useState(selectData.near);
-    console.log(selectData)
+    const [multiSelect, setmultiSelect] = useState(selectData.near);
     const [state, setState] = useState({
         dropState: false,
         editState: true,
@@ -40,7 +39,7 @@ function ActivityInformation({ selectData }) {
     function handlerClick(data) {
         const found = multiSelect.find(e => e.code === data.code);
         if (!found) {
-            setMultiSearch([...multiSelect, data])
+            setmultiSelect([...multiSelect, data])
         }
         setState({ ...state, multiSearch: false });
         setSearch("");
@@ -68,7 +67,7 @@ function ActivityInformation({ selectData }) {
                         <div className="absolute top-[44px] w-[400px] flex flex-wrap">
                             {multiSelect.map((data) =>
                                 <p key={data.code} className="flex items-center p-2 mr-2 mb-2 bg-yellow rounded-3xl">{data.name}
-                                    <MdClose className={`text-white ml-1 ${state.editState && "hidden"}`} onClick={() => setMultiSearch(multiSelect.filter(e => e.code !== data.code))} />
+                                    <MdClose className={`text-white ml-1 ${state.editState && "hidden"}`} onClick={() => setmultiSelect(multiSelect.filter(e => e.code !== data.code))} />
                                 </p>)}
                         </div>
                     </MultiSelect>

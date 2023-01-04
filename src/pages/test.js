@@ -12,6 +12,8 @@ function Test() {
     const [state, setState] = useState({
         multiSearch: false,
     });
+    const [number, setNumber] = useState(0);
+    console.log(number);
 
     const [multiSelect, setMultiSearch] = useState([]);
 
@@ -23,8 +25,6 @@ function Test() {
         setState({ ...state, multiSearch: false });
         setSearch("");
     };
-
-    // console.log(multiSelect)
 
     return (
         <div className="px-10">
@@ -67,6 +67,9 @@ function Test() {
                     </div>
                 </div>
             </div>
+
+            <input onChange={(e) => setNumber(e.target.value)}></input>
+            <p onClick={() => console.log(number)}>click</p>
         </div>
     )
 }

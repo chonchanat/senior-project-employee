@@ -18,7 +18,7 @@ function ActivityInfo({ data, setData, state, children }) {
                         <input type="number" className="h-[36px] border-black rounded-md border px-6"
                             value={data.size}
                             disabled={state.editState}
-                            onChange={(e) => setData({ ...data, size: e.target.value })} />
+                            onChange={(e) => setData({ ...data, size: parseInt(e.target.value) })} />
                         <label>คน/รอบ</label>
                     </div>
                 </div>
@@ -28,7 +28,7 @@ function ActivityInfo({ data, setData, state, children }) {
                         <input type="number" className="h-[36px] border-black rounded-md border px-6"
                             value={data.duration}
                             disabled={state.editState}
-                            onChange={(e) => setData({ ...data, duration: e.target.value })} />
+                            onChange={(e) => setData({ ...data, duration: parseInt(e.target.value) })} />
                         <label>นาที/รอบ</label>
                     </div>
                 </div>
@@ -38,7 +38,7 @@ function ActivityInfo({ data, setData, state, children }) {
                         <input type="number" className="h-[36px] border-black rounded-md border px-6"
                             value={data.waitingTime}
                             disabled={state.editState}
-                            onChange={(e) => setData({ ...data, waitingTime: e.target.value })} />
+                            onChange={(e) => setData({ ...data, waitingTime: parseInt(e.target.value) })} />
                         <label>นาที</label>
                     </div>
                 </div>
@@ -48,7 +48,7 @@ function ActivityInfo({ data, setData, state, children }) {
                         <input type="number" className="h-[36px] border-black rounded-md border px-6"
                             value={data.star}
                             disabled={state.editState}
-                            onChange={(e) => setData({ ...data, star: e.target.value })} />
+                            onChange={(e) => setData({ ...data, star: parseInt(e.target.value) })} />
                         <label>ดวง/คน</label>
                     </div>
                 </div>

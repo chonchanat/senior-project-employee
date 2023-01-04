@@ -7,7 +7,7 @@ import Wrapper from '../Wrapper';
 
 import { MdClose } from 'react-icons/md'
 
-import { postActivityAPI } from '../../api/ActivityAPI';
+// import { postActivityAPI } from '../../api/ActivityAPI';
 
 function ActivityForm({ setPage }) {
 
@@ -17,7 +17,7 @@ function ActivityForm({ setPage }) {
         multiSearch: false,
     });
     const [search, setSearch] = useState("");
-    const [multiSelect, setMultiSearch] = useState([]);
+    const [multiSelect, setMultiSelect] = useState([]);
 
     const [form, setForm] = useState({
         name: "",
@@ -30,13 +30,14 @@ function ActivityForm({ setPage }) {
 
     function handlerSubmit(event) {
         event.preventDefault();
-        postActivityAPI(form);
+        // postActivityAPI(form);
     }
 
     function handlerClick(data) {
         const found = multiSelect.find(e => e.code === data.code);
         if (!found) {
-            setMultiSearch([...multiSelect, data])
+            setMultiSelect([...multiSelect, data])
+            setForm({ ...form, near: [...multiSelect, data] })
         }
         setState({ ...state, multiSearch: false });
         setSearch("");
@@ -60,36 +61,36 @@ function ActivityForm({ setPage }) {
                             จำนวนผู้เข้าร่วม
                             <div className="w-[360px] flex justify-between items-center">
                                 <input type="number" className="h-[36px] border-black rounded-md border px-6"
-                                    onChange={(e) => setForm({ ...form, size: e.target.value })} />
+                                    onChange={(e) => setForm({ ...form, size: parseInt(e.target.value) })} />
                                 <label>คน/รอบ</label>
                             </div>
                         </div>
                         <div className="flex justify-between items-center mb-4">
-                        ระยะเวลาเล่น
+                            ระยะเวลาเล่น
                             <div className="w-[360px] flex justify-between items-center">
                                 <input type="number" className="h-[36px] border-black rounded-md border px-6"
-                                    onChange={(e) => setForm({ ...form, duration: e.target.value })} />
+                                    onChange={(e) => setForm({ ...form, duration: parseInt(e.target.value) })} />
                                 <label>นาที/รอบ</label>
                             </div>
                         </div>
                         <div className="flex justify-between items-center mb-4">
-                        ระยะเวลารอ
+                            ระยะเวลารอ
                             <div className="w-[360px] flex justify-between items-center">
                                 <input type="number" className="h-[36px] border-black rounded-md border px-6"
-                                    onChange={(e) => setForm({ ...form, waitingTime: e.target.value })} />
+                                    onChange={(e) => setForm({ ...form, waitingTime: parseInt(e.target.value) })} />
                                 <label>นาที</label>
                             </div>
                         </div>
                         <div className="flex justify-between items-center mb-4">
-                        จำนวนดาว
+                            จำนวนดาว
                             <div className="w-[360px] flex justify-between items-center">
                                 <input type="number" className="h-[36px] border-black rounded-md border px-6"
-                                    onChange={(e) => setForm({ ...form, star: e.target.value })} />
+                                    onChange={(e) => setForm({ ...form, star: parseInt(e.target.value) })} />
                                 <label>ดวง/รอบ</label>
                             </div>
                         </div>
 
-                        <div className="flex justify-between min-h-[100px]">
+                        <div className="flex justify-between items-center">
                             <p>กิจกรรมใกล้เคียง</p>
                             <MultiSelect>
                                 <input type="text" className="w-[360px] h-[36px] border-black rounded-md border px-6"
@@ -100,7 +101,7 @@ function ActivityForm({ setPage }) {
                                 <div className="absolute top-[44px] w-[400px] flex flex-wrap">
                                     {multiSelect.map((data) =>
                                         <p key={data.code} className="flex items-center p-2 mr-2 mb-2 bg-yellow rounded-3xl">{data.name}
-                                            <MdClose className="text-white ml-1" onClick={() => setMultiSearch(multiSelect.filter(e => e.code !== data.code))} />
+                                            <MdClose className="text-white ml-1" onClick={() => setMultiSelect(multiSelect.filter(e => e.code !== data.code))} />
                                         </p>)}
                                 </div>
                             </MultiSelect>
@@ -109,7 +110,7 @@ function ActivityForm({ setPage }) {
 
                 </div>
 
-                <div className="flex justify-center mt-20">
+                <div className="flex justify-center mt-[200px]">
                     <ButtonSubmit title="Submit" bgColor="bg-accept" width="w-[200px]" />
                     <div className="w-[60px]" />
                     <div onClick={() => setPage("Table")}>
