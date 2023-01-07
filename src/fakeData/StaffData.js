@@ -18,12 +18,12 @@ const StaffData = [
         role: "administrator",
     },
     {
-        id: "f2k41fsg35456erg23",
+        id: "f2k41fsg35f56erg23",
         name: "Staff",
         lastname: "1",
         email: "per43_za@hotmail.com",
         password: "12345",
-        phone: "09xxxxxxx",
+        phone: "0964652511",
         role: "staff",
     },
 ]

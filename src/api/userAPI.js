@@ -2,13 +2,13 @@
 import axios from "axios";
 
 function signin(username, password) {
-    console.log(username, password)
     axios.post(`http://localhost:8080/auth/login`, {
         username: username,
         password: password,
     })
         .then((response) => {
             console.log(response);
+            return response.data;
         })
         .catch((error) => {
             console.log(error);
