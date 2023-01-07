@@ -5,7 +5,7 @@ import { Button, ButtonSubmit } from '../Button';
 function StaffForm({setPage}) {
 
     const [form, setForm] = useState({
-        name: "",
+        firstname: "",
         lastname: "",
         phone: "",
         email: "",
@@ -21,7 +21,7 @@ function StaffForm({setPage}) {
             <form onSubmit={handlerSubmit}>
                 <div className="w-[650px] flex justify-between items-center mb-4">ชื่อ
                     <input type="text" className="w-[500px] h-[36px] border-black rounded-md border px-6"
-                        onChange={(e) => setForm({ ...form, name: e.target.value })} />
+                        onChange={(e) => setForm({ ...form, firstname: e.target.value })} />
                 </div>
                 <div className="w-[650px] flex justify-between items-center mb-4">นามสกุล
                     <input type="text" className="w-[500px] h-[36px] border-black rounded-md border px-6"

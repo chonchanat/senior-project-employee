@@ -20,7 +20,7 @@ function ActivityForm({ setPage }) {
     const [multiSelect, setMultiSelect] = useState([]);
 
     const [form, setForm] = useState({
-        name: "",
+        firstname: "",
         size: "",
         duration: "",
         waitingTime: "",
@@ -55,7 +55,7 @@ function ActivityForm({ setPage }) {
                         <div className="flex justify-between items-center mb-4">
                             ชื่อกิจกรรม
                             <input type="text" className="w-[364px] h-[36px] border-black rounded-md border px-6"
-                                onChange={(e) => setForm({ ...form, name: e.target.value })} />
+                                onChange={(e) => setForm({ ...form, firstname: e.target.value })} />
                         </div>
                         <div className="flex justify-between items-center mb-4">
                             <p className="w-[104px]">จำนวนผู้เข้าร่วม</p>

@@ -27,8 +27,8 @@ function Signin() {
     }, [authReducer, navigate]);
 
     const [user, setUser] = useState({
-        email: "chonchanat.t@ku.th",
-        password: "12345",
+        email: "davepokpong",
+        password: "dave1234",
     });
     const [noti, setNoti] = useState(null);
 

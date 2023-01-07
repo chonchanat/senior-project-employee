@@ -4,9 +4,9 @@ function SettingInfo({ data, setBackupdata, state }) {
         <div className="flex flex-col items-center">
                 <div className="w-[650px] flex justify-between items-center mb-4">ชื่อ
                     <input type="text" className={`w-[500px] h-[36px] rounded-md px-6 ${!state.editState && "border-black border"}`}
-                        value={data.name}
+                        value={data.firstname}
                         disabled={state.editState}
-                        onChange={(e) => setBackupdata({ ...data, name: e.target.value })} />
+                        onChange={(e) => setBackupdata({ ...data, firstname: e.target.value })} />
                 </div>
                 <div className="w-[650px] flex justify-between items-center mb-4">นามสกุล
                     <input type="text" className={`w-[500px] h-[36px] rounded-md px-6 ${!state.editState && "border-black border"}`}

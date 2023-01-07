@@ -1,7 +1,7 @@
 const StaffData = [
     {
         id: "sd5f46awf65asd3f21",
-        name: "Chonchanat",
+        firstname: "Chonchanat",
         lastname: "Tubtiang",
         email: "chonchanat.t@ku.th",
         password: "12345",
@@ -10,7 +10,7 @@ const StaffData = [
     },
     {
         id: "f2k41fsg35456erg23",
-        name: "Pokpong",
+        firstname: "Pokpong",
         lastname: "Noppakun",
         email: "pokpong.n@ku.th",
         password: "12345",
@@ -19,7 +19,7 @@ const StaffData = [
     },
     {
         id: "f2k41fsg35f56erg23",
-        name: "Staff",
+        firstname: "Staff",
         lastname: "1",
         email: "per43_za@hotmail.com",
         password: "12345",

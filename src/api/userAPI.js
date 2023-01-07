@@ -1,18 +1,30 @@
 // import axios from "./index";
 import axios from "axios";
 
-function signin(username, password) {
-    axios.post(`http://localhost:8080/auth/login`, {
-        username: username,
-        password: password,
-    })
-        .then((response) => {
-            console.log(response);
-            return response.data;
+// function signin(username, password) {
+//     axios.post(`http://localhost:8080/auth/login`, {
+//         username: username,
+//         password: password,
+//     })
+//         .then((response) => {
+//             console.log(response.data)
+//             return response.data;
+//         })
+//         .catch((error) => {
+//             console.log(error);
+//         })
+// }
+
+async function signin(username, password) {
+    try {
+        const response = await axios.post(`http://localhost:8080/auth/login`, {
+            username: username,
+            password: password,
         })
-        .catch((error) => {
-            console.log(error);
-        })
+        return response.data;
+    } catch (error) {
+        return error.response.data.message;
+    }
 }
 
 function getAllUser() {

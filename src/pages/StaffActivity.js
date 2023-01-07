@@ -59,7 +59,7 @@ function StaffActivity() {
                                 <label className={`${page !== "Form" && "hidden"} font-normal`}
                                     onClick={(e) => e.stopPropagation()}> / เพิ่มกิจกรรม</label>
                                 <label className={`${page !== "Info" && "hidden"} font-normal`}
-                                    onClick={(e) => e.stopPropagation()}> / {selectData && selectData.name}</label>
+                                    onClick={(e) => e.stopPropagation()}> / {selectData && selectData.firstname}</label>
                             </p>
                             <div className={`${authReducer.role === "administrator" && page === "Table" ? "visible" : "invisible"}`}
                                 onClick={() => setPage("Form")}>

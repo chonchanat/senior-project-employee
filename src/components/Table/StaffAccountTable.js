@@ -42,7 +42,7 @@ function StaffAccountTable({ accountData, setPage, handlerSelect }) {
                             accountData.map((row, index) =>
                                 <TableRow key={index}>
                                     <TableBody>{row.id}</TableBody>
-                                    <TableBody>{row.name}</TableBody>
+                                    <TableBody>{row.firstname}</TableBody>
                                     <TableBody>{row.role}</TableBody>
                                     {authReducer.role === "administrator" &&
                                         <TableBody>

@@ -1,7 +1,7 @@
 import { startFetch, endFetch, errorFetch, startUpdateFetch, endUpdateFetch } from './statusActions';
 
-import { signin, settingAccount } from '../api/fakeAPI';
-// import { signin } from '../api/userAPI';
+import { settingAccount } from '../api/fakeAPI';
+import { signin } from '../api/userAPI';
 
 const setAuth = (data) => {
     return {
@@ -12,19 +12,18 @@ const setAuth = (data) => {
 
 function fetchAuthAsync(email, password) {
     return async function (dispatch) {
-        try {
-            dispatch(startFetch());
+        dispatch(startFetch());
+        dispatch(errorFetch(''));
 
-            const user = await signin(email, password);
+        const user = await signin(email, password);
 
-            if (user) {
-                dispatch(setAuth(user));
-                dispatch(errorFetch(''));
-                dispatch(endFetch());
-            }
-        } catch (error) {
+        if (user) {
+            dispatch(setAuth(user.user));
+            dispatch(errorFetch(''));
+            dispatch(endFetch());
+        } else {
             dispatch(setAuth(null));
-            dispatch(errorFetch(error));
+            dispatch(errorFetch(user));
             dispatch(endFetch());
         }
     }

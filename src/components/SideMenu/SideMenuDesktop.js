@@ -26,7 +26,7 @@ function SideMenuDesktop() {
                         <CgProfile size="56px" color="black" />
                     </div>
                     <div className="truncate pt-1">
-                        <p className="text-lg font-bold">{authReducer.name} {authReducer.lastname}</p>
+                        <p className="text-lg font-bold">{authReducer.firstname} {authReducer.lastname}</p>
                         <p>{authReducer.role}</p>
                     </div>
                 </div>

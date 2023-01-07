@@ -28,7 +28,7 @@ function StaffAccountInfo({ selectData }) {
             <HandlerEditState state={state} setState={setState} acceptEdit={acceptEdit} declineEdit={declineEdit} />
             <div className="w-[650px] flex justify-between items-center mb-4">ชื่อ
                 <input type="text" className={`bg-light-blue w-[500px] h-[36px] rounded-md px-6`}
-                    value={data.name}
+                    value={data.firstname}
                     disabled={true} />
             </div>
             <div className="w-[650px] flex justify-between items-center mb-4">นามสกุล
