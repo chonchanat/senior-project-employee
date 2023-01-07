@@ -25,7 +25,7 @@ function HandlerEditState({ state, setState, acceptEdit, declineEdit }) {
 function Setting() {
 
     const dispatch = useDispatch();
-    const authReducer = useSelector(state => state.authReducer);
+    const authReducer = useSelector(state => state.authReducer.user);
     const statusReducer = useSelector(state => state.statusReducer);
 
     const [backupData, setBackupdata] = useState(authReducer);

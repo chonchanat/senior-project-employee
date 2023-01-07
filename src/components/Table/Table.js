@@ -9,9 +9,9 @@ function TableHead({ children }) {
 }
 
 function TableBody({ children }) {
-    const authReducer = useSelector(state => state.authReducer);
+    const authReducer = useSelector(state => state.authReducer.user);
     return (
-        <p className={`flex justify-center w-[20%] ${authReducer.role === "administrator" && "last:invisible group-hover:visible"}`}>
+        <p className={`flex justify-center w-[20%] ${authReducer.role === "admin" && "last:invisible group-hover:visible"}`}>
             {children}
         </p>
     );

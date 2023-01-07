@@ -12,14 +12,20 @@ import { ButtonTransparent } from '../Button';
 import { HiOutlinePencil } from 'react-icons/hi';
 import { RiDeleteBin5Line } from 'react-icons/ri';
 
+import { deleteUser } from '../../api/userAPI';
+
 function StaffAccountTable({ accountData, setPage, handlerSelect }) {
 
     const statusReducer = useSelector(state => state.statusReducer);
-    const authReducer = useSelector(state => state.authReducer);
+    const authReducer = useSelector(state => state.authReducer.user);
 
     function handlerClick(id) {
         setPage("Info");
         handlerSelect(id);
+    }
+
+    function handlerDelete(data) {
+        deleteUser(data);
     }
 
     return (
@@ -34,23 +40,23 @@ function StaffAccountTable({ accountData, setPage, handlerSelect }) {
                     <TableHead>ID</TableHead>
                     <TableHead>Name</TableHead>
                     <TableHead>Role</TableHead>
-                    {authReducer.role === "administrator" && <TableHead>Action</TableHead>}
+                    {authReducer.role === "admin" && <TableHead>Action</TableHead>}
                 </TableRow>
                 <DataSection width="">
                     {
                         accountData.length ?
                             accountData.map((row, index) =>
                                 <TableRow key={index}>
-                                    <TableBody>{row.id}</TableBody>
+                                    <TableBody>{row.ID}</TableBody>
                                     <TableBody>{row.firstname}</TableBody>
                                     <TableBody>{row.role}</TableBody>
-                                    {authReducer.role === "administrator" &&
+                                    {authReducer.role === "admin" &&
                                         <TableBody>
                                             <ButtonTransparent color="accept" click={() => handlerClick(row.id)}>
                                                 <HiOutlinePencil size="24px" />
                                             </ButtonTransparent>
                                             <div className="w-[16px]" />
-                                            <ButtonTransparent color="decline">
+                                            <ButtonTransparent color="decline" click={() => handlerDelete(row)}>
                                                 <RiDeleteBin5Line size="24px" />
                                             </ButtonTransparent>
                                         </TableBody>

@@ -14,7 +14,7 @@ import { IoMdSettings } from 'react-icons/io';
 function ActivityTable({ activityData, setPage, handlerSelect }) {
 
     const statusReducer = useSelector(state => state.statusReducer);
-    const authReducer = useSelector(state => state.authReducer);
+    const authReducer = useSelector(state => state.authReducer.user);
 
     function handlerClick(id) {
         setPage("Info");
@@ -45,7 +45,7 @@ function ActivityTable({ activityData, setPage, handlerSelect }) {
                     <TableHead>สถานะการให้บริการ</TableHead>
                     <TableHead>จำนวนคิว</TableHead>
                     <TableHead>เรทติ้ง</TableHead>
-                    {authReducer.role === "administrator" && <TableHead>Action</TableHead>}
+                    {authReducer.role === "admin" && <TableHead>Action</TableHead>}
                 </TableRow>
                 <DataSection width="">
                     {activityData.length ?
@@ -56,7 +56,7 @@ function ActivityTable({ activityData, setPage, handlerSelect }) {
                                 <TableBody><div className={`${handlerStatus(row.status)} w-[12px] h-[12px] rounded-full`} title={row.status} /></TableBody>
                                 <TableBody>{row.duration}</TableBody>
                                 <TableBody>{row.rating}</TableBody>
-                                {authReducer.role === "administrator" &&
+                                {authReducer.role === "admin" &&
                                     <TableBody>
                                         < ButtonTransparent click={() => handlerClick(row.id)}>
                                             <IoMdSettings size="24px" />

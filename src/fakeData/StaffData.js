@@ -6,7 +6,7 @@ const StaffData = [
         email: "chonchanat.t@ku.th",
         password: "12345",
         phone: "0887828326",
-        role: "administrator",
+        role: "admin",
     },
     {
         id: "f2k41fsg35456erg23",
@@ -15,7 +15,7 @@ const StaffData = [
         email: "pokpong.n@ku.th",
         password: "12345",
         phone: "09xxxxxxx",
-        role: "administrator",
+        role: "admin",
     },
     {
         id: "f2k41fsg35f56erg23",

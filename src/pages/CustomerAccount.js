@@ -24,7 +24,7 @@ function CustomerAccount() {
         getAccount();
     }, [dispatch])
 
-    const authReducer = useSelector(state => state.authReducer);
+    const authReducer = useSelector(state => state.authReducer.user);
 
     const [page, setPage] = useState("Table");
     const [accountData, setAccountData] = useState([]);
@@ -47,7 +47,7 @@ function CustomerAccount() {
                                 <label className={`${page !== "Form" && "hidden"} font-normal`}
                                     onClick={(e) => e.stopPropagation()}> / สร้างบัญชีลูกค้า</label>
                             </p>
-                            <div className={`${authReducer.role === "administrator" && page === "Table" ? "visible" : "invisible"}`}
+                            <div className={`${authReducer.role === "admin" && page === "Table" ? "visible" : "invisible"}`}
                                 onClick={() => setPage("Form")}>
                                 <Button bgColor="bg-yellow" textColor="text-black" font="font-normal" width="w-[150px]">สร้างบัญชีลูกค้า</Button>
                             </div>

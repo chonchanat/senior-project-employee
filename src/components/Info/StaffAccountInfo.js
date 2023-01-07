@@ -50,8 +50,8 @@ function StaffAccountInfo({ selectData }) {
                 <div className="w-[500px]">
                     <input type="checkbox"
                         disabled={state.editState}
-                        checked={data.role === "administrator"}
-                        onChange={(e) => setData({ ...data, role: "administrator" })} />
+                        checked={data.role === "admin"}
+                        onChange={(e) => setData({ ...data, role: "admin" })} />
                     <label className="ml-4 mr-20">Administrator</label>
                     <input type="checkbox"
                         disabled={state.editState}

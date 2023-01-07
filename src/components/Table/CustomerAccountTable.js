@@ -15,7 +15,7 @@ import { RiDeleteBin5Line } from 'react-icons/ri';
 function CustomerAccountTable({ accountData, handlerSelect }) {
 
     const statusReducer = useSelector(state => state.statusReducer);
-    const authReducer = useSelector(state => state.authReducer);
+    const authReducer = useSelector(state => state.authReducer.user);
 
     return (
         statusReducer.loading ?
@@ -30,7 +30,7 @@ function CustomerAccountTable({ accountData, handlerSelect }) {
                     <TableHead>Member</TableHead>
                     <TableHead>Star</TableHead>
                     <TableHead>Time</TableHead>
-                    {authReducer.role === "administrator" && <TableHead>Action</TableHead>}
+                    {authReducer.role === "admin" && <TableHead>Action</TableHead>}
                 </TableRow>
                 <DataSection width="">
                     {accountData.length ?
@@ -40,7 +40,7 @@ function CustomerAccountTable({ accountData, handlerSelect }) {
                                 <TableBody>{row.member}</TableBody>
                                 <TableBody>{row.star}</TableBody>
                                 <TableBody>{row.time}</TableBody>
-                                {authReducer.role === "administrator" &&
+                                {authReducer.role === "admin" &&
                                     <TableBody>
                                         {/* <ButtonTransparent color="accept">
                                         <HiOutlinePencil size="24px" />

@@ -16,7 +16,7 @@ function SideMenuDesktop() {
     const navigate = useNavigate();
 
     const dispatch = useDispatch();
-    const authReducer = useSelector(state => state.authReducer);
+    const authReducer = useSelector(state => state.authReducer.user);
 
     return (
         <div className="h-full">

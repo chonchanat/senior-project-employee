@@ -9,25 +9,24 @@ import StaffForm from '../components/Form/StaffForm';
 import StaffAccountTable from '../components/Table/StaffAccountTable';
 import StaffAccountInfo from '../components/Info/StaffAccountInfo';
 
-import { getStaffAPI } from '../api/fakeAPI';
+// import { getStaffAPI } from '../api/fakeAPI';
+import { getAllStaff } from '../api/userAPI';
 
 function StaffAccount() {
 
     const dispatch = useDispatch();
-    const authReducer = useSelector(state => state.authReducer);
+    const authReducer = useSelector(state => state.authReducer.user);
 
     useEffect(() => {
         async function getAccount() {
             dispatch(startFetch());
-
-            const data = await getStaffAPI();
+            const data = await getAllStaff();
             setAccountData(data);
 
             dispatch(endFetch());
         }
         getAccount();
     }, [dispatch])
-
 
     const [page, setPage] = useState("Table");
     const [accountData, setAccountData] = useState([]);
@@ -58,7 +57,7 @@ function StaffAccount() {
                                 <label className={`${page !== "Info" && "hidden"} font-normal`}
                                     onClick={(e) => e.stopPropagation()}> / แก้ไขบัญชีพนักงาน</label>
                             </p>
-                            <div className={`${authReducer.role === "administrator" && page === "Table" ? "visible" : "invisible"}`}
+                            <div className={`${authReducer.role === "admin" && page === "Table" ? "visible" : "invisible"}`}
                                 onClick={() => setPage("Form")}>
                                 <Button bgColor="bg-yellow" textColor="text-black" font="font-normal" width="w-[150px]">สร้างบัญชีพนักงาน</Button>
                             </div>

@@ -18,7 +18,7 @@ function fetchAuthAsync(email, password) {
         const user = await signin(email, password);
 
         if (user) {
-            dispatch(setAuth(user.user));
+            dispatch(setAuth(user));
             dispatch(errorFetch(''));
             dispatch(endFetch());
         } else {

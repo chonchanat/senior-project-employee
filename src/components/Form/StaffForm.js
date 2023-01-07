@@ -2,7 +2,9 @@ import { useState } from 'react';
 
 import { Button, ButtonSubmit } from '../Button';
 
-function StaffForm({setPage}) {
+import { register } from '../../api/userAPI';
+
+function StaffForm({ setPage }) {
 
     const [form, setForm] = useState({
         firstname: "",
@@ -10,10 +12,17 @@ function StaffForm({setPage}) {
         phone: "",
         email: "",
         role: "",
+        // additional
+        username: "",
+        password: "",
+        star: 0,
+        members: 1,
     });
 
-    function handlerSubmit(event) {
-        event.preventDefault();
+    function handlerSubmit(e) {
+        e.preventDefault();
+        register({ ...form, username: form.phone, password: "12345"});
+        // console.log('succes', { ...form, username: form.phone, password: "12345"})
     }
 
     return (
@@ -38,8 +47,8 @@ function StaffForm({setPage}) {
                 <div className="w-[650px] flex justify-between items-center mb-4">ตำแหน่ง
                     <div className="w-[500px]">
                         <input type="checkbox"
-                            checked={form.role === "administrator"}
-                            onChange={(e) => setForm({ ...form, role: "administrator" })} />
+                            checked={form.role === "admin"}
+                            onChange={(e) => setForm({ ...form, role: "admin" })} />
                         <label className="ml-4 mr-20">Administrator</label>
                         <input type="checkbox"
                             checked={form.role === "staff"}
