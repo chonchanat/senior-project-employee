@@ -1,11 +1,7 @@
 import axios from "axios";
 
-const API = axios.create({
-    baseURL: 'http://localhost:8080',
-})
-
-function getActivityAPI() {
-    axios.get("http://localhost:8080/activity/all")
+function getAllActivity() {
+    axios.get("/activity/all")
         .then((response) => {
             console.log(response.data.data.data)
             return response.data.data.data;
@@ -15,8 +11,8 @@ function getActivityAPI() {
         })
 }
 
-function postActivityAPI(data) {
-    axios.post("http://localhost:8080/activity", data)
+function postActivity(data) {
+    axios.post("/activity", data)
         .then((response) => {
             console.log(response);
         })
@@ -25,4 +21,26 @@ function postActivityAPI(data) {
         })
 }
 
-export { getActivityAPI, postActivityAPI };
+function deleteActivity(data) {
+    axios.delete(`/activity`, {
+        code: data.code
+    })
+        .then((response) => {
+            console.log(response);
+        })
+        .catch((error) => {
+            console.log(error);
+        })
+}
+
+function putActivity(data) {
+    axios.put(`/activity`, data)
+        .then((response) => {
+            console.log(response);
+        })
+        .catch((error) => {
+            console.log(error);
+        })
+}
+
+export { getAllActivity, postActivity, deleteActivity, putActivity };

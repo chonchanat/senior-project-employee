@@ -1,6 +1,7 @@
 import { startFetch, endFetch, errorFetch, startUpdateFetch, endUpdateFetch } from './statusActions';
 
 import { signin, settingAccount } from '../api/fakeAPI';
+// import { signin } from '../api/userAPI';
 
 const setAuth = (data) => {
     return {

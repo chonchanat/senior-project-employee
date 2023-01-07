@@ -11,7 +11,7 @@ import ActivityInformation from '../components/Info/ActivityInformation';
 import ActivityTable from '../components/Table/ActivityTable';
 
 import { getActivityAPI } from '../api/fakeAPI';
-// import { getActivityAPI } from '../api/ActivityAPI';
+// import { getAllActivity } from '../api/activityAPI';
 
 function StaffActivity() {
     const dispatch = useDispatch();
@@ -21,6 +21,7 @@ function StaffActivity() {
             dispatch(startFetch());
 
             const data = await getActivityAPI();
+            // const data = await getAllActivity();
             setActivityData(data);
             dispatch(setActivity(data))
 

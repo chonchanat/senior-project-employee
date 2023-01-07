@@ -7,7 +7,7 @@ import Wrapper from '../Wrapper';
 
 import { MdClose } from 'react-icons/md'
 
-// import { postActivityAPI } from '../../api/ActivityAPI';
+// import { postActivity } from '../../api/activityAPI';
 
 function ActivityForm({ setPage }) {
 
@@ -30,7 +30,7 @@ function ActivityForm({ setPage }) {
 
     function handlerSubmit(event) {
         event.preventDefault();
-        // postActivityAPI(form);
+        // postActivity(form);
     }
 
     function handlerClick(data) {
