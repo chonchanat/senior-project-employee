@@ -10,8 +10,8 @@ import ActivityForm from '../components/Form/ActivityForm';
 import ActivityInformation from '../components/Info/ActivityInformation';
 import ActivityTable from '../components/Table/ActivityTable';
 
-import { getActivityAPI } from '../api/fakeAPI';
-// import { getAllActivity } from '../api/activityAPI';
+// import { getActivityAPI } from '../api/fakeAPI';
+import { getAllActivity } from '../api/activityAPI';
 
 function StaffActivity() {
     const dispatch = useDispatch();
@@ -20,8 +20,8 @@ function StaffActivity() {
         async function getActivity() {
             dispatch(startFetch());
 
-            const data = await getActivityAPI();
-            // const data = await getAllActivity();
+            // const data = await getActivityAPI();
+            const data = await getAllActivity();
             setActivityData(data);
             dispatch(setActivity(data))
 

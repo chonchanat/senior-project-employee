@@ -12,7 +12,9 @@ import Wrapper from '../Wrapper';
 import { MultiSelect, MultiSelectBody } from "../MultiSelect";
 
 import { BsThreeDots } from 'react-icons/bs';
-import { MdCheck, MdClose } from 'react-icons/md'
+import { MdCheck, MdClose } from 'react-icons/md';
+
+import { deleteActivity } from '../../api/activityAPI';
 
 function ActivityInformation({ selectData }) {
 
@@ -52,7 +54,7 @@ function ActivityInformation({ selectData }) {
             <Wrapper state={state.multiSearch}
                 click={() => setState({ ...state, multiSearch: false })} />
 
-            <HandlerDropdown state={state} setState={setState} />
+            <HandlerDropdown data={data} state={state} setState={setState} />
             <HandlerEdit state={state} acceptEdit={acceptEdit} declineEdit={declineEdit} />
             <ActivityInfo data={data} setData={setData} state={state} >
                 <div className="flex justify-between items-center">
@@ -77,7 +79,7 @@ function ActivityInformation({ selectData }) {
     );
 }
 
-function HandlerDropdown({ state, setState }) {
+function HandlerDropdown({ data, state, setState }) {
     return (
         <div className={`absolute right-0 top-[-68px] ${state.editState ? "block" : "hidden"}`}>
             <Dropdown>
@@ -88,7 +90,7 @@ function HandlerDropdown({ state, setState }) {
                     <DropdownMenu click={() => setState({ ...state, editState: false, dropState: false })}>แก้ไขรายละเอียด</DropdownMenu>
                     <DropdownMenu>ปิดปรับปรุงชั่วคราว</DropdownMenu>
                     <DropdownMenu>ปิดให้บริการ</DropdownMenu>
-                    <DropdownMenu>ลบกิจกรรม</DropdownMenu>
+                    <DropdownMenu click={() => deleteActivity(data)}>ลบกิจกรรม</DropdownMenu>
                 </DropdownBody>
             </Dropdown>
         </div>
