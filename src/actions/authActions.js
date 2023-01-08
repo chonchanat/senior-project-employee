@@ -3,6 +3,8 @@ import { startFetch, endFetch, errorFetch, startUpdateFetch, endUpdateFetch } fr
 import { settingAccount } from '../api/fakeAPI';
 import { signin } from '../api/userAPI';
 
+import Cookies from 'js-cookie';
+
 const setAuth = (data) => {
     return {
         type: 'SET_AUTH',
@@ -17,13 +19,14 @@ function fetchAuthAsync(email, password) {
 
         const user = await signin(email, password);
 
-        if (user) {
-            dispatch(setAuth(user));
+        if (user.status === 200) {
+            dispatch(setAuth(user.data));
+            Cookies.set('accesstoken', user.data.accesstoken);
             dispatch(errorFetch(''));
             dispatch(endFetch());
         } else {
             dispatch(setAuth(null));
-            dispatch(errorFetch(user));
+            dispatch(errorFetch(user.data.message));
             dispatch(endFetch());
         }
     }

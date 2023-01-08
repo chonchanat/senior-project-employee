@@ -16,7 +16,6 @@ function Signin() {
     const authReducer = useSelector(state => state.authReducer);
     const statusReducer = useSelector(state => state.statusReducer);
 
-    // After successful signin
     useEffect(() => {
         function signinWithAuth() {
             if(authReducer){

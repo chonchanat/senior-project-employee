@@ -20,7 +20,6 @@ function StaffActivity() {
         async function getActivity() {
             dispatch(startFetch());
 
-            // const data = await getActivityAPI();
             const data = await getAllActivity();
             setActivityData(data);
             dispatch(setActivity(data))

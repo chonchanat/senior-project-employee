@@ -6,10 +6,9 @@ async function signin(username, password) {
             username: username,
             password: password,
         })
-        console.log(response.data.accesstoken)
-        return response.data;
+        return response;
     } catch (error) {
-        return error.response.data.message;
+        return error.response;
     }
 }
 
@@ -21,7 +20,6 @@ async function getAllStaff() {
                 'Content-Type': 'application/json',
             }
         })
-        console.log(response);
         return response.data.user;
     } catch (error) {
         console.log(error);
@@ -29,7 +27,6 @@ async function getAllStaff() {
 }
 
 async function register(data) {
-    console.log(data)
     try {
         const response = await axios.post(`/auth/register`, data, {
             headers: {
