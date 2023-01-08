@@ -18,10 +18,11 @@ function SideMenuDesktop() {
     const navigate = useNavigate();
 
     const dispatch = useDispatch();
-    const authReducer = useSelector(state => state.authReducer.user);
+    const authReducer = useSelector(state => state.authReducer);
 
     function handlerLogout() {
         Cookies.remove("accesstoken");
+        Cookies.remove("userCookie");
         dispatch(setAuth(null));
     }
 

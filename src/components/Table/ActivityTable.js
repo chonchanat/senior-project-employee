@@ -14,7 +14,7 @@ import { IoMdSettings } from 'react-icons/io';
 function ActivityTable({ activityData, setPage, handlerSelect }) {
 
     const statusReducer = useSelector(state => state.statusReducer);
-    const authReducer = useSelector(state => state.authReducer.user);
+    const authReducer = useSelector(state => state.authReducer);
 
     function handlerClick(id) {
         setPage("Info");

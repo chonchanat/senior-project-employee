@@ -20,7 +20,7 @@ function fetchAuthAsync(email, password) {
         const user = await signin(email, password);
 
         if (user.status === 200) {
-            dispatch(setAuth(user.data));
+            dispatch(setAuth(user.data.user));
             Cookies.set('accesstoken', user.data.accesstoken);
             dispatch(errorFetch(''));
             dispatch(endFetch());

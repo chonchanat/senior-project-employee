@@ -29,7 +29,7 @@ function StaffActivity() {
         getActivity();
     }, [dispatch])
 
-    const authReducer = useSelector(state => state.authReducer.user);
+    const authReducer = useSelector(state => state.authReducer);
 
     const [page, setPage] = useState("Table");
     const [activityData, setActivityData] = useState([]);

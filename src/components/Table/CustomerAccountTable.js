@@ -15,7 +15,7 @@ import { RiDeleteBin5Line } from 'react-icons/ri';
 function CustomerAccountTable({ accountData, handlerSelect }) {
 
     const statusReducer = useSelector(state => state.statusReducer);
-    const authReducer = useSelector(state => state.authReducer.user);
+    const authReducer = useSelector(state => state.authReducer);
 
     return (
         statusReducer.loading ?

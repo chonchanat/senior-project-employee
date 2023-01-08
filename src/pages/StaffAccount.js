@@ -15,7 +15,7 @@ import { getAllStaff } from '../api/userAPI';
 function StaffAccount() {
 
     const dispatch = useDispatch();
-    const authReducer = useSelector(state => state.authReducer.user);
+    const authReducer = useSelector(state => state.authReducer);
 
     useEffect(() => {
         async function getAccount() {

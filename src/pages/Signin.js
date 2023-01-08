@@ -11,19 +11,18 @@ import { fetchAuthAsync } from "../actions/authActions";
 function Signin() {
 
     const navigate = useNavigate();
-
     const dispatch = useDispatch();
     const authReducer = useSelector(state => state.authReducer);
     const statusReducer = useSelector(state => state.statusReducer);
 
     useEffect(() => {
         function signinWithAuth() {
-            if(authReducer){
+            if (authReducer) {
                 navigate('/staff-activity')
             }
         };
         signinWithAuth();
-    }, [authReducer, navigate]);
+    }, [authReducer, navigate, dispatch]);
 
     const [user, setUser] = useState({
         email: "davepokpong",

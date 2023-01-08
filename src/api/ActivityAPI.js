@@ -1,10 +1,13 @@
 import axios from "axios";
+import Cookies from 'js-cookie';
+
+const token = Cookies.get("accesstoken")
 
 async function getAllActivity() {
     try {
         const response = await axios.get(`/activity/all`, {
             headers: {
-                'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NzMyOTE0NjEsInJvbGUiOiJhZG1pbiIsInVzZXJuYW1lIjoiZGF2ZXBva3BvbmcifQ.bvL4Ce1mph1zrcTogyd8te2T14QQ1ym8fjMx0ldxTaA',
+                'Authorization': `Bearer ${token}`,
                 'Content-Type': 'application/json',
             }
         })
@@ -18,7 +21,7 @@ async function postActivity(data) {
     try {
         await axios.post(`/activity`, data, {
             headers: {
-                'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NzMyOTE0NjEsInJvbGUiOiJhZG1pbiIsInVzZXJuYW1lIjoiZGF2ZXBva3BvbmcifQ.bvL4Ce1mph1zrcTogyd8te2T14QQ1ym8fjMx0ldxTaA',
+                'Authorization': `Bearer ${token}`,
                 'Content-Type': 'application/json',
             }
         })
@@ -31,7 +34,7 @@ async function deleteActivity(data) {
     try {
         await axios.delete(`/activity`, { code: data.code }, {
             headers: {
-                'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NzMyOTE0NjEsInJvbGUiOiJhZG1pbiIsInVzZXJuYW1lIjoiZGF2ZXBva3BvbmcifQ.bvL4Ce1mph1zrcTogyd8te2T14QQ1ym8fjMx0ldxTaA',
+                'Authorization': `Bearer ${token}`,
                 'Content-Type': 'application/json',
             }
         })
