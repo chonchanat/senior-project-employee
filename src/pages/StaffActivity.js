@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { startFetch, endFetch } from '../actions/statusActions';
-import { setActivity } from '../actions/activityActions';
+import { fetchAllActivity } from '../actions/activityActions';
 
 import { BlockDesktop, BlockDesktopLeft, BlockDesktopRight, HeadDesktop, ContentDesktop, HeadContentDesktop } from '../components/Block';
 import SideMenuDesktop from '../components/SideMenu/SideMenuDesktop';
@@ -10,26 +9,16 @@ import ActivityForm from '../components/Form/ActivityForm';
 import ActivityInformation from '../components/Info/ActivityInformation';
 import ActivityTable from '../components/Table/ActivityTable';
 
-// import { getActivityAPI } from '../api/fakeAPI';
-import { getAllActivity } from '../api/activityAPI';
 
 function StaffActivity() {
     const dispatch = useDispatch();
+    const authReducer = useSelector(state => state.authReducer);
+    const activityReducer = useSelector(state => state.activityReducer);
 
     useEffect(() => {
-        async function getActivity() {
-            dispatch(startFetch());
-
-            const data = await getAllActivity();
-            setActivityData(data);
-            dispatch(setActivity(data))
-
-            dispatch(endFetch());
-        }
-        getActivity();
+        dispatch(fetchAllActivity());
+        setActivityData(activityReducer);
     }, [dispatch])
-
-    const authReducer = useSelector(state => state.authReducer);
 
     const [page, setPage] = useState("Table");
     const [activityData, setActivityData] = useState([]);
