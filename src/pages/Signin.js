@@ -6,7 +6,9 @@ import Spinner from "../components/Spinner";
 
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-import { fetchAuthAsync } from "../actions/authActions";
+import { fetchAuthAsync, setAuth } from "../actions/authActions";
+
+import Cookies from 'js-cookie';
 
 function Signin() {
 
@@ -17,8 +19,12 @@ function Signin() {
 
     useEffect(() => {
         function signinWithAuth() {
+            const userCookie = Cookies.get("userCookie");
             if (authReducer) {
                 navigate('/staff-activity')
+            }
+            if (userCookie) {
+                dispatch(setAuth(JSON.parse(userCookie)));
             }
         };
         signinWithAuth();

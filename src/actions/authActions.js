@@ -22,6 +22,7 @@ function fetchAuthAsync(email, password) {
         if (user.status === 200) {
             dispatch(setAuth(user.data.user));
             Cookies.set('accesstoken', user.data.accesstoken);
+            Cookies.set('userCookie', JSON.stringify(user.data.user));
             dispatch(errorFetch(''));
             dispatch(endFetch());
         } else {
