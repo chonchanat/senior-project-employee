@@ -14,12 +14,12 @@ function MultiSelectBody({ state, data, search, click }) {
                     .filter((data) => {
                         return search.toLowerCase() === ""
                             ? data
-                            : data.name.toLowerCase().includes(search);
+                            : data.name[0].toLowerCase().includes(search);
                     })
                     .slice(0, 5)
                     .map((data) => (
-                        <p key={data.code} className="py-2 px-6 hover:bg-[#F4F4F4]"
-                            onClick={() => click(data)}>{data.name}</p>
+                        <p key={data.id} className="py-2 px-6 hover:bg-[#F4F4F4]"
+                            onClick={() => click(data)}>{data.name[0]}</p>
                     ))
             }
         </div>

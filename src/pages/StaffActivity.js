@@ -17,16 +17,15 @@ function StaffActivity() {
 
     useEffect(() => {
         dispatch(fetchAllActivity());
-        setActivityData(activityReducer);
     }, [dispatch])
 
     const [page, setPage] = useState("Table");
-    const [activityData, setActivityData] = useState([]);
     const [selectData, setSelectData] = useState(null);
 
     function handlerSelect(id) {
-        const foundActivity = activityData.find((data) => data.id === id);
+        const foundActivity = activityReducer.find((data) => data.id === id);
         setSelectData(foundActivity);
+        setPage("Info");
     }
 
     return (
@@ -56,7 +55,7 @@ function StaffActivity() {
                         </HeadContentDesktop>
                         {
                             page === "Table" ?
-                                <ActivityTable activityData={activityData} setPage={setPage} handlerSelect={handlerSelect} />
+                                <ActivityTable activityData={activityReducer} handlerSelect={handlerSelect} />
                                 :
                                 page === "Form" ?
                                     <ActivityForm setPage={setPage} />

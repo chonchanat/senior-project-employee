@@ -11,15 +11,10 @@ import Spinner from '../Spinner'
 
 import { IoMdSettings } from 'react-icons/io';
 
-function ActivityTable({ activityData, setPage, handlerSelect }) {
+function ActivityTable({ activityData, handlerSelect }) {
 
     const statusReducer = useSelector(state => state.statusReducer);
     const authReducer = useSelector(state => state.authReducer);
-
-    function handlerClick(id) {
-        setPage("Info");
-        handlerSelect(id);
-    }
 
     function handlerStatus(status) {
         if (status === "open") {
@@ -49,8 +44,8 @@ function ActivityTable({ activityData, setPage, handlerSelect }) {
                 </TableRow>
                 <DataSection width="">
                     {activityData.length ?
-                        activityData.map((row, index) =>
-                            <TableRow key={index}>
+                        activityData.map((row) =>
+                            <TableRow key={row.id}>
                                 <TableBody>{row.code}</TableBody>
                                 <TableBody>{row.name}</TableBody>
                                 <TableBody><div className={`${handlerStatus(row.status)} w-[12px] h-[12px] rounded-full`} title={row.status} /></TableBody>
@@ -58,7 +53,7 @@ function ActivityTable({ activityData, setPage, handlerSelect }) {
                                 <TableBody>{row.rating}</TableBody>
                                 {authReducer.role === "admin" &&
                                     <TableBody>
-                                        < ButtonTransparent click={() => handlerClick(row.id)}>
+                                        < ButtonTransparent click={() => handlerSelect(row.id)}>
                                             <IoMdSettings size="24px" />
                                         </ButtonTransparent>
                                     </TableBody>}
