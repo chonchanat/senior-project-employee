@@ -1,47 +1,51 @@
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
+// import { useSelector } from 'react-redux';
 
 import { Button, ButtonSubmit } from '../Button';
-import { MultiSelect, MultiSelectBody } from '../MultiSelect';
+// import { MultiSelect, MultiSelectBody } from '../MultiSelect';
 import Wrapper from '../Wrapper';
 
-import { MdClose } from 'react-icons/md'
+// import { MdClose } from 'react-icons/md'
 
 import { postActivity } from '../../api/activityAPI';
 
 function ActivityForm({ setPage }) {
 
-    const activityReducer = useSelector(state => state.activityReducer);
+    // const activityReducer = useSelector(state => state.activityReducer);
 
     const [state, setState] = useState({
         multiSearch: false,
     });
-    const [search, setSearch] = useState("");
-    const [multiSelect, setMultiSelect] = useState([]);
+    // const [search, setSearch] = useState("");
+    // const [multiSelect, setMultiSelect] = useState([]);
 
+    const [nameForm, setNameForm] = useState({
+        th: "",
+        eng: "",
+    })
     const [form, setForm] = useState({
-        name: ["เรือ", "Boat"],
-        size: "",
-        duration: "",
-        // waitingTime: "",
-        star: "",
+        name: [],
+        size: 0,
+        duration: 0,
+        star: 0,
         near: [],
     });
 
     function handlerSubmit(event) {
         event.preventDefault();
-        postActivity(form);
+        const data = {...form, name: [nameForm.th, nameForm.eng]}
+        postActivity(data);
     }
 
-    function handlerClick(data) {
-        const found = multiSelect.find(e => e.code === data.code);
-        if (!found) {
-            setMultiSelect([...multiSelect, data])
-            setForm({ ...form, near: [...multiSelect, data.code] })
-        }
-        setState({ ...state, multiSearch: false });
-        setSearch("");
-    };
+    // function handlerClick(data) {
+    //     const found = multiSelect.find(e => e.code === data.code);
+    //     if (!found) {
+    //         setMultiSelect([...multiSelect, data])
+    //         setForm({ ...form, near: [...multiSelect, data.code] })
+    //     }
+    //     setState({ ...state, multiSearch: false });
+    //     setSearch("");
+    // };
 
     return (
         <div>
@@ -52,11 +56,18 @@ function ActivityForm({ setPage }) {
                         <img className="w-[160px]" src="https://cdn.pixabay.com/photo/2016/12/18/13/45/download-1915753_960_720.png" alt="upload" />
                     </div>
                     <div className="w-[520px]">
-                        {/* <div className="flex justify-between items-center mb-4">
+                        <div className="flex justify-between items-center mb-4">
                             ชื่อกิจกรรม
                             <input type="text" className="w-[364px] h-[36px] border-black rounded-md border px-6"
-                                onChange={(e) => setForm({ ...form, name: e.target.value })} />
-                        </div> */}
+                                placeholder="ภาษาไทย"
+                                onChange={(e) => setNameForm({ ...nameForm, th: e.target.value })} />
+                        </div>
+                        <div className="flex justify-between items-center mb-4">
+                            ชื่อกิจกรรม
+                            <input type="text" className="w-[364px] h-[36px] border-black rounded-md border px-6"
+                                placeholder="ภาษาอังกฤษ"
+                                onChange={(e) => setNameForm({ ...nameForm, eng: e.target.value })} />
+                        </div>
                         <div className="flex justify-between items-center mb-4">
                             <p className="w-[104px]">จำนวนผู้เข้าร่วม</p>
                             <input type="number" className="h-[36px] border-black rounded-md border px-6"
@@ -69,19 +80,13 @@ function ActivityForm({ setPage }) {
                                 onChange={(e) => setForm({ ...form, duration: parseInt(e.target.value) })} />
                             <p className="w-[80px] text-right">นาที/รอบ</p>
                         </div>
-                        {/* <div className="flex justify-between items-center mb-4">
-                            <p className="w-[104px]">ระยะเวลารอ</p>
-                            <input type="number" className="h-[36px] border-black rounded-md border px-6"
-                                onChange={(e) => setForm({ ...form, waitingTime: parseInt(e.target.value) })} />
-                            <p className="w-[80px] text-right">นาที</p>
-                        </div> */}
                         <div className="flex justify-between items-center mb-4">
                             <p className="w-[104px]">จำนวนดาว</p>
                             <input type="number" className="h-[36px] border-black rounded-md border px-6"
                                 onChange={(e) => setForm({ ...form, star: parseInt(e.target.value) })} />
                             <p className="w-[80px] text-right">ดวง/คน</p>
                         </div>
-                        <div className="flex justify-between items-center">
+                        {/* <div className="flex justify-between items-center">
                             <p>กิจกรรมใกล้เคียง</p>
                             <MultiSelect>
                                 <input type="text" className="w-full h-[36px] border-black rounded-md border px-6"
@@ -96,7 +101,7 @@ function ActivityForm({ setPage }) {
                                         </p>)}
                                 </div>
                             </MultiSelect>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
                 <div className="flex justify-center mt-[200px]">
