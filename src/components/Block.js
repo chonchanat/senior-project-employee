@@ -16,14 +16,6 @@ function BlockDesktop({ children }) {
     );
 }
 
-function BlockDesktopLeft({ children }) {
-    return (
-        <div className="py-4 flex justify-center">
-            {children}
-        </div>
-    );
-}
-
 function BlockDesktopRight({ children }) {
     return (
         <div className="py-4 w-full flex flex-col items-center h-screen">
@@ -56,4 +48,4 @@ function HeadContentDesktop({ children }) {
     );
 }
 
-export { BlockMobile, BlockDesktop, BlockDesktopLeft, BlockDesktopRight, HeadDesktop, ContentDesktop, HeadContentDesktop };
+export { BlockMobile, BlockDesktop, BlockDesktopRight, HeadDesktop, ContentDesktop, HeadContentDesktop };
