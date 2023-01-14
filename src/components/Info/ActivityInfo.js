@@ -1,4 +1,4 @@
-function ActivityInfo({ data, setData, state, children }) {
+function ActivityInfo({ data, setData, state }) {
     return (
         <div className="flex flex-wrap justify-center h-fit">
             <div className="w-[400px] flex justify-center items-center mb-4">
@@ -6,15 +6,22 @@ function ActivityInfo({ data, setData, state, children }) {
             </div>
             <div className="w-[520px]">
                 <div className="flex justify-between items-center mb-4">
-                    ชื่อกิจกรรม
-                    <input type="text" className="h-[36px] w-[364px] border-black rounded-md border px-6"
-                        value={data.name}
+                    ชื่อกิจกรรม (TH)
+                    <input type="text" className={`h-[36px] w-[364px] rounded-md px-6 ${!state.editState && "border-black border"}`}
+                        value={data.name[0]}
+                        disabled={state.editState}
+                        onChange={(e) => setData({ ...data, name: e.target.value })} />
+                </div>
+                <div className="flex justify-between items-center mb-4">
+                    ชื่อกิจกรรม (ENG)
+                    <input type="text" className={`h-[36px] w-[364px] rounded-md px-6 ${!state.editState && "border-black border"}`}
+                        value={data.name[1]}
                         disabled={state.editState}
                         onChange={(e) => setData({ ...data, name: e.target.value })} />
                 </div>
                 <div className="flex justify-between items-center mb-4">
                     <p className="w-[104px]">จำนวนผู้เข้าร่วม</p>
-                    <input type="number" className="h-[36px] border-black rounded-md border px-6"
+                    <input type="number" className={`h-[36px] rounded-md px-6 ${!state.editState && "border-black border"}`}
                         value={data.size}
                         disabled={state.editState}
                         onChange={(e) => setData({ ...data, size: parseInt(e.target.value) })} />
@@ -22,29 +29,20 @@ function ActivityInfo({ data, setData, state, children }) {
                 </div>
                 <div className="flex justify-between items-center mb-4">
                     <p className="w-[104px]">ระยะเวลาเล่น</p>
-                    <input type="number" className="h-[36px] border-black rounded-md border px-6"
+                    <input type="number" className={`h-[36px] rounded-md px-6 ${!state.editState && "border-black border"}`}
                         value={data.duration}
                         disabled={state.editState}
                         onChange={(e) => setData({ ...data, duration: parseInt(e.target.value) })} />
                     <p className="w-[80px] text-right">นาที/รอบ</p>
                 </div>
                 <div className="flex justify-between items-center mb-4">
-                    <p className="w-[104px]">ระยะเวลารอ</p>
-                    <input type="number" className="h-[36px] border-black rounded-md border px-6"
-                        value={data.waitingTime}
-                        disabled={state.editState}
-                        onChange={(e) => setData({ ...data, waitingTime: parseInt(e.target.value) })} />
-                    <p className="w-[80px] text-right">นาที</p>
-                </div>
-                <div className="flex justify-between items-center mb-4">
                     <p className="w-[104px]">จำนวนดาว</p>
-                    <input type="number" className="h-[36px] border-black rounded-md border px-6"
+                    <input type="number" className={`h-[36px] rounded-md px-6 ${!state.editState && "border-black border"}`}
                         value={data.star}
                         disabled={state.editState}
                         onChange={(e) => setData({ ...data, star: parseInt(e.target.value) })} />
                     <p className="w-[80px] text-right">ดวง/รอบ</p>
                 </div>
-                {children}
             </div>
         </div>
     );

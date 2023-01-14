@@ -53,8 +53,7 @@ function ActivityInformation({ selectData }) {
 
             <HandlerDropdown data={data} state={state} setState={setState} />
             <HandlerEdit state={state} acceptEdit={acceptEdit} declineEdit={declineEdit} />
-            <ActivityInfo data={data} setData={setData} state={state} >
-            </ActivityInfo>
+            <ActivityInfo data={data} setData={setData} state={state} />
         </div>
     );
 }
