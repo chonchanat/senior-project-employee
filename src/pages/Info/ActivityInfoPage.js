@@ -4,17 +4,10 @@ import { BlockDesktop, BlockDesktopRight, HeadDesktop, ContentDesktop, HeadConte
 import SideMenuDesktop from '../../components/SideMenu/SideMenuDesktop';
 import { getOneActivity } from '../../api/activityAPI';
 import Wrapper from '../../components/Wrapper';
-import { ModalDelete } from '../../components/Modal';
+import { ModalClose, ModalDelete, ModalTempClose } from '../../components/Modal';
 import ActivityInfo from '../../components/Info/ActivityInfo';
-import {
-    DropdownButton,
-    DropdownBody,
-    DropdownMenu,
-    Dropdown,
-} from '../../components/Dropdown';
-import { BsThreeDots } from 'react-icons/bs';
-import { MdCheck, MdClose } from 'react-icons/md';
 import { deleteActivity } from '../../api/activityAPI';
+import { HandlerDropdown, HandlerEdit} from '../../components/Etc/ActivityInfoPage';
 
 function ActivityInfoPage() {
 
@@ -35,6 +28,9 @@ function ActivityInfoPage() {
         dropState: false,
         editState: true,
         modalState: false,
+        modalDelete: false,
+        modalClose: false,
+        modalTempClose: false,
     });
 
     function acceptEdit() {
@@ -45,8 +41,16 @@ function ActivityInfoPage() {
         setState({ ...state, editState: true })
         setData(backupData);
     }
+    function handlerTempClose() {
+        setState({ ...state, modalState: false, modalTempClose: false });
+        console.log('Temporary Close')
+    }
+    function handlerClose() {
+        setState({ ...state, modalState: false, modalClose: false });
+        console.log('Close')
+    }
     function handlerDelete() {
-        setState({ ...state, modalState: false });
+        setState({ ...state, modalState: false, modalDelete: false });
         deleteActivity(data);
         navigate("/staff-activity")
     }
@@ -65,47 +69,21 @@ function ActivityInfoPage() {
                             <Wrapper state={state.dropState}
                                 click={() => setState({ ...state, dropState: !state.dropState })} />
                             <Wrapper state={state.modalState} bgColor="bg-black/20"
-                                click={() => setState({ ...state, modalState: false })} />
+                                click={() => setState({ ...state, modalState: false, modalDelete: false, modalClose: false, modalTempClose: false })} />
 
+                            <ModalTempClose data={data} state={state} setState={setState} click={handlerTempClose} />
+                            <ModalClose data={data} state={state} setState={setState} click={handlerClose} />
                             <ModalDelete data={data} state={state} setState={setState} click={handlerDelete} />
 
                             <HandlerDropdown data={data} state={state} setState={setState} />
                             <HandlerEdit state={state} acceptEdit={acceptEdit} declineEdit={declineEdit} />
+
                             <ActivityInfo data={data} setData={setData} state={state} />
                         </div>
                     }
                 </ContentDesktop>
             </BlockDesktopRight>
         </BlockDesktop>
-    );
-}
-
-function HandlerDropdown({ state, setState }) {
-    return (
-        <div className={`absolute right-0 top-[-68px] ${state.editState ? "block" : "hidden"}`}>
-            <Dropdown>
-                <DropdownButton click={() => setState({ ...state, dropState: true })}><BsThreeDots size="28px" /></DropdownButton>
-                <DropdownBody state={state.dropState} offset="right-0">
-                    <DropdownMenu click={() => setState({ ...state, editState: false, dropState: false })}>แก้ไขรายละเอียด</DropdownMenu>
-                    <DropdownMenu>ปิดปรับปรุงชั่วคราว</DropdownMenu>
-                    <DropdownMenu>ปิดให้บริการ</DropdownMenu>
-                    <DropdownMenu click={() => setState({ ...state, dropState: false, modalState: true })}>ลบกิจกรรม</DropdownMenu>
-                </DropdownBody>
-            </Dropdown>
-        </div>
-    );
-}
-
-function HandlerEdit({ state, acceptEdit, declineEdit }) {
-    return (
-        <div className={`absolute right-0 top-[-68px] ${state.editState ? "hidden" : "block flex"}`}>
-            <DropdownButton click={acceptEdit}>
-                <MdCheck size="28px" className="text-accept" />
-            </DropdownButton>
-            <DropdownButton click={declineEdit}>
-                <MdClose size="28px" className="text-decline" />
-            </DropdownButton>
-        </div>
     );
 }
 

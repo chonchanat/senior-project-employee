@@ -24,9 +24,9 @@ function ButtonTransparent({ color = "black", width = "w-fit", click, children, 
     );
 }
 
-function ButtonHover({ children, click }) {
+function ButtonHover({ children, color, click }) {
     return (
-        <div className={`w-24 p-2 text-center text-sm text-white rounded-md bg-decline border-2 border-decline cursor-pointer hover:bg-white hover:text-decline hover:border-2`}
+        <div className={`w-24 p-2 text-center text-sm text-white rounded-md bg-${color} border-2 border-${color} cursor-pointer hover:bg-white hover:text-${color} hover:border-2`}
             onClick={click}>
             {children}
         </div>
