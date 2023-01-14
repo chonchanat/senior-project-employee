@@ -9,8 +9,8 @@ import {
 } from '../Table/Table'
 
 import { ButtonTransparent } from '../Button';
-// import { HiOutlinePencil } from 'react-icons/hi';
-import { RiDeleteBin5Line } from 'react-icons/ri';
+
+import { RiDeleteBin7Fill } from 'react-icons/ri';
 
 function CustomerAccountTable({ accountData, handlerSelect }) {
 
@@ -46,8 +46,8 @@ function CustomerAccountTable({ accountData, handlerSelect }) {
                                         <HiOutlinePencil size="24px" />
                                     </ButtonTransparent>
                                     <div className="w-[16px]" /> */}
-                                        <ButtonTransparent color="decline">
-                                            <RiDeleteBin5Line size="24px" />
+                                        <ButtonTransparent>
+                                            <RiDeleteBin7Fill size="24px" />
                                         </ButtonTransparent>
                                     </TableBody>}
                             </TableRow>

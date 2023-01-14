@@ -84,12 +84,16 @@ function SideMenuDesktop() {
                 <div className="h-full py-4 font-bold text-white flex-col flex items-center pt-10">
                     <AiFillHome size="28px" className="mb-6 cursor-pointer hover:text-black" />
                     <RiArtboardFill size="28px" className="mb-6 cursor-pointer hover:text-black" />
-                    <MdPeople size="28px" className="mb-6 cursor-pointer hover:text-black" />
-                    <GiBilledCap size="28px" className="mb-6 cursor-pointer hover:text-black" />
-                    <RiGamepadFill size="28px" className="mb-6 cursor-pointer hover:text-black" />
+                    <MdPeople size="28px" className="mb-6 cursor-pointer hover:text-black"
+                        onClick={() => navigate("/staff-customer-account")} />
+                    <GiBilledCap size="28px" className="mb-6 cursor-pointer hover:text-black"
+                        onClick={() => navigate("/staff-account")} />
+                    <RiGamepadFill size="28px" className="mb-6 cursor-pointer hover:text-black"
+                        onClick={() => navigate("/staff-activity")} />
                 </div>
                 <div className="h-[120px] py-4 border-t-2 border-white text-white flex-col flex items-center justify-center">
-                    <IoMdSettings size="28px" className="mb-4 cursor-pointer hover:text-black" />
+                    <IoMdSettings size="28px" className="mb-4 cursor-pointer hover:text-black"
+                        onClick={() => navigate("/staff-setting")} />
                     <BiLogOut size="28px" className="cursor-pointer hover:text-black"
                         onClick={handlerLogout} />
                 </div>

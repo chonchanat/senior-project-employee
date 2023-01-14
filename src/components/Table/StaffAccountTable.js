@@ -9,8 +9,7 @@ import {
 import Spinner from '../Spinner';
 import { ButtonTransparent } from '../Button';
 
-import { HiOutlinePencil } from 'react-icons/hi';
-import { RiDeleteBin5Line } from 'react-icons/ri';
+import { RiDeleteBin7Fill, RiPencilFill } from 'react-icons/ri';
 
 import { deleteUser } from '../../api/userAPI';
 
@@ -52,12 +51,12 @@ function StaffAccountTable({ accountData, setPage, handlerSelect }) {
                                     <TableBody>{row.role}</TableBody>
                                     {authReducer.role === "admin" &&
                                         <TableBody>
-                                            <ButtonTransparent color="accept" click={() => handlerClick(row.id)}>
-                                                <HiOutlinePencil size="24px" />
+                                            <ButtonTransparent click={() => handlerClick(row.id)}>
+                                                <RiPencilFill size="24px" />
                                             </ButtonTransparent>
                                             <div className="w-[16px]" />
-                                            <ButtonTransparent color="decline" click={() => handlerDelete(row)}>
-                                                <RiDeleteBin5Line size="24px" />
+                                            <ButtonTransparent click={() => handlerDelete(row)}>
+                                                <RiDeleteBin7Fill size="24px" />
                                             </ButtonTransparent>
                                         </TableBody>
                                     }

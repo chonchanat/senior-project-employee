@@ -1,5 +1,4 @@
 function SettingInfo({ data, setBackupdata, state }) {
-
     return (
         <div className="flex flex-col items-center">
                 <div className="w-[650px] flex justify-between items-center mb-4">ชื่อ
