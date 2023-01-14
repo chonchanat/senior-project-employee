@@ -17,6 +17,20 @@ async function getAllActivity() {
     }
 }
 
+async function getOneActivity(data) {
+    try {
+        const response = await axios.get(`/activity/code/${data}`, {
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json',
+            }
+        })
+        return response.data.activity;
+    } catch (error) {
+        console.log(error)
+    }
+}
+
 async function postActivity(data) {
     try {
         await axios.post(`/activity`, data, {
@@ -43,18 +57,6 @@ async function deleteActivity(data) {
     }
 }
 
-// function deleteActivity(data) {
-//     axios.delete(`/activity`, {
-//         code: data.code
-//     })
-//         .then((response) => {
-//             console.log(response);
-//         })
-//         .catch((error) => {
-//             console.log(error);
-//         })
-// }
-
 function putActivity(data) {
     axios.put(`/activity`, data)
         .then((response) => {
@@ -65,4 +67,4 @@ function putActivity(data) {
         })
 }
 
-export { getAllActivity, postActivity, deleteActivity, putActivity };
+export { getAllActivity, getOneActivity, postActivity, deleteActivity, putActivity };

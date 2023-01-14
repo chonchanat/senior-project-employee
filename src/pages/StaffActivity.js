@@ -6,9 +6,7 @@ import { BlockDesktop, BlockDesktopRight, HeadDesktop, ContentDesktop, HeadConte
 import SideMenuDesktop from '../components/SideMenu/SideMenuDesktop';
 import { Button } from '../components/Button';
 import ActivityForm from '../components/Form/ActivityForm';
-import ActivityInformation from '../components/Info/ActivityInformation';
 import ActivityTable from '../components/Table/ActivityTable';
-
 
 function StaffActivity() {
     const dispatch = useDispatch();
@@ -54,10 +52,7 @@ function StaffActivity() {
                         page === "Table" ?
                             <ActivityTable activityData={activityReducer} handlerSelect={handlerSelect} />
                             :
-                            page === "Form" ?
-                                <ActivityForm setPage={setPage} />
-                                :
-                                <ActivityInformation selectData={selectData} />
+                            <ActivityForm setPage={setPage} />
                     }
                 </ContentDesktop>
 

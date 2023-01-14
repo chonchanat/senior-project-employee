@@ -1,4 +1,5 @@
 import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 import {
     TableHead,
@@ -12,6 +13,8 @@ import Spinner from '../Spinner'
 import { IoMdSettings } from 'react-icons/io';
 
 function ActivityTable({ activityData, handlerSelect }) {
+
+    const navigate = useNavigate();
 
     const statusReducer = useSelector(state => state.statusReducer);
     const authReducer = useSelector(state => state.authReducer);
@@ -53,7 +56,7 @@ function ActivityTable({ activityData, handlerSelect }) {
                                 <TableBody>{row.rating}</TableBody>
                                 {authReducer.role === "admin" &&
                                     <TableBody>
-                                        < ButtonTransparent click={() => handlerSelect(row.id)}>
+                                        < ButtonTransparent click={() => navigate("/staff-activity/" + row.code)}>
                                             <IoMdSettings size="24px" />
                                         </ButtonTransparent>
                                     </TableBody>}
