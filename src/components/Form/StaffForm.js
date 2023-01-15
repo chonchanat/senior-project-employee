@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { Button, ButtonSubmit } from '../Button';
+import { Button } from '../Button';
 
 import { register } from '../../api/userAPI';
 
@@ -21,13 +21,12 @@ function StaffForm({ setPage }) {
 
     function handlerSubmit(e) {
         e.preventDefault();
-        register({ ...form, username: form.phone, password: "12345"});
-        // console.log('succes', { ...form, username: form.phone, password: "12345"})
+        register({ ...form, username: form.phone, password: "12345" });
     }
 
     return (
         <div className="flex justify-center">
-            <form onSubmit={handlerSubmit}>
+            <form>
                 <div className="w-[650px] flex justify-between items-center mb-4">ชื่อ
                     <input type="text" className="w-[500px] h-[36px] border-black rounded-md border px-6"
                         onChange={(e) => setForm({ ...form, firstname: e.target.value })} />
@@ -58,11 +57,9 @@ function StaffForm({ setPage }) {
                 </div>
 
                 <div className="flex justify-center mt-10">
-                    <ButtonSubmit title="Submit" bgColor="bg-accept" width="w-[200px]" />
+                    <Button bgColor="bg-accept" width="w-28" click={handlerSubmit}>ยืนยัน</Button>
                     <div className="w-[60px]" />
-                    <div onClick={() => setPage("Table")}>
-                        <Button bgColor="bg-decline" width="w-[200px]">Cancel</Button>
-                    </div>
+                    <Button bgColor="bg-decline" width="w-28" click={() => setPage("Table")}>ยกเลิก</Button>
                 </div>
             </form>
         </div>
