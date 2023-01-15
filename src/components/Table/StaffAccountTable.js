@@ -1,4 +1,5 @@
 import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 import {
     TableHead,
@@ -13,7 +14,9 @@ import { RiDeleteBin7Fill, RiPencilFill } from 'react-icons/ri';
 
 import { deleteUser } from '../../api/userAPI';
 
-function StaffAccountTable({ accountData, handlerSelect }) {
+function StaffAccountTable({ accountData }) {
+
+    const navigate = useNavigate();
 
     const statusReducer = useSelector(state => state.statusReducer);
     const authReducer = useSelector(state => state.authReducer);
@@ -46,7 +49,7 @@ function StaffAccountTable({ accountData, handlerSelect }) {
                                     <TableBody>{row.role}</TableBody>
                                     {authReducer.role === "admin" &&
                                         <TableBody>
-                                            <ButtonTransparent click={() => handlerSelect(row.ID)}>
+                                            <ButtonTransparent click={() => navigate("/staff-activity/" + row.ID)}>
                                                 <RiPencilFill size="24px" />
                                             </ButtonTransparent>
                                             <div className="w-[16px]" />

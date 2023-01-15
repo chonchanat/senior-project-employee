@@ -12,7 +12,7 @@ import Spinner from '../Spinner'
 
 import { IoMdSettings } from 'react-icons/io';
 
-function ActivityTable({ activityData, handlerSelect }) {
+function ActivityTable({ activityData }) {
 
     const navigate = useNavigate();
 

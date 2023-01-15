@@ -31,12 +31,6 @@ function StaffAccount() {
     const [accountData, setAccountData] = useState([]);
     const [selectData, setSelectData] = useState(null);
 
-    function handlerSelect(id) {
-        const foundAccount = accountData.find((data) => data.ID === id);
-        setSelectData(foundAccount);
-        setPage("Info");
-    }
-
     return (
         <BlockDesktop>
             <SideMenuDesktop />
@@ -59,7 +53,7 @@ function StaffAccount() {
                     </HeadContentDesktop>
                     {
                         page === "Table" ?
-                            <StaffAccountTable accountData={accountData} handlerSelect={handlerSelect} />
+                            <StaffAccountTable accountData={accountData} />
                             :
                             page === "Form" ?
                                 <StaffForm setPage={setPage} />

@@ -11,8 +11,8 @@ import StaffActivity from './pages/StaffActivity';
 import StaffAccount from './pages/StaffAccount';
 import CustomerAccount from './pages/CustomerAccount';
 import Setting from './pages/Setting';
-import InfoStaff from './pages/InfoStaff';
 import ActivityInfoPage from './pages/Info/ActivityInfoPage';
+import StaffAccountInfoPage from './pages/Info/StaffAccountInfoPage';
 
 import Test from './pages/test';
 
@@ -39,7 +39,7 @@ const App = createBrowserRouter([
   },
   {
     path: "/staff-account/:id",
-    element: <PrivateRoute><InfoStaff /></PrivateRoute>
+    element: <PrivateRoute><StaffAccountInfoPage /></PrivateRoute>,
   },
   {
     path: "/staff-activity/:id",
