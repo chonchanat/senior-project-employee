@@ -2,21 +2,21 @@ function SettingInfo({ data, setBackupdata, state }) {
     return (
         <div className="flex flex-col items-center">
                 <div className="w-[650px] flex justify-between items-center mb-4">ชื่อ
-                    <input type="text" className={`w-[500px] h-[36px] rounded-md px-6 ${!state.editState && "border-black border"}`}
+                    <input type="text" className={`w-[500px] h-[36px] rounded-md px-6 border ${state.editState ? "border-black" : "border-inputBorder"}`}
                         value={data.firstname}
-                        disabled={state.editState}
+                        disabled={!state.editState}
                         onChange={(e) => setBackupdata({ ...data, firstname: e.target.value })} />
                 </div>
                 <div className="w-[650px] flex justify-between items-center mb-4">นามสกุล
-                    <input type="text" className={`w-[500px] h-[36px] rounded-md px-6 ${!state.editState && "border-black border"}`}
+                    <input type="text" className={`w-[500px] h-[36px] rounded-md px-6 border ${state.editState ? "border-black" : "border-inputBorder"}`}
                         value={data.lastname}
-                        disabled={state.editState}
+                        disabled={!state.editState}
                         onChange={(e) => setBackupdata({ ...data, lastname: e.target.value })} />
                 </div>
                 <div className="w-[650px] flex justify-between items-center mb-4">เบอร์โทร
-                    <input type="tel" className={`w-[500px] h-[36px] rounded-md px-6 ${!state.editState && "border-black border"}`}
+                    <input type="tel" className={`w-[500px] h-[36px] rounded-md px-6 border ${state.editState ? "border-black" : "border-inputBorder"}`}
                         value={data.phone}
-                        disabled={state.editState}
+                        disabled={!state.editState}
                         onChange={(e) => setBackupdata({ ...data, phone: e.target.value })} />
                 </div>
                 <div className="w-[650px] flex justify-between items-center mb-4">อีเมล์

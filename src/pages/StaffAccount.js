@@ -9,7 +9,6 @@ import StaffForm from '../components/Form/StaffForm';
 import StaffAccountTable from '../components/Table/StaffAccountTable';
 import StaffAccountInfo from '../components/Info/StaffAccountInfo';
 
-// import { getStaffAPI } from '../api/fakeAPI';
 import { getAllStaff } from '../api/userAPI';
 
 function StaffAccount() {
@@ -21,7 +20,7 @@ function StaffAccount() {
         async function getAccount() {
             dispatch(startFetch());
             const data = await getAllStaff();
-            setAccountData(data.filter((data) => data.ID !== authReducer.ID));
+            setAccountData(data.reverse().filter((data) => data.ID !== authReducer.ID && data.role !== "customer"));
             dispatch(endFetch());
         }
         getAccount();

@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 
 function TableHead({ children }) {
     return (
-        <p className="text-sm text-center text-[#7d7d7d] w-[20%]">
+        <p className="text-xs text-center text-[#7d7d7d] w-[20%]">
             {children}
         </p>
     );

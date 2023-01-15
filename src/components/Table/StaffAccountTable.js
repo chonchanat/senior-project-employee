@@ -35,9 +35,9 @@ function StaffAccountTable({ accountData }) {
             <div className="h-full flex flex-col overflow-auto">
                 <TableRow condition="head">
                     <TableHead>ID</TableHead>
-                    <TableHead>Name</TableHead>
-                    <TableHead>Role</TableHead>
-                    {authReducer.role === "admin" && <TableHead>Action</TableHead>}
+                    <TableHead>NAME</TableHead>
+                    <TableHead>ROLE</TableHead>
+                    {authReducer.role === "admin" && <TableHead>ACTION</TableHead>}
                 </TableRow>
                 <DataSection width="">
                     {

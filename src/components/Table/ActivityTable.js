@@ -38,12 +38,12 @@ function ActivityTable({ activityData }) {
             :
             <div className="h-full flex flex-col overflow-auto">
                 <TableRow condition="head">
-                    <TableHead>Code</TableHead>
-                    <TableHead>ชื่อ</TableHead>
-                    <TableHead>สถานะการให้บริการ</TableHead>
-                    <TableHead>จำนวนคิว</TableHead>
-                    <TableHead>เรทติ้ง</TableHead>
-                    {authReducer.role === "admin" && <TableHead>Action</TableHead>}
+                    <TableHead>CODE</TableHead>
+                    <TableHead>NAME</TableHead>
+                    <TableHead>STATUS</TableHead>
+                    <TableHead>QUEUE</TableHead>
+                    <TableHead>RATING</TableHead>
+                    {authReducer.role === "admin" && <TableHead>ACTION</TableHead>}
                 </TableRow>
                 <DataSection width="">
                     {activityData.length ?

@@ -27,10 +27,10 @@ function CustomerAccountTable({ accountData, handlerSelect }) {
             <div className="h-full flex flex-col overflow-auto">
                 <TableRow condition="head">
                     <TableHead>ID</TableHead>
-                    <TableHead>Member</TableHead>
-                    <TableHead>Star</TableHead>
-                    <TableHead>Time</TableHead>
-                    {authReducer.role === "admin" && <TableHead>Action</TableHead>}
+                    <TableHead>MEMBER</TableHead>
+                    <TableHead>STAR</TableHead>
+                    <TableHead>TIME</TableHead>
+                    {authReducer.role === "admin" && <TableHead>ACTION</TableHead>}
                 </TableRow>
                 <DataSection width="">
                     {accountData.length ?
