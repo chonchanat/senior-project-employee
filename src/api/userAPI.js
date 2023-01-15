@@ -29,6 +29,20 @@ async function getAllStaff() {
     }
 }
 
+async function getOneStaff(data) {
+    try {
+        const response = await axios.get(`/auth/user/${data}`, {
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json',
+            }
+        })
+        return response.data.user;
+    } catch (error) {
+        console.log(error);
+    }
+}
+
 async function register(data) {
     try {
         const response = await axios.post(`/auth/register`, data, {
@@ -72,4 +86,4 @@ async function deleteUser(data) {
     }
 }
 
-export { signin, getAllStaff, register, updateUser, deleteUser };
+export { signin, getAllStaff, getOneStaff, register, updateUser, deleteUser };

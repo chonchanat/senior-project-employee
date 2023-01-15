@@ -7,7 +7,7 @@ import Wrapper from '../../components/Wrapper';
 import { ModalClose, ModalDelete, ModalTempClose } from '../../components/Modal';
 import ActivityInfo from '../../components/Info/ActivityInfo';
 import { deleteActivity } from '../../api/activityAPI';
-import { HandlerDropdown, HandlerEdit} from '../../components/Etc/ActivityInfoPage';
+import { HandlerDropdown, HandlerEdit } from '../../components/Etc/ActivityInfoPage';
 
 function ActivityInfoPage() {
 
@@ -26,7 +26,7 @@ function ActivityInfoPage() {
     const [backupData, setBackupdata] = useState(null);
     const [state, setState] = useState({
         dropState: false,
-        editState: true,
+        editState: false,
         modalState: false,
         modalDelete: false,
         modalClose: false,
@@ -34,11 +34,11 @@ function ActivityInfoPage() {
     });
 
     function acceptEdit() {
-        setState({ ...state, editState: true })
+        setState({ ...state, editState: false })
         setBackupdata(data);
     }
     function declineEdit() {
-        setState({ ...state, editState: true })
+        setState({ ...state, editState: false })
         setData(backupData);
     }
     function handlerTempClose() {
@@ -75,8 +75,11 @@ function ActivityInfoPage() {
                             <ModalClose data={data} state={state} setState={setState} click={handlerClose} />
                             <ModalDelete data={data} state={state} setState={setState} click={handlerDelete} />
 
-                            <HandlerDropdown data={data} state={state} setState={setState} />
-                            <HandlerEdit state={state} acceptEdit={acceptEdit} declineEdit={declineEdit} />
+                            {state.editState ?
+                                <HandlerEdit acceptEdit={acceptEdit} declineEdit={declineEdit} />
+                                :
+                                <HandlerDropdown data={data} state={state} setState={setState} />
+                            }
 
                             <ActivityInfo data={data} setData={setData} state={state} />
                         </div>

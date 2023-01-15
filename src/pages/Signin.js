@@ -70,7 +70,7 @@ function Signin() {
                             <p className="h-[28px] text-right text-sm text-decline pt-2">{noti ? noti : statusReducer.error}</p>
                         </div>
 
-                        <Button bgColor="bg-accept" font="font-bold" click={handlerSignin}>
+                        <Button width="w-full" bgColor="bg-accept" font="font-bold" click={handlerSignin}>
                             {statusReducer.loading ?
                                 <Spinner color="white" />
                                 :

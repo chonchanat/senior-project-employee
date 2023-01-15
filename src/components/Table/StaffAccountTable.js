@@ -49,7 +49,7 @@ function StaffAccountTable({ accountData }) {
                                     <TableBody>{row.role}</TableBody>
                                     {authReducer.role === "admin" &&
                                         <TableBody>
-                                            <ButtonTransparent click={() => navigate("/staff-activity/" + row.ID)}>
+                                            <ButtonTransparent click={() => navigate("/staff-account/" + row.username)}>
                                                 <RiPencilFill size="24px" />
                                             </ButtonTransparent>
                                             <div className="w-[16px]" />
