@@ -58,7 +58,6 @@ async function updateUser(data) {
 }
 
 async function deleteUser(data) {
-    console.log(data)
     try {
         const response = await axios.delete(`/auth/user`, { username: data.username }, {
             headers: {
@@ -67,6 +66,7 @@ async function deleteUser(data) {
             }
         })
         console.log(response)
+        window.location.reload(true)
     } catch (error) {
         console.log(error)
     }

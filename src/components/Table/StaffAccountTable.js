@@ -13,15 +13,10 @@ import { RiDeleteBin7Fill, RiPencilFill } from 'react-icons/ri';
 
 import { deleteUser } from '../../api/userAPI';
 
-function StaffAccountTable({ accountData, setPage, handlerSelect }) {
+function StaffAccountTable({ accountData, handlerSelect }) {
 
     const statusReducer = useSelector(state => state.statusReducer);
     const authReducer = useSelector(state => state.authReducer);
-
-    function handlerClick(id) {
-        setPage("Info");
-        handlerSelect(id);
-    }
 
     function handlerDelete(data) {
         deleteUser(data);
@@ -51,7 +46,7 @@ function StaffAccountTable({ accountData, setPage, handlerSelect }) {
                                     <TableBody>{row.role}</TableBody>
                                     {authReducer.role === "admin" &&
                                         <TableBody>
-                                            <ButtonTransparent click={() => handlerClick(row.id)}>
+                                            <ButtonTransparent click={() => handlerSelect(row.ID)}>
                                                 <RiPencilFill size="24px" />
                                             </ButtonTransparent>
                                             <div className="w-[16px]" />

@@ -21,20 +21,20 @@ function StaffAccount() {
         async function getAccount() {
             dispatch(startFetch());
             const data = await getAllStaff();
-            setAccountData(data);
-
+            setAccountData(data.filter((data) => data.ID !== authReducer.ID));
             dispatch(endFetch());
         }
         getAccount();
-    }, [dispatch])
+    }, [dispatch, authReducer])
 
     const [page, setPage] = useState("Table");
     const [accountData, setAccountData] = useState([]);
     const [selectData, setSelectData] = useState(null);
 
     function handlerSelect(id) {
-        const foundAccount = accountData.find((data) => data.id === id);
+        const foundAccount = accountData.find((data) => data.ID === id);
         setSelectData(foundAccount);
+        setPage("Info");
     }
 
     return (
@@ -59,7 +59,7 @@ function StaffAccount() {
                     </HeadContentDesktop>
                     {
                         page === "Table" ?
-                            <StaffAccountTable accountData={accountData} setPage={setPage} handlerSelect={handlerSelect} />
+                            <StaffAccountTable accountData={accountData} handlerSelect={handlerSelect} />
                             :
                             page === "Form" ?
                                 <StaffForm setPage={setPage} />
