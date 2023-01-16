@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { startFetch, endFetch } from '../actions/statusActions';
-import { getCustomerAPI } from '../api/fakeAPI';
 
 import { BlockDesktop, BlockDesktopRight, HeadDesktop, ContentDesktop, HeadContentDesktop } from '../components/Block'
 import SideMenuDesktop from '../components/SideMenu/SideMenuDesktop';
@@ -9,22 +8,23 @@ import { Button } from '../components/Button';
 import CustomerForm from '../components/Form/CustomerForm';
 import CustomerAccountTable from '../components/Table/CustomerAccountTable';
 
+import { getAllStaff } from '../api/userAPI';
+
 function CustomerAccount() {
+    
     const dispatch = useDispatch();
+    const authReducer = useSelector(state => state.authReducer);
 
     useEffect(() => {
         async function getAccount() {
             dispatch(startFetch());
-
-            const data = await getCustomerAPI();
-            setAccountData(data);
-
+            const data = await getAllStaff();
+            setAccountData(data.filter((data) => data.ID !== authReducer.ID && data.role === "customer"));
             dispatch(endFetch());
         }
         getAccount();
-    }, [dispatch])
+    }, [dispatch, authReducer])
 
-    const authReducer = useSelector(state => state.authReducer);
 
     const [page, setPage] = useState("Table");
     const [accountData, setAccountData] = useState([]);

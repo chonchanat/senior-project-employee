@@ -4,15 +4,23 @@ import Cookies from "js-cookie";
 const token = Cookies.get("accesstoken");
 
 async function signin(username, password) {
-    try {
-        const response = await axios.post(`/auth/login`, {
-            username: username,
-            password: password,
-        })
-        return response;
-    } catch (error) {
-        return error.response;
+    const user = await axios.post(`/auth/login`, {
+        username: username,
+        password: password,
+    })
+    if(user.data.user.role === "customer") {
+        throw new Error("Not found user");
     }
+    return user;
+    // try {
+    //     const response = await axios.post(`/auth/login`, {
+    //         username: username,
+    //         password: password,
+    //     })
+    //     return response;
+    // } catch (error) {
+    //     return error.response;
+    // }
 }
 
 async function getAllStaff() {

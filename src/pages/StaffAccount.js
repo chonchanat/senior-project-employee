@@ -20,7 +20,7 @@ function StaffAccount() {
         async function getAccount() {
             dispatch(startFetch());
             const data = await getAllStaff();
-            setAccountData(data.reverse().filter((data) => data.ID !== authReducer.ID && data.role !== "customer"));
+            setAccountData(data.filter((data) => data.ID !== authReducer.ID && data.role !== "customer"));
             dispatch(endFetch());
         }
         getAccount();

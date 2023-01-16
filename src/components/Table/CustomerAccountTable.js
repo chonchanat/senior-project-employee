@@ -12,7 +12,7 @@ import { ButtonTransparent } from '../Button';
 
 import { RiDeleteBin7Fill } from 'react-icons/ri';
 
-function CustomerAccountTable({ accountData, handlerSelect }) {
+function CustomerAccountTable({ accountData }) {
 
     const statusReducer = useSelector(state => state.statusReducer);
     const authReducer = useSelector(state => state.authReducer);
@@ -32,20 +32,16 @@ function CustomerAccountTable({ accountData, handlerSelect }) {
                     <TableHead>TIME</TableHead>
                     {authReducer.role === "admin" && <TableHead>ACTION</TableHead>}
                 </TableRow>
-                <DataSection width="">
+                <DataSection>
                     {accountData.length ?
                         accountData.map((row, index) =>
                             <TableRow key={index}>
-                                <TableBody>{row.id}</TableBody>
-                                <TableBody>{row.member}</TableBody>
+                                <TableBody>{row.ID}</TableBody>
+                                <TableBody>{row.members}</TableBody>
                                 <TableBody>{row.star}</TableBody>
-                                <TableBody>{row.time}</TableBody>
+                                <TableBody>{row.createdAt}</TableBody>
                                 {authReducer.role === "admin" &&
                                     <TableBody>
-                                        {/* <ButtonTransparent color="accept">
-                                        <HiOutlinePencil size="24px" />
-                                    </ButtonTransparent>
-                                    <div className="w-[16px]" /> */}
                                         <ButtonTransparent>
                                             <RiDeleteBin7Fill size="24px" />
                                         </ButtonTransparent>
