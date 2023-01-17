@@ -34,8 +34,9 @@ function StaffAccountTable({ accountData }) {
             :
             <div className="h-full flex flex-col overflow-auto">
                 <TableRow condition="head">
-                    <TableHead>ID</TableHead>
-                    <TableHead>NAME</TableHead>
+                    <TableHead>FIRSTNAME</TableHead>
+                    <TableHead>LASTNAME</TableHead>
+                    <TableHead>EMAIL</TableHead>
                     <TableHead>ROLE</TableHead>
                     {authReducer.role === "admin" && <TableHead>ACTION</TableHead>}
                 </TableRow>
@@ -44,8 +45,9 @@ function StaffAccountTable({ accountData }) {
                         accountData.length ?
                             accountData.map((row, index) =>
                                 <TableRow key={index}>
-                                    <TableBody>{row.ID}</TableBody>
                                     <TableBody>{row.firstname}</TableBody>
+                                    <TableBody>{row.lastname}</TableBody>
+                                    <TableBody>{row.email}</TableBody>
                                     <TableBody>{row.role}</TableBody>
                                     {authReducer.role === "admin" &&
                                         <TableBody>

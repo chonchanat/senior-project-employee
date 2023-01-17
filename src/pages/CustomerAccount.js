@@ -10,8 +10,10 @@ import CustomerAccountTable from '../components/Table/CustomerAccountTable';
 
 import { getAllStaff } from '../api/userAPI';
 
+import { IoIosArrowBack } from 'react-icons/io';
+
 function CustomerAccount() {
-    
+
     const dispatch = useDispatch();
     const authReducer = useSelector(state => state.authReducer);
 
@@ -36,12 +38,15 @@ function CustomerAccount() {
                 <HeadDesktop><p>ระบบบัญชีลูกค้า</p></HeadDesktop>
                 <ContentDesktop>
                     <HeadContentDesktop>
-                        <p className="mr-2 cursor-pointer py-2"
-                            onClick={() => setPage("Table")}>
-                            รายชื่อลูกค้า
-                            <label className={`${page !== "Form" && "hidden"} font-normal`}
-                                onClick={(e) => e.stopPropagation()}> / สร้างบัญชีลูกค้า</label>
-                        </p>
+                        {
+                            page === "Table" ?
+                                <p className="py-2">รายชื่อลูกค้า</p>
+                                :
+                                <div className="flex items-center">
+                                    <IoIosArrowBack size="24px" className="cursor-pointer hover:text-[#c7c7c7] mr-2" onClick={() => setPage("Table")} />
+                                    <p>สร้างบัญชีลูกค้า</p>
+                                </div>
+                        }
                         <div className={`${authReducer.role === "admin" && page === "Table" ? "visible" : "invisible"}`}
                             onClick={() => setPage("Form")}>
                             <Button bgColor="bg-yellow" textColor="text-black" font="font-normal" width="w-[150px]">สร้างบัญชีลูกค้า</Button>

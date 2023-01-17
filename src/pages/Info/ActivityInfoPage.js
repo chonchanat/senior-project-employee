@@ -1,13 +1,17 @@
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+
 import { BlockDesktop, BlockDesktopRight, HeadDesktop, ContentDesktop, HeadContentDesktop } from '../../components/Block'
 import SideMenuDesktop from '../../components/SideMenu/SideMenuDesktop';
+
 import { getOneActivity } from '../../api/activityAPI';
 import Wrapper from '../../components/Wrapper';
 import { ModalClose, ModalDelete, ModalTempClose } from '../../components/Modal';
 import ActivityInfo from '../../components/Info/ActivityInfo';
 import { deleteActivity } from '../../api/activityAPI';
 import { HandlerDropdown, HandlerEdit } from '../../components/Etc/ActivityInfoPage';
+
+import { IoIosArrowBack } from 'react-icons/io';
 
 function ActivityInfoPage() {
 
@@ -62,7 +66,10 @@ function ActivityInfoPage() {
                 <HeadDesktop><p>กิจกรรมทั้งหมด</p></HeadDesktop>
                 <ContentDesktop>
                     <HeadContentDesktop>
-                        <p>รายชื่อกิจกรรม</p>
+                        <div className="flex items-center">
+                            <IoIosArrowBack size="24px" className="cursor-pointer hover:text-[#c7c7c7] mr-2" onClick={() => navigate("/staff-activity")}/>
+                            <p>{data && data.name[0]}</p>
+                        </div>
                     </HeadContentDesktop>
                     {data &&
                         <div className="relative">

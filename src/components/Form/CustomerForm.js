@@ -42,7 +42,7 @@ function CustomerForm({ setPage }) {
                 </div> */}
                 <div className="w-[650px] flex justify-between items-center mb-4">จำนวนลูกค้า
                     <input type="number" className={`border-black w-[500px] h-[36px] rounded-md border px-6`}
-                        onChange={(e) => setForm({ ...form, member: parseInt(e.target.value) })} />
+                        onChange={(e) => setForm({ ...form, members: parseInt(e.target.value) })} />
                 </div>
                 <div className="w-[650px] flex justify-between items-center mb-4">จำนวนดาว
                     <input type="number" className={`border-black w-[500px] h-[36px] rounded-md border px-6`}

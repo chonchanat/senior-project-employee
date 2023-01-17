@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 
 import StaffAccountInfo from '../../components/Info/StaffAccountInfo';
 import { BlockDesktop, BlockDesktopRight, HeadDesktop, ContentDesktop, HeadContentDesktop } from '../../components/Block'
@@ -8,8 +8,11 @@ import { HandlerEdit } from '../../components/Etc/ActivityInfoPage';
 
 import { getOneStaff } from '../../api/userAPI';
 
+import { IoIosArrowBack } from 'react-icons/io';
+
 function StaffAccountInfoPage() {
 
+    const navigate = useNavigate();
     const { id } = useParams();
     useEffect(() => {
         async function getAccount() {
@@ -42,7 +45,10 @@ function StaffAccountInfoPage() {
                 <HeadDesktop><p>ระบบบัญชีพนักงาน</p></HeadDesktop>
                 <ContentDesktop>
                     <HeadContentDesktop>
-                        <p>รายชื่อพนักงาน</p>
+                    <div className="flex items-center">
+                            <IoIosArrowBack size="24px" className="cursor-pointer hover:text-[#c7c7c7] mr-2" onClick={() => navigate("/staff-account")}/>
+                            <p>{data && `${data.firstname} ${data.lastname}`}</p>
+                        </div>
                     </HeadContentDesktop>
                     {data &&
                         <div className="relative">

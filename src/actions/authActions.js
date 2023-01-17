@@ -51,12 +51,12 @@ function fetchAuthAsync(email, password) {
     }
 }
 
-function fetchUpdateAccount(dateUser) {
+function fetchUpdateAccount(data) {
     return async function (dispatch) {
         try {
             dispatch(startUpdateFetch());
 
-            const user = await settingAccount(dateUser);
+            const user = await settingAccount(data);
 
             if (user) {
                 dispatch(setAuth(user));

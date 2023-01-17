@@ -66,17 +66,23 @@ async function register(data) {
 }
 
 async function updateUser(data) {
-    try {
-        const response = await axios.put(`/auth/user`, data, {
-            headers: {
-                'Authorization': `Bearer ${token}`,
-                'Content-Type': 'application/json',
-            }
-        })
-        console.log(response)
-    } catch (error) {
-        console.log(error)
-    }
+    return await axios.put(`/auth/user`, data, {
+        headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json',
+        }
+    })
+    // try {
+    //     const response = await axios.put(`/auth/user`, data, {
+    //         headers: {
+    //             'Authorization': `Bearer ${token}`,
+    //             'Content-Type': 'application/json',
+    //         }
+    //     })
+    //     console.log(response)
+    // } catch (error) {
+    //     console.log(error)
+    // }
 }
 
 async function deleteUser(data) {

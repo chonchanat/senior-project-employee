@@ -8,6 +8,8 @@ import { Button } from '../components/Button';
 import ActivityForm from '../components/Form/ActivityForm';
 import ActivityTable from '../components/Table/ActivityTable';
 
+import { IoIosArrowBack } from 'react-icons/io';
+
 function StaffActivity() {
     const dispatch = useDispatch();
     const authReducer = useSelector(state => state.authReducer);
@@ -18,30 +20,23 @@ function StaffActivity() {
     }, [dispatch])
 
     const [page, setPage] = useState("Table");
-    const [selectData, setSelectData] = useState(null);
-
-    function handlerSelect(id) {
-        const foundActivity = activityReducer.find((data) => data.id === id);
-        setSelectData(foundActivity);
-        setPage("Info");
-    }
 
     return (
         <BlockDesktop>
             <SideMenuDesktop />
             <BlockDesktopRight>
                 <HeadDesktop><p>กิจกรรมทั้งหมด</p></HeadDesktop>
-
                 <ContentDesktop>
                     <HeadContentDesktop>
-                        <p className="mr-2 cursor-pointer py-2"
-                            onClick={() => { setPage("Table"); setSelectData(null) }}>
-                            รายชื่อกิจกรรม
-                            <label className={`${page !== "Form" && "hidden"} font-normal`}
-                                onClick={(e) => e.stopPropagation()}> / เพิ่มกิจกรรม</label>
-                            <label className={`${page !== "Info" && "hidden"} font-normal`}
-                                onClick={(e) => e.stopPropagation()}> / {selectData && selectData.name[0]}</label>
-                        </p>
+                        {
+                            page === "Table" ?
+                                <p className="py-2">รายชื่อกิจกรรม</p>
+                                :
+                                <div className="flex items-center">
+                                    <IoIosArrowBack size="24px" className="cursor-pointer hover:text-[#c7c7c7] mr-2" onClick={() => setPage("Table")} />
+                                    <p>เพิ่มกิจกรรม</p>
+                                </div>
+                        }
                         <div className={`${authReducer.role === "admin" && page === "Table" ? "visible" : "invisible"}`}
                             onClick={() => setPage("Form")}>
                             <Button bgColor="bg-yellow" textColor="text-black" font="font-normal" width="w-[150px]">เพิ่มกิจกรรม</Button>
@@ -50,12 +45,11 @@ function StaffActivity() {
 
                     {
                         page === "Table" ?
-                            <ActivityTable activityData={activityReducer} handlerSelect={handlerSelect} />
+                            <ActivityTable activityData={activityReducer} />
                             :
                             <ActivityForm setPage={setPage} />
                     }
                 </ContentDesktop>
-
             </BlockDesktopRight>
         </BlockDesktop>
     );

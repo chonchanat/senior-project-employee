@@ -45,12 +45,12 @@ function ActivityTable({ activityData }) {
                     <TableHead>RATING</TableHead>
                     {authReducer.role === "admin" && <TableHead>ACTION</TableHead>}
                 </TableRow>
-                <DataSection width="">
+                <DataSection>
                     {activityData.length ?
                         activityData.map((row) =>
                             <TableRow key={row.id}>
                                 <TableBody>{row.code}</TableBody>
-                                <TableBody>{row.name}</TableBody>
+                                <TableBody>{row.name[0]}</TableBody>
                                 <TableBody><div className={`${handlerStatus(row.status)} w-[12px] h-[12px] rounded-full`} title={row.status} /></TableBody>
                                 <TableBody>{row.duration}</TableBody>
                                 <TableBody>{row.rating}</TableBody>

@@ -7,9 +7,10 @@ import SideMenuDesktop from '../components/SideMenu/SideMenuDesktop';
 import { Button } from '../components/Button';
 import StaffForm from '../components/Form/StaffForm';
 import StaffAccountTable from '../components/Table/StaffAccountTable';
-import StaffAccountInfo from '../components/Info/StaffAccountInfo';
 
 import { getAllStaff } from '../api/userAPI';
+
+import { IoIosArrowBack } from 'react-icons/io';
 
 function StaffAccount() {
 
@@ -28,7 +29,6 @@ function StaffAccount() {
 
     const [page, setPage] = useState("Table");
     const [accountData, setAccountData] = useState([]);
-    const [selectData, setSelectData] = useState(null);
 
     return (
         <BlockDesktop>
@@ -37,14 +37,15 @@ function StaffAccount() {
                 <HeadDesktop><p>ระบบบัญชีพนักงาน</p></HeadDesktop>
                 <ContentDesktop>
                     <HeadContentDesktop>
-                        <p className="mr-2 cursor-pointer py-2"
-                            onClick={() => { setPage("Table"); setSelectData(null) }}>
-                            รายชื่อพนักงาน
-                            <label className={`${page !== "Form" && "hidden"} font-normal`}
-                                onClick={(e) => e.stopPropagation()}> / สร้างบัญชีพนักงาน</label>
-                            <label className={`${page !== "Info" && "hidden"} font-normal`}
-                                onClick={(e) => e.stopPropagation()}> / แก้ไขบัญชีพนักงาน</label>
-                        </p>
+                        {
+                            page === "Table" ?
+                                <p className="py-2">รายชื่อพนักงาน</p>
+                                :
+                                <div className="flex items-center">
+                                    <IoIosArrowBack size="24px" className="cursor-pointer hover:text-[#c7c7c7] mr-2" onClick={() => setPage("Table")} />
+                                    <p>สร้างบัญชีพนักงาน</p>
+                                </div>
+                        }
                         <div className={`${authReducer.role === "admin" && page === "Table" ? "visible" : "invisible"}`}
                             onClick={() => setPage("Form")}>
                             <Button bgColor="bg-yellow" textColor="text-black" font="font-normal" width="w-[150px]">สร้างบัญชีพนักงาน</Button>
@@ -54,10 +55,7 @@ function StaffAccount() {
                         page === "Table" ?
                             <StaffAccountTable accountData={accountData} />
                             :
-                            page === "Form" ?
-                                <StaffForm setPage={setPage} />
-                                :
-                                <StaffAccountInfo selectData={selectData} />
+                            <StaffForm setPage={setPage} />
                     }
                 </ContentDesktop>
             </BlockDesktopRight>

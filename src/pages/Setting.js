@@ -21,7 +21,9 @@ function Setting() {
 
     function acceptEdit() {
         setState({ ...state, editState: false })
-        dispatch(fetchUpdateAccount(backupData))
+        if (authReducer !== backupData) {
+            dispatch(fetchUpdateAccount(backupData));
+        }
     }
     function declineEdit() {
         setState({ ...state, editState: false })
