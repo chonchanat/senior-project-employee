@@ -19,9 +19,27 @@ function HandlerDropdown({ state, setState }) {
                     <DropdownButton click={() => setState({ ...state, dropState: true })}><BsThreeDots size="28px" /></DropdownButton>
                     <DropdownBody state={state.dropState} offset="right-0">
                         <DropdownMenu click={() => setState({ ...state, editState: true, dropState: false })}>แก้ไขรายละเอียด</DropdownMenu>
-                        <DropdownMenu click={() => setState({ ...state, dropState: false, modalState: true, modalTempClose: true })}>ปิดปรับปรุงชั่วคราว</DropdownMenu>
-                        <DropdownMenu click={() => setState({ ...state, dropState: false, modalState: true, modalClose: true })}>ปิดให้บริการ</DropdownMenu>
-                        <DropdownMenu click={() => setState({ ...state, dropState: false, modalState: true, modalDelete: true })}>ลบกิจกรรม</DropdownMenu>
+                        <DropdownMenu click={() => setState({ ...state, dropState: false, modalTempClose: true })}>ปิดปรับปรุงชั่วคราว</DropdownMenu>
+                        <DropdownMenu click={() => setState({ ...state, dropState: false, modalClose: true })}>ปิดให้บริการ</DropdownMenu>
+                        <DropdownMenu click={() => setState({ ...state, dropState: false, modalDelete: true })}>ลบกิจกรรม</DropdownMenu>
+                    </DropdownBody>
+                </Dropdown>
+            </div>
+        </div>
+    );
+}
+
+function HandlerDropdownStaffAccount({ state, setState }) {
+    return (
+        <div>
+            <Wrapper state={state.dropState}
+                click={() => setState({ ...state, dropState: !state.dropState })} />
+            <div className={`absolute right-0 top-[-68px]`}>
+                <Dropdown>
+                    <DropdownButton click={() => setState({ ...state, dropState: true })}><BsThreeDots size="28px" /></DropdownButton>
+                    <DropdownBody state={state.dropState} offset="right-0">
+                        <DropdownMenu click={() => setState({ ...state, editState: true, dropState: false })}>แก้ไขรายละเอียด</DropdownMenu>
+                        <DropdownMenu click={() => setState({ ...state, dropState: false, modalDeleteAccount: true })}>ลบบัญชีพนักงาน</DropdownMenu>
                     </DropdownBody>
                 </Dropdown>
             </div>
@@ -42,4 +60,4 @@ function HandlerEdit({ acceptEdit, declineEdit }) {
     );
 }
 
-export { HandlerDropdown, HandlerEdit };
+export { HandlerDropdown, HandlerDropdownStaffAccount, HandlerEdit };

@@ -10,9 +10,8 @@ import {
 import Spinner from '../Spinner';
 import { ButtonTransparent } from '../Button';
 
-import { RiDeleteBin7Fill, RiPencilFill } from 'react-icons/ri';
+import { RiUser3Fill, RiPencilFill, RiVipCrown2Fill } from 'react-icons/ri';
 
-import { deleteUser } from '../../api/userAPI';
 
 function StaffAccountTable({ accountData }) {
 
@@ -20,10 +19,6 @@ function StaffAccountTable({ accountData }) {
 
     const statusReducer = useSelector(state => state.statusReducer);
     const authReducer = useSelector(state => state.authReducer);
-
-    function handlerDelete(data) {
-        deleteUser(data);
-    }
 
     return (
         statusReducer.loading ?
@@ -48,15 +43,17 @@ function StaffAccountTable({ accountData }) {
                                     <TableBody>{row.firstname}</TableBody>
                                     <TableBody>{row.lastname}</TableBody>
                                     <TableBody>{row.email}</TableBody>
-                                    <TableBody>{row.role}</TableBody>
+                                    <TableBody>
+                                        {row.role === "admin" ?
+                                            <RiVipCrown2Fill size="20px" className="text-yellow" title={row.role}/>
+                                            :
+                                            <RiUser3Fill size="20px" className="text-accept" title={row.role}/>
+                                        }
+                                    </TableBody>
                                     {authReducer.role === "admin" &&
                                         <TableBody>
                                             <ButtonTransparent click={() => navigate("/staff-account/" + row.username)}>
                                                 <RiPencilFill size="24px" />
-                                            </ButtonTransparent>
-                                            <div className="w-[16px]" />
-                                            <ButtonTransparent click={() => handlerDelete(row)}>
-                                                <RiDeleteBin7Fill size="24px" />
                                             </ButtonTransparent>
                                         </TableBody>
                                     }

@@ -5,7 +5,6 @@ import { BlockDesktop, BlockDesktopRight, HeadDesktop, ContentDesktop, HeadConte
 import SideMenuDesktop from '../../components/SideMenu/SideMenuDesktop';
 
 import { getOneActivity } from '../../api/activityAPI';
-import Wrapper from '../../components/Wrapper';
 import { ModalClose, ModalDelete, ModalTempClose } from '../../components/Modal';
 import ActivityInfo from '../../components/Info/ActivityInfo';
 import { deleteActivity } from '../../api/activityAPI';
@@ -29,7 +28,6 @@ function ActivityInfoPage() {
     const [data, setData] = useState(null);
     const [backupData, setBackupdata] = useState(null);
     const [state, setState] = useState({
-        dropState: false,
         editState: false,
         modalDelete: false,
         modalClose: false,
@@ -72,8 +70,6 @@ function ActivityInfoPage() {
                     </HeadContentDesktop>
                     {data &&
                         <div className="relative">
-                            <Wrapper state={state.dropState}
-                                click={() => setState({ ...state, dropState: !state.dropState })} />
 
                             <ModalTempClose data={data} state={state} setState={setState} click={handlerTempClose} />
                             <ModalClose data={data} state={state} setState={setState} click={handlerClose} />
@@ -82,7 +78,7 @@ function ActivityInfoPage() {
                             {state.editState ?
                                 <HandlerEdit acceptEdit={acceptEdit} declineEdit={declineEdit} />
                                 :
-                                <HandlerDropdown data={data} state={state} setState={setState} />
+                                <HandlerDropdown state={state} setState={setState} />
                             }
 
                             <ActivityInfo data={data} setData={setData} state={state} />

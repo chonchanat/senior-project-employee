@@ -83,7 +83,7 @@ function ModalTempClose({ data, state, setState, click }) {
     );
 }
 
-function ModalDeleteAccount({ state, setState, click }) {
+function ModalDeleteAccount({ data, state, setState, click }) {
     return (
         <div>
             <Wrapper state={state.modalDeleteAccount} bgColor="bg-black/20"
@@ -96,7 +96,7 @@ function ModalDeleteAccount({ state, setState, click }) {
                     <AiOutlineDelete size="48px" className="bg-red-300 text-white rounded-full p-2 mr-4" />
                     <div className="flex-1">
                         <p className="text-lg font-bold">ลบพนักงาน</p>
-                        <p className="py-2">คุณแน่ใจว่าต้องการลบ <label className="font-bold"></label> ออกจากบัญชีพนักงาน ข้อมูลที่ถูกบันทึกทั้งหมดจะหายไปอย่างถาวร โปรดตรวจสอบความถูกต้องก่อนกดยืนยัน</p>
+                        <p className="py-2">คุณแน่ใจว่าต้องการลบ <label className="font-bold">{data.firstname} {data.lastname}</label> ออกจากบัญชีพนักงาน ข้อมูลที่ถูกบันทึกทั้งหมดจะหายไปอย่างถาวร โปรดตรวจสอบความถูกต้องก่อนกดยืนยัน</p>
                     </div>
                 </div>
                 <div className="px-6 py-4 bg-[#F4F4F4] flex justify-end">
