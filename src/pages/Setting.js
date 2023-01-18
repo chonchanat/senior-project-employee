@@ -40,12 +40,12 @@ function Setting() {
                         <div className="flex">
                             <p className={`items-center flex p-2 mr-2 rounded-lg cursor-pointer ${state.pageState === "account" && "bg-yellow"}`}
                                 onClick={() => setState({ ...state, pageState: "account" })} >
-                                <input type="checkbox" className="w-4 h-4 text-fha mr-2"
+                                <input type="checkbox" className="w-4 h-4 text-fha mr-2" readOnly
                                     checked={state.pageState === "account"} />แก้ไขบัญชี
                             </p>
                             <p className={`items-center flex p-2 mr-2 rounded-lg cursor-pointer ${state.pageState === "password" && "bg-yellow"}`}
                                 onClick={() => setState({ ...state, pageState: "password", editState: false })} >
-                                <input type="checkbox" className="w-4 h-4 text-fha mr-2"
+                                <input type="checkbox" className="w-4 h-4 text-fha mr-2" readOnly
                                     checked={state.pageState === "password"} />เปลี่ยนรหัสผ่าน
                             </p>
                         </div>

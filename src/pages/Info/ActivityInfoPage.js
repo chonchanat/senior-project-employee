@@ -31,7 +31,6 @@ function ActivityInfoPage() {
     const [state, setState] = useState({
         dropState: false,
         editState: false,
-        modalState: false,
         modalDelete: false,
         modalClose: false,
         modalTempClose: false,
@@ -46,15 +45,15 @@ function ActivityInfoPage() {
         setData(backupData);
     }
     function handlerTempClose() {
-        setState({ ...state, modalState: false, modalTempClose: false });
+        setState({ ...state, modalTempClose: false });
         console.log('Temporary Close')
     }
     function handlerClose() {
-        setState({ ...state, modalState: false, modalClose: false });
+        setState({ ...state, modalClose: false });
         console.log('Close')
     }
     function handlerDelete() {
-        setState({ ...state, modalState: false, modalDelete: false });
+        setState({ ...state, modalDelete: false });
         deleteActivity(data);
         navigate("/staff-activity")
     }
@@ -75,8 +74,6 @@ function ActivityInfoPage() {
                         <div className="relative">
                             <Wrapper state={state.dropState}
                                 click={() => setState({ ...state, dropState: !state.dropState })} />
-                            <Wrapper state={state.modalState} bgColor="bg-black/20"
-                                click={() => setState({ ...state, modalState: false, modalDelete: false, modalClose: false, modalTempClose: false })} />
 
                             <ModalTempClose data={data} state={state} setState={setState} click={handlerTempClose} />
                             <ModalClose data={data} state={state} setState={setState} click={handlerClose} />
