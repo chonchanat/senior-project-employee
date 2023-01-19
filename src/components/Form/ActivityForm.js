@@ -1,9 +1,9 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 // import { useSelector } from 'react-redux';
 
 import { Button, ButtonSubmit } from '../Button';
 // import { MultiSelect, MultiSelectBody } from '../MultiSelect';
-import Wrapper from '../Wrapper';
+// import Wrapper from '../Wrapper';
 
 // import { MdClose } from 'react-icons/md'
 
@@ -13,11 +13,17 @@ function ActivityForm({ setPage }) {
 
     // const activityReducer = useSelector(state => state.activityReducer);
 
-    const [state, setState] = useState({
-        multiSearch: false,
-    });
+    // const [state, setState] = useState({
+    //     multiSearch: false,
+    // });
     // const [search, setSearch] = useState("");
     // const [multiSelect, setMultiSelect] = useState([]);
+    const defaultImage = "https://cdn.pixabay.com/photo/2016/12/18/13/45/download-1915753_960_720.png";
+    const imageRef = useRef();
+
+    // useEffect(() => {
+    //     console.log(imageRef.current)
+    // }, [imageRef.current])
 
     const [nameForm, setNameForm] = useState({
         th: "",
@@ -29,13 +35,23 @@ function ActivityForm({ setPage }) {
         duration: 0,
         star: 0,
         near: [],
+        x: 0,
+        y: 0,
+        image: "",
     });
 
-    function handlerSubmit(event) {
-        event.preventDefault();
-        const data = {...form, name: [nameForm.th, nameForm.eng]}
+    function handlerUploadImage() {
+        imageRef.current.click();
+    }
+    function handlerChangeImage() {
+        setForm({...form, image: imageRef.current.files[0]})
+    }
+    function handlerSubmit(e) {
+        e.preventDefault();
+        const data = { ...form, name: [nameForm.th, nameForm.eng] }
         postActivity(data);
     }
+
 
     // function handlerClick(data) {
     //     const found = multiSelect.find(e => e.code === data.code);
@@ -49,11 +65,12 @@ function ActivityForm({ setPage }) {
 
     return (
         <div>
-            <Wrapper state={state.multiSearch} click={() => setState({ ...state, multiSearch: false })} />
+            {/* <Wrapper state={state.multiSearch} click={() => setState({ ...state, multiSearch: false })} /> */}
             <form onSubmit={handlerSubmit}>
                 <div className="flex flex-wrap justify-center h-fit">
                     <div className="w-[400px] flex justify-center items-center mb-4">
-                        <img className="w-[160px]" src="https://cdn.pixabay.com/photo/2016/12/18/13/45/download-1915753_960_720.png" alt="upload" />
+                        <img className="w-[160px]" src={form.image ? URL.createObjectURL(form.image) : defaultImage} alt="upload" onClick={handlerUploadImage} />
+                        <input type="file" accept="image/*" ref={imageRef} className="hidden" onChange={handlerChangeImage}/>
                     </div>
                     <div className="w-[520px]">
                         <div className="flex justify-between items-center mb-4">
@@ -85,6 +102,15 @@ function ActivityForm({ setPage }) {
                             <input type="number" className="h-[36px] border-black rounded-md border px-6"
                                 onChange={(e) => setForm({ ...form, star: parseInt(e.target.value) })} />
                             <p className="w-[80px] text-right">ดวง/คน</p>
+                        </div>
+                        <div className="flex justify-between items-center mb-4">
+                            <p className="w-[104px]">พิกัด</p>
+                            <input type="text" className="w-[156px] h-[36px] border-black rounded-md border px-6"
+                                placeholder="X"
+                                onChange={(e) => setForm({ ...form, x: parseInt(e.target.value) })} />
+                            <input type="text" className="w-[156px] h-[36px] border-black rounded-md border px-6"
+                                placeholder="Y"
+                                onChange={(e) => setForm({ ...form, y: parseInt(e.target.value) })} />
                         </div>
                         {/* <div className="flex justify-between items-center">
                             <p>กิจกรรมใกล้เคียง</p>

@@ -43,6 +43,21 @@ function ActivityInfo({ data, setData, state }) {
                         onChange={(e) => setData({ ...data, star: parseInt(e.target.value) })} />
                     <p className="w-[80px] text-right">ดวง/รอบ</p>
                 </div>
+                <div className="flex justify-between items-center mb-4">
+                    <p className="w-[104px]">พิกัด</p>
+                    <input type="text" className={`w-[156px] h-[36px] rounded-md px-6 border ${state.editState ? "border-black" : "border-inputBorder"}`}
+                        placeholder="X"
+                        value={data.x}
+                        disabled={!state.editState}
+                        onChange={(e) => setData({ ...data, x: parseInt(e.target.value) })}
+                    />
+                    <input type="text" className={`w-[156px] h-[36px] rounded-md px-6 border ${state.editState ? "border-black" : "border-inputBorder"}`}
+                        placeholder="Y"
+                        value={data.y}
+                        disabled={!state.editState}
+                        onChange={(e) => setData({ ...data, y: parseInt(e.target.value) })}
+                    />
+                </div>
             </div>
         </div>
     );
