@@ -43,7 +43,8 @@ function SideMenuDesktop() {
                         <AiFillHome size="20px" />
                         <p className="pl-2">หน้าหลัก</p>
                     </div>
-                    <div className="px-5 py-3 rounded-md hover:bg-white hover:text-black flex cursor-pointer">
+                    <div className="px-5 py-3 rounded-md hover:bg-white hover:text-black flex cursor-pointer"
+                        onClick={() => navigate("/staff-dashboard")}>
                         <RiArtboardFill size="20px" />
                         <p className="pl-2">Dashboard</p>
                     </div>
@@ -83,7 +84,8 @@ function SideMenuDesktop() {
                 </div>
                 <div className="h-full py-4 font-bold text-white flex-col flex items-center pt-10">
                     <AiFillHome size="28px" className="mb-6 cursor-pointer hover:text-black" />
-                    <RiArtboardFill size="28px" className="mb-6 cursor-pointer hover:text-black" />
+                    <RiArtboardFill size="28px" className="mb-6 cursor-pointer hover:text-black"
+                        onClick={() => navigate("/staff-dashboard")} />
                     <MdPeople size="28px" className="mb-6 cursor-pointer hover:text-black"
                         onClick={() => navigate("/staff-customer-account")} />
                     <GiBilledCap size="28px" className="mb-6 cursor-pointer hover:text-black"

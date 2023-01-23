@@ -11,6 +11,7 @@ import { ButtonTransparent } from '../Button';
 import Spinner from '../Spinner'
 
 import { IoMdSettings } from 'react-icons/io';
+import { HiClipboard } from 'react-icons/hi';
 
 function ActivityTable({ activityData }) {
 
@@ -56,7 +57,11 @@ function ActivityTable({ activityData }) {
                                 <TableBody>{row.rating}</TableBody>
                                 {authReducer.role === "admin" &&
                                     <TableBody>
-                                        < ButtonTransparent click={() => navigate("/staff-activity/" + row.code)}>
+                                        <ButtonTransparent click={() => navigate("/staff-dashboard/" + row.code)}>
+                                            <HiClipboard size="24px" />
+                                        </ButtonTransparent>
+                                        <diV className="w-2" />
+                                        <ButtonTransparent click={() => navigate("/staff-activity/" + row.code)}>
                                             <IoMdSettings size="24px" />
                                         </ButtonTransparent>
                                     </TableBody>}

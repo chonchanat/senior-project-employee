@@ -13,6 +13,8 @@ import CustomerAccount from './pages/CustomerAccount';
 import Setting from './pages/Setting';
 import ActivityInfoPage from './pages/Info/ActivityInfoPage';
 import StaffAccountInfoPage from './pages/Info/StaffAccountInfoPage';
+import Dashboard from './pages/Dashboard';
+import ActivityDashboard from './pages/Info/ActivityDashBoard';
 
 import Test from './pages/test';
 
@@ -42,8 +44,16 @@ const App = createBrowserRouter([
     element: <PrivateRoute><StaffAccountInfoPage /></PrivateRoute>,
   },
   {
-    path: "/staff-activity/:id",
-    element: <PrivateRoute><ActivityInfoPage /></PrivateRoute>
+    path: "/staff-activity/:code",
+    element: <PrivateRoute><ActivityInfoPage /></PrivateRoute>,
+  },
+  {
+    path: "staff-dashboard",
+    element: <PrivateRoute><Dashboard /></PrivateRoute>,
+  },
+  {
+    path: "staff-dashboard/:code",
+    element: <PrivateRoute><ActivityDashboard /></PrivateRoute>
   },
 
   {

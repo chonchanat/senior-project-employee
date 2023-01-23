@@ -15,15 +15,15 @@ import { IoIosArrowBack } from 'react-icons/io';
 function ActivityInfoPage() {
 
     const navigate = useNavigate();
-    const { id } = useParams();
+    const { code } = useParams();
     useEffect(() => {
         async function getActivity() {
-            const data = await getOneActivity(id);
+            const data = await getOneActivity(code);
             setData(data);
             setBackupdata(data)
         }
         getActivity();
-    }, [id])
+    }, [code])
 
     const [data, setData] = useState(null);
     const [backupData, setBackupdata] = useState(null);
