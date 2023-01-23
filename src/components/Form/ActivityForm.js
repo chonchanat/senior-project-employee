@@ -130,7 +130,7 @@ function ActivityForm({ setPage }) {
                         </div> */}
                     </div>
                 </div>
-                <div className="flex justify-center mt-[200px]">
+                <div className="flex justify-center mt-10">
                     <ButtonSubmit title="Submit" bgColor="bg-accept" width="w-[200px]" />
                     <div className="w-[60px]" />
                     <div onClick={() => setPage("Table")}>
