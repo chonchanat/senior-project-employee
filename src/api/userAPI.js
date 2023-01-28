@@ -12,15 +12,6 @@ async function signin(username, password) {
         throw new Error("Not found user");
     }
     return user;
-    // try {
-    //     const response = await axios.post(`/auth/login`, {
-    //         username: username,
-    //         password: password,
-    //     })
-    //     return response;
-    // } catch (error) {
-    //     return error.response;
-    // }
 }
 
 async function getAllStaff() {
@@ -72,17 +63,6 @@ async function updateUser(data) {
             'Content-Type': 'application/json',
         }
     })
-    // try {
-    //     const response = await axios.put(`/auth/user`, data, {
-    //         headers: {
-    //             'Authorization': `Bearer ${token}`,
-    //             'Content-Type': 'application/json',
-    //         }
-    //     })
-    //     console.log(response)
-    // } catch (error) {
-    //     console.log(error)
-    // }
 }
 
 async function deleteUser(data) {

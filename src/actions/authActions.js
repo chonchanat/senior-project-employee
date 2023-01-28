@@ -28,25 +28,9 @@ function fetchAuthAsync(email, password) {
             }
         } catch (error) {
             dispatch(setAuth(null));
-            dispatch(errorFetch(error.message));
+            dispatch(errorFetch(error.response.data.message));
             dispatch(endFetch());
         }
-        // dispatch(startFetch());
-        // dispatch(errorFetch(''));
-
-        // const user = await signin(email, password);
-
-        // if (user.status === 200) {
-        //     dispatch(setAuth(user.data.user));
-        //     Cookies.set('accesstoken', user.data.accesstoken);
-        //     Cookies.set('userCookie', JSON.stringify(user.data.user));
-        //     dispatch(errorFetch(''));
-        //     dispatch(endFetch());
-        // } else {
-        //     dispatch(setAuth(null));
-        //     dispatch(errorFetch(user.data.message));
-        //     dispatch(endFetch());
-        // }
     }
 }
 
