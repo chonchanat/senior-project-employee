@@ -8,7 +8,7 @@ import { Button } from '../components/Button';
 import StaffForm from '../components/Form/StaffForm';
 import StaffAccountTable from '../components/Table/StaffAccountTable';
 
-import { getAllStaff } from '../api/userAPI';
+import { getAllAccount } from '../api/userAPI';
 
 import { IoIosArrowBack } from 'react-icons/io';
 
@@ -20,7 +20,7 @@ function StaffAccount() {
     useEffect(() => {
         async function getAccount() {
             dispatch(startFetch());
-            const data = await getAllStaff();
+            const data = await getAllAccount();
             setAccountData(data.filter((data) => data.ID !== authReducer.ID && (data.role === "admin" || data.role === "staff")));
             dispatch(endFetch());
         }

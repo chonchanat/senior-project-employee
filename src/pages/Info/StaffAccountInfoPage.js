@@ -6,7 +6,7 @@ import { BlockDesktop, BlockDesktopRight, HeadDesktop, ContentDesktop, HeadConte
 import SideMenuDesktop from '../../components/SideMenu/SideMenuDesktop';
 import { HandlerDropdownStaffAccount, HandlerEdit } from '../../components/Etc/ActivityInfoPage';
 
-import { getOneStaff, deleteUser } from '../../api/userAPI';
+import { getOneAccount, deleteUser } from '../../api/userAPI';
 
 import { IoIosArrowBack } from 'react-icons/io';
 import { ModalDeleteAccount } from '../../components/Modal';
@@ -17,7 +17,7 @@ function StaffAccountInfoPage() {
     const { id } = useParams();
     useEffect(() => {
         async function getAccount() {
-            const data = await getOneStaff(id);
+            const data = await getOneAccount(id);
             setData(data);
             setBackupdata(data);
         }

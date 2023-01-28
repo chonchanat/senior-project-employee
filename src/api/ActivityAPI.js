@@ -14,6 +14,7 @@ async function getAllActivity() {
         return response.data.activity;
     } catch (error) {
         console.log(error)
+        return [];
     }
 }
 
@@ -28,6 +29,7 @@ async function getOneActivity(data) {
         return response.data.activity;
     } catch (error) {
         console.log(error)
+        return null;
     }
 }
 

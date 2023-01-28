@@ -14,7 +14,7 @@ async function signin(username, password) {
     return user;
 }
 
-async function getAllStaff() {
+async function getAllAccount() {
     try {
         const response = await axios.get(`/auth/user/all`, {
             headers: {
@@ -25,10 +25,11 @@ async function getAllStaff() {
         return response.data.user;
     } catch (error) {
         console.log(error);
+        return [];
     }
 }
 
-async function getOneStaff(data) {
+async function getOneAccount(data) {
     try {
         const response = await axios.get(`/auth/user/${data}`, {
             headers: {
@@ -39,6 +40,7 @@ async function getOneStaff(data) {
         return response.data.user;
     } catch (error) {
         console.log(error);
+        return null;
     }
 }
 
@@ -80,4 +82,4 @@ async function deleteUser(data) {
     }
 }
 
-export { signin, getAllStaff, getOneStaff, register, updateUser, deleteUser };
+export { signin, getAllAccount, getOneAccount, register, updateUser, deleteUser };

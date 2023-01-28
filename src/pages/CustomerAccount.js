@@ -8,7 +8,7 @@ import { Button } from '../components/Button';
 import CustomerForm from '../components/Form/CustomerForm';
 import CustomerAccountTable from '../components/Table/CustomerAccountTable';
 
-import { getAllStaff } from '../api/userAPI';
+import { getAllAccount } from '../api/userAPI';
 
 import { IoIosArrowBack } from 'react-icons/io';
 
@@ -20,7 +20,7 @@ function CustomerAccount() {
     useEffect(() => {
         async function getAccount() {
             dispatch(startFetch());
-            const data = await getAllStaff();
+            const data = await getAllAccount();
             setAccountData(data.filter((data) => data.ID !== authReducer.ID && data.role === "customer"));
             dispatch(endFetch());
         }
