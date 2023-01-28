@@ -21,7 +21,7 @@ function Signin() {
         function signinWithAuth() {
             const userCookie = Cookies.get("userCookie");
             if (authReducer) {
-                navigate('/staff-activity')
+                navigate('/staff-dashboard')
             }
             if (userCookie) {
                 dispatch(setAuth(JSON.parse(userCookie)));

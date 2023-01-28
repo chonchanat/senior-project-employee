@@ -27,7 +27,6 @@ function fetchAuthAsync(email, password) {
                 dispatch(endFetch());
             }
         } catch (error) {
-            console.log(error)
             dispatch(setAuth(null));
             dispatch(errorFetch(error.message));
             dispatch(endFetch());
