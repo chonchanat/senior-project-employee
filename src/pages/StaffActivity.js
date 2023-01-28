@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchAllActivity } from '../actions/activityActions';
+import { startFetch, endFetch } from '../actions/statusActions';
 
 import { BlockDesktop, BlockDesktopRight, HeadDesktop, ContentDesktop, HeadContentDesktop } from '../components/Block';
 import SideMenuDesktop from '../components/SideMenu/SideMenuDesktop';
@@ -10,16 +10,24 @@ import ActivityTable from '../components/Table/ActivityTable';
 
 import { IoIosArrowBack } from 'react-icons/io';
 
+import { getAllActivity } from '../api/activityAPI';
+
 function StaffActivity() {
     const dispatch = useDispatch();
     const authReducer = useSelector(state => state.authReducer);
-    const activityReducer = useSelector(state => state.activityReducer);
 
     useEffect(() => {
-        dispatch(fetchAllActivity());
+        async function getActivity() {
+            dispatch(startFetch());
+            const data = await getAllActivity();
+            setActivityData(data);
+            dispatch(endFetch());
+        }
+        getActivity();
     }, [dispatch])
 
     const [page, setPage] = useState("Table");
+    const [activityData, setActivityData] = useState([]);
 
     return (
         <BlockDesktop>
@@ -45,7 +53,7 @@ function StaffActivity() {
 
                     {
                         page === "Table" ?
-                            <ActivityTable activityData={activityReducer} />
+                            <ActivityTable activityData={activityData} />
                             :
                             <ActivityForm setPage={setPage} />
                     }

@@ -12,7 +12,6 @@ import { ButtonTransparent } from '../Button';
 
 import { RiUser3Fill, RiPencilFill, RiVipCrown2Fill } from 'react-icons/ri';
 
-
 function StaffAccountTable({ accountData }) {
 
     const navigate = useNavigate();

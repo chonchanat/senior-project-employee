@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { Button } from '../components/Button';
-import Spinner from "../components/Spinner";
+import { ButtonSubmit } from '../components/Button';
+// import Spinner from "../components/Spinner";
 
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
@@ -36,7 +36,8 @@ function Signin() {
     });
     const [noti, setNoti] = useState(null);
 
-    function handlerSignin() {
+    function handlerSignin(event) {
+        event.preventDefault();
         if (user.email && user.password) {
             setNoti(null);
             dispatch(fetchAuthAsync(user.email, user.password));
@@ -53,10 +54,10 @@ function Signin() {
                         <p className="">Ku Que</p>
                         <p className="text-xl">Employee Login</p>
                     </div>
-                    <div>
+                    <form onSubmit={handlerSignin}>
                         <div className="pb-6">
                             <p className="pb-2">Email</p>
-                            <input className="w-full bg-light-blue py-2 px-4 rounded-md" type="email"
+                            <input className="w-full bg-light-blue py-2 px-4 rounded-md"
                                 placeholder="email"
                                 value={user.email}
                                 onChange={(e) => setUser({ ...user, email: e.target.value })} />
@@ -70,16 +71,16 @@ function Signin() {
                             <p className="h-[28px] text-right text-sm text-decline pt-2">{noti ? noti : statusReducer.error}</p>
                         </div>
 
-                        <Button width="w-full" bgColor="bg-accept" font="font-bold" click={handlerSignin}>
-                            {statusReducer.loading ?
+                        <ButtonSubmit width="w-full" bgColor="bg-accept" font="font-bold" click={handlerSignin}>
+                            {/* {statusReducer.loading ?
                                 <Spinner color="white" />
                                 :
                                 "Login"
-                            }
-                        </Button>
+                            } */}
+                        </ButtonSubmit>
                         <p className="text-right text-sm pt-2 hover:underline cursor-pointer">Forget Password?</p>
 
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
