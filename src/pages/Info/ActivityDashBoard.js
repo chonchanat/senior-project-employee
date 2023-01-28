@@ -5,6 +5,7 @@ import { BlockDesktop, BlockDesktopRight, HeadDesktop, ContentDesktop, HeadConte
 import SideMenuDesktop from '../../components/SideMenu/SideMenuDesktop';
 import { ActionDashboard } from '../../components/Dashboard/GeneralDashboard';
 import CommentPage from '../../components/Dashboard/CommentPage';
+import QueuePage from '../../components/Dashboard/QueuePage';
 
 import { getOneActivity } from '../../api/activityAPI';
 
@@ -24,7 +25,6 @@ function ActivityDashboard() {
 
     const [data, setData] = useState(null);
     const [page, setPage] = useState("stat")
-    console.log(page)
 
     return (
         <BlockDesktop>
@@ -42,7 +42,7 @@ function ActivityDashboard() {
 
                     <div className="flex flex-1 flex-col">
                         <ActionDashboard data={data} setPage={setPage} />
-                        {page === "comment" && <CommentPage />}
+                        {page === "queue" ? <QueuePage /> : <CommentPage />}
                     </div>
 
                 </ContentDesktop>

@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 
 function Card({ type, click }) {
     return (
-        <div className="w-[32%] py-4 bg-[#F4F4F4] rounded-xl shadow-lg text-center cursor-pointer" onClick={click}>
+        <div className="w-[32%] py-4 bg-[#F4F4F4] rounded-xl shadow-md text-center cursor-pointer" onClick={click}>
             <p>{type === "customer" ? "ลูกค้า" : type === "employee" ? "พนักงาน" : "กิจกรรม"}</p>
             <p className="my-4 text-2xl font-bold">325</p>
             {type === "customer" && <p className="text-sm">ทั้งหมด 450 คน</p>}
@@ -26,7 +26,7 @@ function GeneralDashboard() {
 function ActionDashboard({ data, setPage }) {
     
     const navigate = useNavigate();
-    const textStyle = "w-[20%] py-3 bg-[#F4F4F4] rounded-xl text-center shadow-lg cursor-pointer"
+    const textStyle = "w-[20%] py-3 bg-[#F4F4F4] rounded-lg text-center shadow-md cursor-pointer"
     return (
         <div className="flex justify-around mb-4">
             <p className={textStyle} onClick={() => setPage("stat")}>สถิติ</p>

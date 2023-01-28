@@ -1,4 +1,5 @@
 import rollerCoaster from '../../fakeData/commentData';
+import CommentTable from '../Table/CommentTable';
 
 import { AiFillStar, AiOutlineStar } from 'react-icons/ai';
 
@@ -48,12 +49,16 @@ function StarRating({ rating }) {
 }
 
 function CommentPage() {
+
+    const commentData = [];
+
     return (
         <div className="flex-1 pt-2">
-            <div className="flex justify-around items-center">
+            <div className="flex justify-around items-center pb-4">
                 <RatingTotal />
                 <RatingPercent />
             </div>
+            <CommentTable commentData={commentData} />
         </div>
     );
 }
