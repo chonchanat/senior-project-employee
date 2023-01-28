@@ -1,8 +1,8 @@
-import CommentTable from "../Table/CommentTable";
+import QueueTable from '../Table/QueueTable';
 
 function QueuePage() {
     return (
-        <CommentTable />
+        <QueueTable />
     );
 }
 

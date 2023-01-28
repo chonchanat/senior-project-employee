@@ -6,6 +6,7 @@ import SideMenuDesktop from '../../components/SideMenu/SideMenuDesktop';
 import { ActionDashboard } from '../../components/Dashboard/GeneralDashboard';
 import CommentPage from '../../components/Dashboard/CommentPage';
 import QueuePage from '../../components/Dashboard/QueuePage';
+import StatPage from '../../components/Dashboard/StatPage';
 
 import { getOneActivity } from '../../api/activityAPI';
 
@@ -42,7 +43,13 @@ function ActivityDashboard() {
 
                     <div className="flex flex-1 flex-col">
                         <ActionDashboard data={data} setPage={setPage} />
-                        {page === "queue" ? <QueuePage /> : <CommentPage />}
+                        {page === "stat" ?
+                            <StatPage />
+                            :
+                            page === "queue" ?
+                                <QueuePage />
+                                :
+                                <CommentPage />}
                     </div>
 
                 </ContentDesktop>

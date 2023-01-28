@@ -60,7 +60,7 @@ function ActivityTable({ activityData }) {
                                         <ButtonTransparent click={() => navigate("/staff-dashboard/" + row.code)}>
                                             <HiClipboard size="24px" />
                                         </ButtonTransparent>
-                                        <diV className="w-2" />
+                                        <div className="w-2" />
                                         <ButtonTransparent click={() => navigate("/staff-activity/" + row.code)}>
                                             <IoMdSettings size="24px" />
                                         </ButtonTransparent>
