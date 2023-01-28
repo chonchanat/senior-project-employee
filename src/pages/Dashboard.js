@@ -1,6 +1,6 @@
 import { BlockDesktop, BlockDesktopRight, HeadDesktop, ContentDesktop } from '../components/Block'
 import SideMenuDesktop from '../components/SideMenu/SideMenuDesktop';
-import { General } from '../components/Dashboard/General';
+import { GeneralDashboard } from '../components/Dashboard/GeneralDashboard';
 function Dashboard() {
     return (
         <BlockDesktop>
@@ -8,7 +8,7 @@ function Dashboard() {
             <BlockDesktopRight>
                 <HeadDesktop><p>กระดานข้อมูล</p></HeadDesktop>
                 <ContentDesktop>
-                    <General />
+                    <GeneralDashboard />
                     <p className="flex-1 flex items-end justify-end">แสดงข้อมูลวันที่ : </p>
                 </ContentDesktop>
             </BlockDesktopRight>

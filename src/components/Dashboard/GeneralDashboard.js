@@ -10,7 +10,7 @@ function Card({ type, click }) {
     );
 }
 
-function General() {
+function GeneralDashboard() {
 
     const navigate = useNavigate();
 
@@ -23,4 +23,18 @@ function General() {
     );
 }
 
-export { General };
+function ActionDashboard({ data, setPage }) {
+    
+    const navigate = useNavigate();
+    const textStyle = "w-[20%] py-3 bg-[#F4F4F4] rounded-xl text-center shadow-lg cursor-pointer"
+    return (
+        <div className="flex justify-around mb-4">
+            <p className={textStyle} onClick={() => setPage("stat")}>สถิติ</p>
+            <p className={textStyle} onClick={() => setPage("queue")}>ตารางคิว</p>
+            <p className={textStyle} onClick={() => setPage("comment")}>คะแนนและความคิดเห็น</p>
+            <p className={textStyle} onClick={() => navigate(`/staff-activity/${data.code}`)}>รายละเอียด</p>
+        </div>
+    );
+}
+
+export { GeneralDashboard, ActionDashboard };

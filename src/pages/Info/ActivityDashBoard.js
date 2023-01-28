@@ -3,6 +3,8 @@ import { useParams, useNavigate } from 'react-router-dom';
 
 import { BlockDesktop, BlockDesktopRight, HeadDesktop, ContentDesktop, HeadContentDesktop } from '../../components/Block'
 import SideMenuDesktop from '../../components/SideMenu/SideMenuDesktop';
+import { ActionDashboard } from '../../components/Dashboard/GeneralDashboard';
+import CommentPage from '../../components/Dashboard/CommentPage';
 
 import { getOneActivity } from '../../api/activityAPI';
 
@@ -21,7 +23,7 @@ function ActivityDashboard() {
     }, [code])
 
     const [data, setData] = useState(null);
-    const [page, setPage] = useState("Stat")
+    const [page, setPage] = useState("stat")
     console.log(page)
 
     return (
@@ -37,26 +39,15 @@ function ActivityDashboard() {
                         </div>
                         <p>สถานะ : </p>
                     </HeadContentDesktop>
-                    <div>
+
+                    <div className="flex flex-1 flex-col">
                         <ActionDashboard data={data} setPage={setPage} />
+                        {page === "comment" && <CommentPage />}
                     </div>
+
                 </ContentDesktop>
             </BlockDesktopRight>
         </BlockDesktop>
-    );
-}
-
-function ActionDashboard({ data, setPage }) {
-    
-    const navigate = useNavigate();
-    const textStyle = "w-[20%] py-3 bg-[#F4F4F4] rounded-xl text-center shadow-lg cursor-pointer"
-    return (
-        <div className="flex justify-around mb-4">
-            <p className={textStyle} onClick={() => setPage("stat")}>สถิติ</p>
-            <p className={textStyle} onClick={() => setPage("queue")}>ตารางคิว</p>
-            <p className={textStyle} onClick={() => setPage("comment")}>คะแนนและความคิดเห็น</p>
-            <p className={textStyle} onClick={() => navigate(`/staff-activity/${data.code}`)}>รายละเอียด</p>
-        </div>
     );
 }
 
