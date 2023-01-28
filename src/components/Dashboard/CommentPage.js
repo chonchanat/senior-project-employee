@@ -1,11 +1,13 @@
-import rollerCoaster from '../../fakeData/commentData';
+import { rollerCoaster } from '../../fakeData/commentData';
 import CommentTable from '../Table/CommentTable';
 
 import { AiFillStar, AiOutlineStar } from 'react-icons/ai';
 
+import { commentData } from '../../fakeData/commentData';
+
 function RatingPercent() {
     return (
-        <div>
+        <div className="mt-8">
             {rollerCoaster.list.map((item, index) => (
                 <div key={index} className="flex items-center text-sm my-2">
                     <p className="text-fha font-bold">{5 - index} star</p>
@@ -49,12 +51,9 @@ function StarRating({ rating }) {
 }
 
 function CommentPage() {
-
-    const commentData = [];
-
     return (
-        <div className="flex-1 pt-2">
-            <div className="flex justify-around items-center pb-4">
+        <div className="flex-1 flex pt-2">
+            <div className="flex flex-col items-center py-4 mr-8">
                 <RatingTotal />
                 <RatingPercent />
             </div>

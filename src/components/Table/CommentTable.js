@@ -1,11 +1,6 @@
 import { useSelector } from 'react-redux';
 
-import {
-    TableHead,
-    TableRow,
-} from '../Table/Table'
 import Spinner from '../Spinner'
-
 
 function CommentTable({ commentData }) {
 
@@ -18,15 +13,17 @@ function CommentTable({ commentData }) {
                 <label>กำลังโหลดข้อมูล</label>
             </div>
             :
-            <div>
-                <TableRow condition="head">
-                    <TableHead>CODE</TableHead>
-                    <TableHead>NAME</TableHead>
-                    <TableHead>STATUS</TableHead>
-                    <TableHead>QUEUE</TableHead>
-                    <TableHead>RATING</TableHead>
-                    <TableHead>ACTION</TableHead>
-                </TableRow>
+            <div className="flex flex-col flex-1">
+                <p className="border-b-2 border-light-gray pb-4">ตวามคิดเห็น</p>
+                <div className="bg-fha overflow-auto flex-1">
+                    {/* {commentData.map((item) =>
+                        <div key={item.userId} className="py-2 border-b-2 border-light-gray">
+                            <p>{item.userId}</p>
+                            <p>{item.rating}</p>
+                            <p>{item.text}</p>
+                        </div>
+                    )} */}
+                </div>
             </div>
     );
 }

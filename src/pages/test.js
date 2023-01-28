@@ -5,7 +5,7 @@ import Wrapper from '../components/Wrapper';
 
 import { MdClose } from 'react-icons/md'
 
-import rollerCoaster from '../fakeData/commentData';
+import { rollerCoaster } from '../fakeData/commentData';
 
 import { AiFillStar, AiOutlineStar } from 'react-icons/ai';
 

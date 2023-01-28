@@ -34,7 +34,7 @@ function HeadDesktop({ children }) {
 
 function ContentDesktop({ children }) {
     return (
-        <div className="flex flex-col bg-white py-3 px-8 mr-4 rounded-xl shadow-xl w-full xl:max-w-[1280px] " style={{ height: `calc(100% - 77px)` }}>
+        <div className="flex flex-col bg-white min-h-[723px] py-3 px-8 mr-4 rounded-xl shadow-xl w-full xl:max-w-[1280px] " style={{ height: `calc(100% - 77px)` }}>
             {children}
         </div>
     );

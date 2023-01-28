@@ -16,6 +16,7 @@ module.exports = {
         "yellow": "#F4D35E",
         "gray": "#D9D9D9",
         "inputBorder": "#C7C7C7",
+        "light-gray": "#E0E0E0",
       },
       visibility: ["group-hover"],
     },
