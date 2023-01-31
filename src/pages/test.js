@@ -2,12 +2,13 @@ import { useState } from 'react';
 import activityData from '../fakeData/ActivityData';
 
 import Wrapper from '../components/Wrapper';
-
-import { MdClose } from 'react-icons/md'
+import SampleColumnChart from '../components/chart/ColumnChart';
 
 import { rollerCoaster } from '../fakeData/commentData';
 
 import { AiFillStar, AiOutlineStar } from 'react-icons/ai';
+import { MdClose } from 'react-icons/md'
+import SamplePieChart from '../components/chart/PieChart';
 
 function Test() {
 
@@ -17,7 +18,6 @@ function Test() {
         multiSearch: false,
     });
     const [number, setNumber] = useState(0);
-    console.log(number);
 
     const [multiSelect, setMultiSearch] = useState([]);
 
@@ -76,10 +76,15 @@ function Test() {
             <p onClick={() => console.log(number)}>click</p>
 
             <p className="border-b-2 my-6"></p>
-
             <div className="flex justify-around items-center">
                 <RatingTotal />
                 <RatingPercent />
+            </div>
+
+            <p className="border-b-2 my-6"></p>
+            <div className="flex justify-around">
+                <SampleColumnChart />
+                <SamplePieChart />
             </div>
 
         </div>
