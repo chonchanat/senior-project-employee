@@ -7,7 +7,7 @@ import { commentData } from '../../fakeData/commentData';
 
 function RatingPercent() {
     return (
-        <div className="mt-8">
+        <div className="my-8">
             {rollerCoaster.list.map((item, index) => (
                 <div key={index} className="flex items-center text-sm my-2">
                     <p className="text-fha font-bold">{5 - index} star</p>
@@ -24,7 +24,7 @@ function RatingPercent() {
 
 function RatingTotal() {
     return (
-        <div className="w-fit text-center">
+        <div className="w-fit text-center my-8">
             <p className="text-lg">Customer reviews</p>
             <div className="flex items-center bg-[#F7F7F7] p-2 my-2 rounded-xl">
                 <StarRating rating={rollerCoaster.average} />
@@ -53,7 +53,7 @@ function StarRating({ rating }) {
 function CommentPage() {
     return (
         <div className="flex-1 flex pt-2 overflow-auto">
-            <div className="flex flex-col items-center py-4 mr-8">
+            <div className="flex flex-col items-center py-4 px-8 mr-8">
                 <RatingTotal />
                 <RatingPercent />
             </div>
