@@ -1,7 +1,7 @@
 function StatPage() {
     return (
-        <div className="mt-4">
-            <p>statistics</p>
+        <div className="pt-2">
+            <p>สถิติทั่วไป</p>
         </div>
     );
 }

@@ -1,8 +1,10 @@
 import QueueTable from '../Table/QueueTable';
 
+import queueData from '../../fakeData/queueData';
+
 function QueuePage() {
     return (
-        <QueueTable />
+        <QueueTable queueData={queueData} />
     );
 }
 
