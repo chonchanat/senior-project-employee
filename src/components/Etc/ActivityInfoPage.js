@@ -7,14 +7,15 @@ import {
 import Wrapper from '../Wrapper';
 
 import { BsThreeDots } from 'react-icons/bs';
-import { MdCheck, MdClose } from 'react-icons/md';
+import { MdCheck, MdClose, MdAnalytics } from 'react-icons/md';
 
-function HandlerDropdown({ state, setState }) {
+function HandlerDropdown({ state, setState, click }) {
     return (
         <div>
             <Wrapper state={state.dropState}
                 click={() => setState({ ...state, dropState: !state.dropState })} />
-            <div className={`absolute right-0 top-[-68px]`}>
+            <div className={`absolute flex items-center right-0 top-[-68px]`}>
+                <DropdownButton click={click}><MdAnalytics size="28px" /></DropdownButton>
                 <Dropdown>
                     <DropdownButton click={() => setState({ ...state, dropState: true })}><BsThreeDots size="28px" /></DropdownButton>
                     <DropdownBody state={state.dropState} offset="right-0">

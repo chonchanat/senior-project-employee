@@ -55,6 +55,9 @@ function ActivityInfoPage() {
         deleteActivity(data);
         navigate("/staff-activity")
     }
+    function handlerDashboard() {
+        navigate(`/staff-dashboard/${code}`)
+    }
 
     return (
         <BlockDesktop>
@@ -78,7 +81,7 @@ function ActivityInfoPage() {
                             {state.editState ?
                                 <HandlerEdit acceptEdit={acceptEdit} declineEdit={declineEdit} />
                                 :
-                                <HandlerDropdown state={state} setState={setState} />
+                                <HandlerDropdown state={state} setState={setState} click={handlerDashboard}/>
                             }
 
                             <ActivityInfo data={data} setData={setData} state={state} />

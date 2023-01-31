@@ -1,7 +1,6 @@
 import { useNavigate } from 'react-router-dom'
 
 import { CgProfile } from 'react-icons/cg';
-import { AiFillHome } from 'react-icons/ai';
 import { BiLogOut } from 'react-icons/bi';
 import { RiArtboardFill, RiGamepadFill } from 'react-icons/ri';
 import { MdPeople } from 'react-icons/md';

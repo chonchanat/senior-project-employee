@@ -26,7 +26,7 @@ function ButtonSubmit({ bgColor, textColor = "text-white", width = "w-fit", font
 function ButtonTransparent({ color = "black", width = "w-fit", click, children, css }) {
     return (
         // <div className={`${width} border-${color} text-${color} border text-center p-1 rounded-md cursor-pointer hover:bg-white`}
-        <div className={`${width} p-2 text-center text-sm bg-white rounded-md border-2 border-[#c7c7c7] cursor-pointer hover:border-[#d7d7d7] ${css}`}
+        <div className={`${width} p-1 text-center text-sm bg-white rounded-md border-2 border-[#c7c7c7] cursor-pointer hover:border-[#d7d7d7] ${css}`}
             onClick={click}>
             {children}
         </div>

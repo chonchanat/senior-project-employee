@@ -27,7 +27,6 @@ function ActivityDashboard() {
         getActivity();
     }, [code])
 
-
     const [data, setData] = useState(null);
     const [page, setPage] = useState("stat")
 
@@ -60,7 +59,8 @@ function ActivityDashboard() {
                                     page === "queue" ?
                                         <QueuePage />
                                         :
-                                        <CommentPage />}
+                                        <CommentPage />
+                        }
                     </div>
 
                 </ContentDesktop>
