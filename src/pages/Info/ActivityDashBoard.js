@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 import { BlockDesktop, BlockDesktopRight, HeadDesktop, ContentDesktop, HeadContentDesktop } from '../../components/Block'
 import SideMenuDesktop from '../../components/SideMenu/SideMenuDesktop';
@@ -7,6 +8,7 @@ import { ActionDashboard } from '../../components/Dashboard/GeneralDashboard';
 import CommentPage from '../../components/Dashboard/CommentPage';
 import QueuePage from '../../components/Dashboard/QueuePage';
 import StatPage from '../../components/Dashboard/StatPage';
+import Spinner from '../../components/Spinner';
 
 import { getOneActivity } from '../../api/activityAPI';
 
@@ -15,6 +17,7 @@ import { IoIosArrowBack } from 'react-icons/io';
 function ActivityDashboard() {
 
     const navigate = useNavigate();
+    const statusReducer = useSelector(state => state.statusReducer);
     const { code } = useParams();
     useEffect(() => {
         async function getActivity() {
@@ -23,6 +26,7 @@ function ActivityDashboard() {
         }
         getActivity();
     }, [code])
+
 
     const [data, setData] = useState(null);
     const [page, setPage] = useState("stat")
@@ -41,15 +45,22 @@ function ActivityDashboard() {
                         <p>สถานะ : </p>
                     </HeadContentDesktop>
 
-                    <div className="flex flex-1 flex-col">
+                    <div className="flex flex-1 flex-col overflow-auto">
                         <ActionDashboard data={data} setPage={setPage} />
-                        {page === "stat" ?
-                            <StatPage />
-                            :
-                            page === "queue" ?
-                                <QueuePage />
+                        {
+                            statusReducer.loading ?
+                                <div className="flex justify-center py-10">
+                                    <Spinner color="black" />
+                                    <label>กำลังโหลดข้อมูล</label>
+                                </div>
                                 :
-                                <CommentPage />}
+                                page === "stat" ?
+                                    <StatPage />
+                                    :
+                                    page === "queue" ?
+                                        <QueuePage />
+                                        :
+                                        <CommentPage />}
                     </div>
 
                 </ContentDesktop>

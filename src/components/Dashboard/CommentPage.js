@@ -52,7 +52,7 @@ function StarRating({ rating }) {
 
 function CommentPage() {
     return (
-        <div className="flex-1 flex pt-2">
+        <div className="flex-1 flex pt-2 overflow-auto">
             <div className="flex flex-col items-center py-4 mr-8">
                 <RatingTotal />
                 <RatingPercent />
