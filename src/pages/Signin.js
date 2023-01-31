@@ -11,6 +11,8 @@ import Cookies from 'js-cookie';
 
 function Signin() {
 
+    console.log('sigin')
+
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const authReducer = useSelector(state => state.authReducer);

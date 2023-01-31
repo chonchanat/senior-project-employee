@@ -24,6 +24,7 @@ function SideMenuDesktop() {
         Cookies.remove("accesstoken");
         Cookies.remove("userCookie");
         dispatch(setAuth(null));
+        navigate('/signin');
     }
 
     return (

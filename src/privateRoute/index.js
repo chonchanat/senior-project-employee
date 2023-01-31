@@ -21,7 +21,7 @@ function PrivateRoute({ children }) {
     if (reducers.authReducer) {
         return userCookie !== undefined ? children : <Navigate to="/signin" />;
     }
-    if (reducers.authReducer === null) {
+    if (reducers.authReducer === null && userCookie === undefined) {
         return <Navigate to="/signin" />;
     }
 }
