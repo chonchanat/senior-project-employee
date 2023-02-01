@@ -6,7 +6,8 @@ var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 function SampleColumnChart() {
     const list = ["a", "b", "c"]
     const options = {
-        height: 400,
+        height: 300,
+        width: 300,
         animationEnabled: true,
         title: {
             text: "แผนภูมิแสดงความถี่การเข้าสวนสนุกรายวัน",
@@ -29,7 +30,7 @@ function SampleColumnChart() {
     }
 
     return (
-        <div className="w-[500px] h-fit">
+        <div className="w-[300px]">
             <CanvasJSChart options={options} />
         </div >
     );

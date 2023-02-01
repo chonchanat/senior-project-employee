@@ -3,12 +3,13 @@ import activityData from '../fakeData/ActivityData';
 
 import Wrapper from '../components/Wrapper';
 import SampleColumnChart from '../components/chart/ColumnChart';
+import SamplePieChart from '../components/chart/PieChart';
+import SamplePieDonutChart from '../components/chart/PieDonutChart';
 
 import { rollerCoaster } from '../fakeData/commentData';
 
 import { AiFillStar, AiOutlineStar } from 'react-icons/ai';
 import { MdClose } from 'react-icons/md'
-import SamplePieChart from '../components/chart/PieChart';
 
 function Test() {
 
@@ -85,6 +86,9 @@ function Test() {
             <div className="flex justify-around">
                 <SampleColumnChart />
                 <SamplePieChart />
+            </div>
+            <div>
+                <SamplePieDonutChart />
             </div>
 
         </div>

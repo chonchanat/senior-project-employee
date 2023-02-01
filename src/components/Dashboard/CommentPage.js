@@ -21,8 +21,7 @@ function RatingPercent() {
     );
 }
 
-
-function RatingTotal() {
+export function RatingTotal() {
     return (
         <div className="w-fit text-center my-8">
             <p className="text-lg">Customer reviews</p>

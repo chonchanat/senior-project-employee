@@ -5,7 +5,8 @@ var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
 function SamplePieChart() {
     const options = {
-        height: 400,
+        height: 300,
+        width: 300,
         exportEnabled: true,
         animationEnabled: true,
         title: {
@@ -32,7 +33,7 @@ function SamplePieChart() {
         }]
     }
     return (
-        <div className="w-[500px] h-fit">
+        <div className="w-[300px]">
             <CanvasJSChart options={options}
             /* onRef={ref => this.chart = ref} */
             />
