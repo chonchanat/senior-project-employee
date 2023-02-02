@@ -1,39 +1,76 @@
 import CanvasJSReact from '../../canvasjs.react';
 
-// var CanvasJS = CanvasJSReact.CanvasJS;
+var CanvasJS = CanvasJSReact.CanvasJS;
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
 function SampleColumnChart() {
-    const list = ["a", "b", "c"]
+    CanvasJS.addColorSet("columnShades", ["#FF9999", "#FFFFCC", "#FFCCFF", "#99CC99", "#FFCC99", "#9999FF", "#CC99CC"]);
+
     const options = {
         height: 300,
-        width: 300,
+        width: 400,
+        colorSet: "columnShades",
         animationEnabled: true,
         title: {
-            text: "แผนภูมิแสดงความถี่การเข้าสวนสนุกรายวัน",
-            fontSize: 18,
+            text: "แผนภูมิความถี่การเข้าสวนสนุกรายวัน",
+            fontSize: 16,
             fontWeight: "bold",
             fontColor: "#000",
         },
         data: [{
             type: "column",
             dataPoints: [
-                { label: list[0], y: 584 },
-                { label: list[1], y: 658 },
-                { label: list[2], y: 631 },
-                { label: "Wend", y: 621 },
-                { label: "Thur", y: 605 },
+                { label: "Sun", y: 584 },
+                { label: "Mon", y: 658 },
+                { label: "Tue", y: 631 },
+                { label: "Wed", y: 621 },
+                { label: "Thu", y: 605 },
                 { label: "Fri", y: 600 },
-                { label: "Sat", y: 600},
+                { label: "Sat", y: 600 },
             ]
         }]
     }
 
     return (
-        <div className="w-[300px]">
+        <div className="w-[400px]">
             <CanvasJSChart options={options} />
         </div >
     );
 }
 
-export default SampleColumnChart;
+function ActivityColumnChart() {
+    CanvasJS.addColorSet("columnShades", ["#FF9999", "#FFFFCC", "#FFCCFF", "#99CC99", "#FFCC99", "#9999FF", "#CC99CC"]);
+
+    const options = {
+        height: 200,
+        width: 400,
+        colorSet: "columnShades",
+        animationEnabled: true,
+        title: {
+            text: "แผนภูมิกิจกรรมที่ลูกค้าเล่น",
+            fontSize: 16,
+            fontWeight: "bold",
+            fontColor: "#000",
+        },
+        data: [{
+            type: "column",
+            dataPoints: [
+                { label: "Sun", y: 584 },
+                { label: "Mon", y: 658 },
+                { label: "Tue", y: 631 },
+                { label: "Wed", y: 621 },
+                { label: "Thu", y: 605 },
+                { label: "Fri", y: 600 },
+                { label: "Sat", y: 600 },
+            ]
+        }]
+    }
+
+    return (
+        <div className="w-[400px]">
+            <CanvasJSChart options={options} />
+        </div >
+    );
+}
+
+export { SampleColumnChart, ActivityColumnChart };

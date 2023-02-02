@@ -27,10 +27,15 @@ function SamplePieDonutChart() {
         }]
     }
     return (
-        <div className="w-[200px]">
-            <CanvasJSChart options={options}
-            /* onRef={ref => this.chart = ref} */
-            />
+        <div className="flex w-[400px]">
+            <div className="w-[200px]">
+                <CanvasJSChart options={options}
+                /* onRef={ref => this.chart = ref} */
+                />
+            </div>
+            <div className="flex items-center ml-4">
+                <p>กิจกรรมนี้มีสัดส่วน <br/>การจองคิวอยู่ที่ <br/>71% จากการจองคิวทั้งหมด</p>
+            </div>
             {/*You can get reference to the chart instance as shown above using onRef. This allows you to access all chart properties and methods*/}
         </div>
     );

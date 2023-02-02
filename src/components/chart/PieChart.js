@@ -1,17 +1,20 @@
 import CanvasJSReact from '../../canvasjs.react';
 
-// var CanvasJS = CanvasJSReact.CanvasJS;
+var CanvasJS = CanvasJSReact.CanvasJS;
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
 function SamplePieChart() {
+    CanvasJS.addColorSet("pieShades", ["#FF9999", "#FFFFCC", "#FFCCFF", "#99CC99", "#FFCC99", "#9999FF", "#CC99CC"]);
+  
     const options = {
         height: 300,
-        width: 300,
+        width: 400,
+        colorSet: "columnShades",
         exportEnabled: true,
         animationEnabled: true,
         title: {
             text: "แผนภูมิจำแนกกลุ่มของลูกค้า",
-            fontSize: 18,
+            fontSize: 16,
             fontWeight: "bold",
             fontColor: "#000",
         },
@@ -19,9 +22,6 @@ function SamplePieChart() {
             type: "pie",
             startAngle: 75,
             toolTipContent: "<b>{label}</b>: {y}%",
-            showInLegend: "true",
-            legendText: "{label}",
-            indexLabelFontSize: 16,
             indexLabel: "{label} - {y}%",
             dataPoints: [
                 { y: 18, label: "Direct" },
@@ -33,7 +33,7 @@ function SamplePieChart() {
         }]
     }
     return (
-        <div className="w-[300px]">
+        <div className="w-[400px]">
             <CanvasJSChart options={options}
             /* onRef={ref => this.chart = ref} */
             />

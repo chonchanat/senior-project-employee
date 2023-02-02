@@ -2,7 +2,7 @@ import { useState } from 'react';
 import activityData from '../fakeData/ActivityData';
 
 import Wrapper from '../components/Wrapper';
-import SampleColumnChart from '../components/chart/ColumnChart';
+import { SampleColumnChart } from '../components/chart/ColumnChart';
 import SamplePieChart from '../components/chart/PieChart';
 import SamplePieDonutChart from '../components/chart/PieDonutChart';
 
