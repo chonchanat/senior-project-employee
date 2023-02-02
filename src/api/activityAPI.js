@@ -1,13 +1,10 @@
-import axios from "axios";
-import Cookies from 'js-cookie';
-
-const token = Cookies.get("accesstoken")
+import axios, { getToken } from "./index";
 
 async function getAllActivity() {
     try {
         const response = await axios.get(`/activity/all`, {
             headers: {
-                'Authorization': `Bearer ${token}`,
+                'Authorization': `Bearer ${getToken()}`,
                 'Content-Type': 'application/json',
             }
         })
@@ -22,7 +19,7 @@ async function getOneActivity(data) {
     try {
         const response = await axios.get(`/activity/code/${data}`, {
             headers: {
-                'Authorization': `Bearer ${token}`,
+                'Authorization': `Bearer ${getToken()}`,
                 'Content-Type': 'application/json',
             }
         })
@@ -37,7 +34,7 @@ async function postActivity(data) {
     try {
         await axios.post(`/activity`, data, {
             headers: {
-                'Authorization': `Bearer ${token}`,
+                'Authorization': `Bearer ${getToken()}`,
                 'Content-Type': 'application/json',
             }
         })
@@ -50,7 +47,7 @@ async function deleteActivity(data) {
     try {
         await axios.delete(`/activity`, { code: data.code }, {
             headers: {
-                'Authorization': `Bearer ${token}`,
+                'Authorization': `Bearer ${getToken()}`,
                 'Content-Type': 'application/json',
             }
         })
