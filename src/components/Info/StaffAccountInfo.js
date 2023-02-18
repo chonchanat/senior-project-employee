@@ -1,25 +1,7 @@
-// import {
-//     DropdownButton,
-// } from '../Dropdown';
-
-// import { MdCheck, MdClose } from 'react-icons/md'
-
-
 function StaffAccountInfo({ data, setData, state }) {
-
-    // const [data, setData] = useState(selectData);
-
-    // function acceptEdit() {
-    //     setBackupdata(data);
-    // }
-    // function declineEdit() {
-    //     setData(backupData);
-    // }
 
     return (
         <div className="flex flex-col items-center relative">
-            {/* {state.editState && <p className="absolute right-0 top-[-60px] text-sm cursor-pointer" onClick={() => setState({ ...state, editState: false })}>แก้ไขบัญชี</p>} */}
-            {/* <HandlerEditState state={state} setState={setState} acceptEdit={acceptEdit} declineEdit={declineEdit} /> */}
             <div className="w-[650px] flex justify-between items-center mb-4">ชื่อ
                 <input type="text" className={`bg-light-blue w-[500px] h-[36px] rounded-md px-6`}
                     value={data.firstname}
@@ -58,17 +40,5 @@ function StaffAccountInfo({ data, setData, state }) {
     );
 }
 
-// function HandlerEditState({ state, setState, acceptEdit, declineEdit }) {
-//     return (
-//         <div className={`absolute right-0 top-[-68px] ${state.editState ? "hidden" : "block flex"}`}>
-//             <DropdownButton click={() => { setState({ ...state, editState: true }); acceptEdit() }}>
-//                 <MdCheck size="28px" className="text-accept" />
-//             </DropdownButton>
-//             <DropdownButton click={() => { setState({ ...state, editState: true }); declineEdit() }}>
-//                 <MdClose size="28px" className="text-decline" />
-//             </DropdownButton>
-//         </div>
-//     );
-// }
 
 export default StaffAccountInfo;

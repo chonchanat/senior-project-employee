@@ -1,4 +1,4 @@
-import { ButtonHover, ButtonTransparent } from './Button';
+import { ButtonTransparent } from './Button';
 import Wrapper from './Wrapper';
 
 import { AiOutlineDelete } from 'react-icons/ai';
@@ -25,7 +25,10 @@ function ModalDelete({ data, state, setState, click }) {
                 <div className="px-6 py-4 bg-[#F4F4F4] flex justify-end">
                     <ButtonTransparent color="white" css="mr-6" width="w-24"
                         click={() => setState({ ...state, modalDelete: false })}>ยกเลิก</ButtonTransparent>
-                    <ButtonHover click={click} color="decline">ยืนยัน</ButtonHover>
+                    <div className="w-24 p-2 bg-decline rounded-md border-2 border-decline text-center text-white text-sm cursor-pointer hover:text-decline hover:bg-white transition ease-in-out duration-150"
+                        onClick={click}>
+                        <p>ยืนยัน</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -51,7 +54,10 @@ function ModalClose({ data, state, setState, click }) {
                 <div className="px-6 py-4 bg-[#F4F4F4] flex justify-end">
                     <ButtonTransparent color="white" css="mr-6" width="w-24"
                         click={() => setState({ ...state, modalClose: false })}>ยกเลิก</ButtonTransparent>
-                    <ButtonHover click={click} color="orange-300">ยืนยัน</ButtonHover>
+                    <div className="w-24 p-2 bg-orange-300 rounded-md border-2 border-orange-300 text-center text-white text-sm cursor-pointer hover:text-orange-300 hover:bg-white transition ease-in-out duration-150"
+                        onClick={click}>
+                        <p>ยืนยัน</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -76,7 +82,10 @@ function ModalTempClose({ data, state, setState, click }) {
                 <div className="px-6 py-4 bg-[#F4F4F4] flex justify-end">
                     <ButtonTransparent color="white" css="mr-6" width="w-24"
                         click={() => setState({ ...state, modalTempClose: false })}>ยกเลิก</ButtonTransparent>
-                    <ButtonHover click={click} color="yellow">ยืนยัน</ButtonHover>
+                    <div className="w-24 p-2 bg-yellow rounded-md border-2 border-yellow text-center text-white text-sm cursor-pointer hover:text-yellow hover:bg-white transition ease-in-out duration-150"
+                        onClick={click}>
+                        <p>ยืนยัน</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -102,7 +111,10 @@ function ModalDeleteAccount({ data, state, setState, click }) {
                 <div className="px-6 py-4 bg-[#F4F4F4] flex justify-end">
                     <ButtonTransparent color="white" css="mr-6" width="w-24"
                         click={() => setState({ ...state, modalDeleteAccount: false })}>ยกเลิก</ButtonTransparent>
-                    <ButtonHover click={click} color="decline">ยืนยัน</ButtonHover>
+                    <div className="w-24 p-2 bg-decline rounded-md border-2 border-decline text-center text-white text-sm cursor-pointer hover:text-decline hover:bg-white transition ease-in-out duration-150"
+                        onClick={click}>
+                        <p>ยืนยัน</p>
+                    </div>
                 </div>
             </div>
         </div>
