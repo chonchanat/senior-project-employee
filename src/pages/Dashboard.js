@@ -5,6 +5,9 @@ import { SampleColumnChart, ActivityColumnChart } from '../components/chart/Colu
 import SamplePieChart from '../components/chart/PieChart';
 
 function Dashboard() {
+
+    const date = new Date();
+
     return (
         <BlockDesktop>
             <SideMenuDesktop />
@@ -20,7 +23,7 @@ function Dashboard() {
                         <ActivityCard />
                         <ActivityColumnChart />
                     </div>
-                    <p className="flex-1 flex items-end justify-end">แสดงข้อมูลวันที่ : </p>
+                    <p className="flex-1 flex items-end justify-end">แสดงข้อมูลวันที่ : {date.toLocaleString()}</p>
                 </ContentDesktop>
             </BlockDesktopRight>
         </BlockDesktop>

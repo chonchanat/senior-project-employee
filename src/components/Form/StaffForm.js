@@ -46,10 +46,12 @@ function StaffForm({ setPage }) {
                 <div className="w-[650px] flex justify-between items-center mb-4">ตำแหน่ง
                     <div className="w-[500px]">
                         <input type="checkbox"
+                            className="w-4 h-4"
                             checked={form.role === "admin"}
                             onChange={(e) => setForm({ ...form, role: "admin" })} />
                         <label className="ml-4 mr-20">Administrator</label>
                         <input type="checkbox"
+                            className="w-4 h-4"
                             checked={form.role === "staff"}
                             onChange={(e) => setForm({ ...form, role: "staff" })} />
                         <label className="ml-4">Staff</label>
