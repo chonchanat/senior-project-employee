@@ -1,29 +1,12 @@
 import { useState, useRef } from 'react';
-// import { useSelector } from 'react-redux';
 
 import { Button, ButtonSubmit } from '../Button';
-// import { MultiSelect, MultiSelectBody } from '../MultiSelect';
-// import Wrapper from '../Wrapper';
-
-// import { MdClose } from 'react-icons/md'
 
 import { postActivity } from '../../api/activityAPI';
 
 function ActivityForm({ setPage }) {
-
-    // const activityReducer = useSelector(state => state.activityReducer);
-
-    // const [state, setState] = useState({
-    //     multiSearch: false,
-    // });
-    // const [search, setSearch] = useState("");
-    // const [multiSelect, setMultiSelect] = useState([]);
     const defaultImage = "https://cdn.pixabay.com/photo/2016/12/18/13/45/download-1915753_960_720.png";
     const imageRef = useRef();
-
-    // useEffect(() => {
-    //     console.log(imageRef.current)
-    // }, [imageRef.current])
 
     const [nameForm, setNameForm] = useState({
         th: "",
@@ -52,20 +35,8 @@ function ActivityForm({ setPage }) {
         postActivity(data);
     }
 
-
-    // function handlerClick(data) {
-    //     const found = multiSelect.find(e => e.code === data.code);
-    //     if (!found) {
-    //         setMultiSelect([...multiSelect, data])
-    //         setForm({ ...form, near: [...multiSelect, data.code] })
-    //     }
-    //     setState({ ...state, multiSearch: false });
-    //     setSearch("");
-    // };
-
     return (
         <div>
-            {/* <Wrapper state={state.multiSearch} click={() => setState({ ...state, multiSearch: false })} /> */}
             <form onSubmit={handlerSubmit}>
                 <div className="flex flex-wrap justify-center h-fit">
                     <div className="w-[400px] flex justify-center items-center mb-4">
@@ -112,22 +83,6 @@ function ActivityForm({ setPage }) {
                                 placeholder="Y"
                                 onChange={(e) => setForm({ ...form, y: parseInt(e.target.value) })} />
                         </div>
-                        {/* <div className="flex justify-between items-center">
-                            <p>กิจกรรมใกล้เคียง</p>
-                            <MultiSelect>
-                                <input type="text" className="w-full h-[36px] border-black rounded-md border px-6"
-                                    onChange={(e) => setSearch(e.target.value)}
-                                    value={search}
-                                    onClick={() => setState({ ...state, multiSearch: true })} />
-                                <MultiSelectBody state={state} data={activityReducer} search={search} click={handlerClick} />
-                                <div className="absolute top-[44px] w-[400px] flex flex-wrap">
-                                    {multiSelect.map((data) =>
-                                        <p key={data.code} className="flex items-center p-2 mr-2 mb-2 bg-yellow rounded-3xl">{data.name}
-                                            <MdClose className="text-white ml-1" onClick={() => setMultiSelect(multiSelect.filter(e => e.code !== data.code))} />
-                                        </p>)}
-                                </div>
-                            </MultiSelect>
-                        </div> */}
                     </div>
                 </div>
                 <div className="flex justify-center mt-10">
