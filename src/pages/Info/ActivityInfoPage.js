@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 
 import { BlockDesktop, BlockDesktopRight, HeadDesktop, ContentDesktop, HeadContentDesktop } from '../../components/Block'
@@ -10,6 +10,9 @@ import { HandlerDropdown, HandlerEdit } from '../../components/Etc/ActivityInfoP
 import { IoIosArrowBack } from 'react-icons/io';
 
 import { getOneActivity, deleteActivity, putActivity } from '../../api/activityAPI';
+
+import { storage } from '../../firebase';
+import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 
 function ActivityInfoPage() {
 
@@ -38,10 +41,33 @@ function ActivityInfoPage() {
         modalTempClose: false,
     });
 
+    const imageRef = useRef();
+
+
     function acceptEdit() {
         setState({ ...state, editState: false });
         setBackupData({ ...data, name: [nameForm.th, nameForm.eng], position: [positionForm.x, positionForm.y] });
-        putActivity({ ...data, name: [nameForm.th, nameForm.eng], position: [positionForm.x, positionForm.y] });
+        // putActivity({ ...data, name: [nameForm.th, nameForm.eng], position: [positionForm.x, positionForm.y] });
+        if (typeof (data.picture) !== "string") {
+            const pictureName = data.picture.name.split(".").slice(0, -1).join("");
+            const pictureFirebaseRef = ref(storage, pictureName);
+            uploadBytes(pictureFirebaseRef, data.picture)
+                .then(() => {
+                    getDownloadURL(pictureFirebaseRef)
+                        .then((url) => {
+                            const updateData = { ...data, name: [nameForm.th, nameForm.eng], picture: url, position: [positionForm.x, positionForm.y] }
+                            putActivity(updateData);
+                        })
+                        .catch((error) => {
+                            console.log(error);
+                        })
+                })
+                .catch((error) => {
+                    console.log(error);
+                })
+        } else {
+            putActivity({ ...data, name: [nameForm.th, nameForm.eng], position: [positionForm.x, positionForm.y] });
+        }
     }
     function declineEdit() {
         setState({ ...state, editState: false });
@@ -72,6 +98,17 @@ function ActivityInfoPage() {
         navigate(`/staff-dashboard/${code}`)
     }
 
+    function handlerChangeImage(e) {
+        if (e.target.files[0]) {
+            setData({ ...data, picture: e.target.files[0] });
+        }
+    }
+    function handlerUploadImage() {
+        if (state.editState) {
+            imageRef.current.click();
+        }
+    }
+
     return (
         <BlockDesktop>
             <SideMenuDesktop />
@@ -98,7 +135,16 @@ function ActivityInfoPage() {
                                 <HandlerDropdown state={state} setState={setState} click={handlerDashboard} />
                             }
 
-                            <ActivityInfo data={data} setData={setData} state={state} nameForm={nameForm} setNameForm={setNameForm} positionForm={positionForm} setPositionForm={setPositionForm} />
+                            <ActivityInfo data={data}
+                                setData={setData}
+                                state={state}
+                                nameForm={nameForm}
+                                setNameForm={setNameForm}
+                                positionForm={positionForm}
+                                setPositionForm={setPositionForm}
+                                imageRef={imageRef}
+                                handlerChangeImage={handlerChangeImage}
+                                handlerUploadImage={handlerUploadImage} />
                         </div>
                     }
                 </ContentDesktop>

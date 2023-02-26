@@ -1,8 +1,12 @@
-function ActivityInfo({ data, setData, state, nameForm, setNameForm, positionForm, setPositionForm }) {
+function ActivityInfo({ data, setData, state, nameForm, setNameForm, positionForm, setPositionForm, imageRef, handlerChangeImage, handlerUploadImage }) {
     return (
         <div className="flex flex-wrap justify-center h-fit">
             <div className="w-[400px] flex justify-center items-center mb-4">
-                <img src={data.picture} alt="activity" className="w-[240px] rounded-md overflow-hidden shadow-md" />
+                <div className="flex flex-col items-center">
+                    <img src={typeof (data.picture) !== "string" ? URL.createObjectURL(data.picture) : data.picture} alt="activity" className="w-[240px] rounded-md overflow-hidden shadow-md" onClick={handlerUploadImage} />
+                    <input type="file" accept="image/*" ref={imageRef} className="hidden" onChange={handlerChangeImage} />
+                    {state.editState && <p className="text-sm text-slate-500 mt-4">คลิปที่รูปเพื่ออัปโหลดใหม่อีกครั้ง</p>}
+                </div>
             </div>
             <div className="w-[520px]">
                 <div className="flex justify-between items-center mb-4">
