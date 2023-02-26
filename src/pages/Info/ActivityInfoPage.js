@@ -3,7 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 
 import { BlockDesktop, BlockDesktopRight, HeadDesktop, ContentDesktop, HeadContentDesktop } from '../../components/Block'
 import SideMenuDesktop from '../../components/SideMenu/SideMenuDesktop';
-import { ModalClose, ModalDelete, ModalTempClose } from '../../components/Modal';
+import { ModalOpen, ModalClose, ModalDelete, ModalTempClose } from '../../components/Modal';
 import ActivityInfo from '../../components/Info/ActivityInfo';
 import { HandlerDropdown, HandlerEdit } from '../../components/Etc/ActivityInfoPage';
 
@@ -32,31 +32,42 @@ function ActivityInfoPage() {
     const [positionForm, setPositionForm] = useState(null);
     const [state, setState] = useState({
         editState: false,
+        modalOpen: false,
         modalDelete: false,
         modalClose: false,
         modalTempClose: false,
     });
 
     function acceptEdit() {
-        setState({ ...state, editState: false })
-        setBackupData({ ...data, name: [nameForm.th, nameForm.eng], position: [positionForm.x, positionForm.y] })
+        setState({ ...state, editState: false });
+        setBackupData({ ...data, name: [nameForm.th, nameForm.eng], position: [positionForm.x, positionForm.y] });
         putActivity({ ...data, name: [nameForm.th, nameForm.eng], position: [positionForm.x, positionForm.y] });
     }
     function declineEdit() {
-        setState({ ...state, editState: false })
+        setState({ ...state, editState: false });
         setData(backupData);
+        setNameForm({ th: backupData.name[0], eng: backupData.name[1] });
+        setPositionForm({ x: backupData.position[0], y: backupData.position[1] });
+    }
+
+    function handlerOpen() {
+        setState({ ...state, modalOpen: false });
+        putActivity({ ...data, status: "open" })
     }
     function handlerTempClose() {
         setState({ ...state, modalTempClose: false });
+        putActivity({ ...data, status: "temporarily closed" })
     }
     function handlerClose() {
         setState({ ...state, modalClose: false });
+        putActivity({ ...data, status: "closed" })
     }
     function handlerDelete() {
         setState({ ...state, modalDelete: false });
         deleteActivity(data);
         navigate("/staff-activity")
     }
+
     function handlerDashboard() {
         navigate(`/staff-dashboard/${code}`)
     }
@@ -76,6 +87,7 @@ function ActivityInfoPage() {
                     {data &&
                         <div className="relative">
 
+                            <ModalOpen data={data} state={state} setState={setState} click={handlerOpen} />
                             <ModalTempClose data={data} state={state} setState={setState} click={handlerTempClose} />
                             <ModalClose data={data} state={state} setState={setState} click={handlerClose} />
                             <ModalDelete data={data} state={state} setState={setState} click={handlerDelete} />

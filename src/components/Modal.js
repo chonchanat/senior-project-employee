@@ -2,9 +2,38 @@ import { ButtonTransparent } from './Button';
 import Wrapper from './Wrapper';
 
 import { AiOutlineDelete } from 'react-icons/ai';
-import { BiTrafficCone, BiTime } from 'react-icons/bi';
+import { BiTrafficCone, BiTime, BiPlayCircle } from 'react-icons/bi';
 
 const styleModal = "w-[600px] min-h-[240px] bg-white shadow-lg rounded-xl fixed top-[200px] left-[50%] translate-x-[-50%] z-50 flex flex-col overflow-auto";
+
+function ModalOpen({ data, state, setState, click }) {
+    return (
+        <div>
+            <Wrapper state={state.modalOpen} bgColor="bg-black/20"
+                click={() => setState({ ...state, modalOpen: false })} />
+
+            <div className={`${styleModal}
+            ${state.modalOpen ? "top-[140px]" : "top-[120px] invisible"}`}
+                style={{ transition: "all 0.1s ease-out" }}>
+                <div className="px-6 py-4 flex flex-1 items-center">
+                    <BiPlayCircle size="48px" className="bg-accept text-white rounded-full p-2 mr-4" />
+                    <div className="flex-1">
+                        <p className="text-lg font-bold">เปิดให้บริการ</p>
+                        <p className="py-2">คุณแน่ใจว่าต้องการเปิดให้บริการ <label className="font-bold">{data.name[0]}</label> </p>
+                    </div>
+                </div>
+                <div className="px-6 py-4 bg-[#F4F4F4] flex justify-end">
+                    <ButtonTransparent color="white" css="mr-6" width="w-24"
+                        click={() => setState({ ...state, modalOpen: false })}>ยกเลิก</ButtonTransparent>
+                    <div className="w-24 p-2 bg-accept rounded-md border-2 border-accept text-center text-white text-sm cursor-pointer hover:text-accept hover:bg-white transition ease-in-out duration-150"
+                        onClick={click}>
+                        <p>ยืนยัน</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+}
 
 function ModalDelete({ data, state, setState, click }) {
     return (
@@ -121,4 +150,4 @@ function ModalDeleteAccount({ data, state, setState, click }) {
     );
 }
 
-export { ModalDelete, ModalClose, ModalTempClose, ModalDeleteAccount };
+export { ModalOpen, ModalDelete, ModalClose, ModalTempClose, ModalDeleteAccount };
