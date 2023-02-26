@@ -21,7 +21,7 @@ function StaffAccount() {
         async function getAccount() {
             dispatch(startFetch());
             const data = await getAllAccount();
-            setAccountData(data.filter((data) => data.ID !== authReducer.ID && (data.role === "admin" || data.role === "staff")));
+            setAccountData(data.filter((data) => data._id !== authReducer._id && (data.role === "admin" || data.role === "staff")));
             dispatch(endFetch());
         }
         getAccount();

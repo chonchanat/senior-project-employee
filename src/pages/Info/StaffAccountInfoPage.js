@@ -6,7 +6,7 @@ import { BlockDesktop, BlockDesktopRight, HeadDesktop, ContentDesktop, HeadConte
 import SideMenuDesktop from '../../components/SideMenu/SideMenuDesktop';
 import { HandlerDropdownStaffAccount, HandlerEdit } from '../../components/Etc/ActivityInfoPage';
 
-import { getOneAccount, deleteUser } from '../../api/userAPI';
+import { getOneAccount, deleteUser, updateUser } from '../../api/userAPI';
 
 import { IoIosArrowBack } from 'react-icons/io';
 import { ModalDeleteAccount } from '../../components/Modal';
@@ -34,6 +34,7 @@ function StaffAccountInfoPage() {
     function acceptEdit() {
         setState({ ...state, editState: false })
         setBackupdata(data);
+        updateUser(data);
     }
     function declineEdit() {
         setState({ ...state, editState: false })

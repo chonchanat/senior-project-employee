@@ -47,7 +47,6 @@ function ActivityInfoPage() {
     function acceptEdit() {
         setState({ ...state, editState: false });
         setBackupData({ ...data, name: [nameForm.th, nameForm.eng], position: [positionForm.x, positionForm.y] });
-        // putActivity({ ...data, name: [nameForm.th, nameForm.eng], position: [positionForm.x, positionForm.y] });
         if (typeof (data.picture) !== "string") {
             const pictureName = data.picture.name.split(".").slice(0, -1).join("");
             const pictureFirebaseRef = ref(storage, pictureName);
@@ -91,7 +90,6 @@ function ActivityInfoPage() {
     function handlerDelete() {
         setState({ ...state, modalDelete: false });
         deleteActivity(data);
-        navigate("/staff-activity")
     }
 
     function handlerDashboard() {

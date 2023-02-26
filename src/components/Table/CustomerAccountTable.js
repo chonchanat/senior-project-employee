@@ -36,7 +36,7 @@ function CustomerAccountTable({ accountData }) {
                     {accountData.length ?
                         accountData.map((row, index) =>
                             <TableRow key={index}>
-                                <TableBody>{row.ID}</TableBody>
+                                <TableBody>{row._id}</TableBody>
                                 <TableBody>{row.members}</TableBody>
                                 <TableBody>{row.star}</TableBody>
                                 <TableBody>{row.createdAt}</TableBody>

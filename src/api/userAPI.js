@@ -56,12 +56,16 @@ async function register(data) {
 }
 
 async function updateUser(data) {
-    return await axios.put(`/auth/user`, data, {
-        headers: {
-            'Authorization': `Bearer ${getToken()}`,
-            'Content-Type': 'application/json',
-        }
-    })
+    try { 
+        await axios.put(`/auth/user`, data, {
+            headers: {
+                'Authorization': `Bearer ${getToken()}`,
+                'Content-Type': 'application/json',
+            }
+        })
+    } catch (error) {
+        console.log(error)
+    }
 }
 
 async function deleteUser(data) {

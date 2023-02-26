@@ -21,7 +21,7 @@ function CustomerAccount() {
         async function getAccount() {
             dispatch(startFetch());
             const data = await getAllAccount();
-            setAccountData(data.filter((data) => data.ID !== authReducer.ID && data.role === "customer"));
+            setAccountData(data.filter((data) => data._id !== authReducer._id && data.role === "customer"));
             dispatch(endFetch());
         }
         getAccount();

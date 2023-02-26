@@ -21,7 +21,7 @@ function StaffForm({ setPage }) {
 
     function handlerSubmit(e) {
         e.preventDefault();
-        register({ ...form, username: form.phone, password: "12345" });
+        register({ ...form, username: form.email, password: "12345" });
     }
 
     return (
