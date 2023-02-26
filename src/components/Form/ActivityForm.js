@@ -15,14 +15,19 @@ function ActivityForm({ setPage }) {
         th: "",
         eng: "",
     })
+    const [positionForm, setPositionForm] = useState({
+        x: 0,
+        y: 0,
+    });
     const [form, setForm] = useState({
         name: [],
+        code: "",
+        status: "open",
         size: 0,
         duration: 0,
         star: 0,
-        x: 0,
-        y: 0,
         picture: "",
+        position: [],
     });
     const [picture, setPicture] = useState(null);
 
@@ -42,8 +47,8 @@ function ActivityForm({ setPage }) {
             .then(() => {
                 getDownloadURL(pictureFirebaseRef)
                     .then((url) => {
-                        const data = { ...form, name: [nameForm.th, nameForm.eng], picture: url }
-                        postActivity(data);
+                        const data = { ...form, name: [nameForm.th, nameForm.eng], picture: url, position: [positionForm.x, positionForm.y] }
+                        postActivity(data).then(() => window.location.reload(true));
                     })
                     .catch((error) => {
                         console.log(error);
@@ -76,6 +81,12 @@ function ActivityForm({ setPage }) {
                         onChange={(e) => setNameForm({ ...nameForm, eng: e.target.value })} />
                 </div>
                 <div className="flex justify-between items-center mb-4">
+                    รหัสกิจกรรม
+                    <input type="text" className="w-[364px] h-[36px] border-black rounded-md border px-6"
+                        required
+                        onChange={(e) => setForm({ ...form, code: e.target.value })} />
+                </div>
+                <div className="flex justify-between items-center mb-4">
                     <p className="w-[104px]">จำนวนผู้เข้าร่วม</p>
                     <input type="number" className="h-[36px] border-black rounded-md border px-6"
                         required
@@ -98,14 +109,14 @@ function ActivityForm({ setPage }) {
                 </div>
                 <div className="flex justify-between items-center mb-4">
                     <p className="w-[104px]">พิกัด</p>
-                    <input type="text" className="w-[156px] h-[36px] border-black rounded-md border px-6"
+                    <input type="number" className="w-[156px] h-[36px] border-black rounded-md border px-6"
                         required
                         placeholder="X"
-                        onChange={(e) => setForm({ ...form, x: parseInt(e.target.value) })} />
-                    <input type="text" className="w-[156px] h-[36px] border-black rounded-md border px-6"
+                        onChange={(e) => setPositionForm({ ...positionForm, x: parseFloat(e.target.value) })} />
+                    <input type="number" className="w-[156px] h-[36px] border-black rounded-md border px-6"
                         required
                         placeholder="Y"
-                        onChange={(e) => setForm({ ...form, y: parseInt(e.target.value) })} />
+                        onChange={(e) => setPositionForm({ ...positionForm, y: parseFloat(e.target.value) })} />
                 </div>
             </div>
             <div className="flex justify-center mt-10">

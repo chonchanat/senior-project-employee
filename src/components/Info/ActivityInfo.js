@@ -1,24 +1,23 @@
-function ActivityInfo({ data, setData, state }) {
-    console.log(data)
+function ActivityInfo({ data, setData, state, nameForm, setNameForm, positionForm, setPositionForm }) {
     return (
         <div className="flex flex-wrap justify-center h-fit">
             <div className="w-[400px] flex justify-center items-center mb-4">
-                <img src={data.picture} alt="activity" width="250px" />
+                <img src={data.picture} alt="activity" className="w-[240px] rounded-md overflow-hidden shadow-md" />
             </div>
             <div className="w-[520px]">
                 <div className="flex justify-between items-center mb-4">
                     ชื่อกิจกรรม (TH)
                     <input type="text" className={`h-[36px] w-[364px] rounded-md px-6 border ${state.editState ? "border-black" : "border-inputBorder"}`}
-                        value={data.name[0]}
+                        value={nameForm.th}
                         disabled={!state.editState}
-                        onChange={(e) => setData({ ...data, name: e.target.value })} />
+                        onChange={(e) => setNameForm({ ...nameForm, th: e.target.value })} />
                 </div>
                 <div className="flex justify-between items-center mb-4">
                     ชื่อกิจกรรม (ENG)
                     <input type="text" className={`h-[36px] w-[364px] rounded-md px-6 border ${state.editState ? "border-black" : "border-inputBorder"}`}
-                        value={data.name[1]}
+                        value={nameForm.eng}
                         disabled={!state.editState}
-                        onChange={(e) => setData({ ...data, name: e.target.value })} />
+                        onChange={(e) => setNameForm({ ...nameForm, eng: e.target.value })} />
                 </div>
                 <div className="flex justify-between items-center mb-4">
                     <p className="w-[104px]">จำนวนผู้เข้าร่วม</p>
@@ -48,15 +47,15 @@ function ActivityInfo({ data, setData, state }) {
                     <p className="w-[104px]">พิกัด</p>
                     <input type="text" className={`w-[156px] h-[36px] rounded-md px-6 border ${state.editState ? "border-black" : "border-inputBorder"}`}
                         placeholder="X"
-                        value={data.x}
+                        value={positionForm.x}
                         disabled={!state.editState}
-                        onChange={(e) => setData({ ...data, x: parseInt(e.target.value) })}
+                        onChange={(e) => setPositionForm({ ...positionForm, x: parseFloat(e.target.value) })}
                     />
-                    <input type="text" className={`w-[156px] h-[36px] rounded-md px-6 border ${state.editState ? "border-black" : "border-inputBorder"}`}
+                    <input type="number" className={`w-[156px] h-[36px] rounded-md px-6 border ${state.editState ? "border-black" : "border-inputBorder"}`}
                         placeholder="Y"
-                        value={data.y}
+                        value={positionForm.y}
                         disabled={!state.editState}
-                        onChange={(e) => setData({ ...data, y: parseInt(e.target.value) })}
+                        onChange={(e) => setPositionForm({ ...positionForm, y: parseFloat(e.target.value) })}
                     />
                 </div>
             </div>
