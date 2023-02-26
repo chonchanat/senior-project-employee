@@ -27,7 +27,6 @@ function CustomerAccount() {
         getAccount();
     }, [dispatch, authReducer])
 
-
     const [page, setPage] = useState("Table");
     const [accountData, setAccountData] = useState([]);
 

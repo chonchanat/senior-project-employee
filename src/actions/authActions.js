@@ -36,21 +36,7 @@ function fetchAuthAsync(email, password) {
 
 function fetchUpdateAccount(data) {
     return async function (dispatch) {
-        try {
-            dispatch(startUpdateFetch());
-
-            const user = await settingAccount(data);
-
-            if (user) {
-                dispatch(setAuth(user));
-                dispatch(errorFetch(''));
-                dispatch(endUpdateFetch());
-            }
-        } catch (error) {
-            dispatch(setAuth(null));
-            dispatch(errorFetch(error));
-            dispatch(endUpdateFetch());
-        }
+        dispatch(setAuth(data));
     }
 }
 

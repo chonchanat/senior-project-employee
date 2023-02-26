@@ -8,6 +8,8 @@ import SettingInfo from '../components/Info/SettingInfo';
 import PasswordForm from '../components/Form/PasswordForm';
 import { HandlerEdit } from '../components/Etc/ActivityInfoPage';
 
+import { updateUser } from '../api/userAPI';
+
 function Setting() {
 
     const dispatch = useDispatch();
@@ -24,6 +26,9 @@ function Setting() {
         if (authReducer !== backupData) {
             dispatch(fetchUpdateAccount(backupData));
         }
+
+        // check password problem
+        updateUser(backupData)
     }
     function declineEdit() {
         setState({ ...state, editState: false })

@@ -31,15 +31,6 @@ function CustomerForm({ setPage }) {
                     <input type="tel" className="w-[500px] h-[36px] border-black rounded-md border px-6"
                         onChange={(e) => setForm({ ...form, phone: e.target.value })} />
                 </div>
-                {/* <div className="w-[650px] flex justify-between items-center mb-4">แพ็กเกจ
-                    <select className="w-[500px] h-[36px] border-black rounded-md border px-6"
-                        onChange={(e) => setForm({ ...form, packet: e.target.value })}>
-                        <option value="0">ธรรมดา</option>
-                        <option value="1">ชุดเล็ก</option>
-                        <option value="2">ชุดกลาง</option>
-                        <option value="3">ชุดใหญ่</option>
-                    </select>
-                </div> */}
                 <div className="w-[650px] flex justify-between items-center mb-4">จำนวนลูกค้า
                     <input type="number" className={`border-black w-[500px] h-[36px] rounded-md border px-6`}
                         onChange={(e) => setForm({ ...form, members: parseInt(e.target.value) })} />
