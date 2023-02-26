@@ -4,28 +4,28 @@ const inQueue = [
         predTime: 23,
         prevQueue: 71,
         rating: 5,
-        image: "https://www.changtrixget.com/wp-content/uploads/2018/09/superman-krypton-coaster.jpg",
+        picture: "https://www.changtrixget.com/wp-content/uploads/2018/09/superman-krypton-coaster.jpg",
     },
     {
         nameOfAct: "ม้าหมุน",
         predTime: 3,
         prevQueue: 2,
         rating: 2,
-        image: "https://upload.wikimedia.org/wikipedia/commons/7/7c/Carruselfantakids.JPG",
+        picture: "https://upload.wikimedia.org/wikipedia/commons/7/7c/Carruselfantakids.JPG",
     },
     {
         nameOfAct: "ชิงช้าสวรรค์",
         predTime: 15,
         prevQueue: 24,
         rating: 3,
-        image: "https://i.ytimg.com/vi/gjO7ONltLko/maxresdefault.jpg",
+        picture: "https://i.ytimg.com/vi/gjO7ONltLko/maxresdefault.jpg",
     },
     {
         nameOfAct: "รถบั๊ม",
         predTime: 16,
         prevQueue: 26,
         rating: 4,
-        image: "https://pbs.twimg.com/media/EOqXmWaUcAA5J3h.jpg",
+        picture: "https://pbs.twimg.com/media/EOqXmWaUcAA5J3h.jpg",
     },
 ]
 

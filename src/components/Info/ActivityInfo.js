@@ -1,8 +1,9 @@
 function ActivityInfo({ data, setData, state }) {
+    console.log(data)
     return (
         <div className="flex flex-wrap justify-center h-fit">
             <div className="w-[400px] flex justify-center items-center mb-4">
-                <img src={data.image} alt="activity" width="250px" />
+                <img src={data.picture} alt="activity" width="250px" />
             </div>
             <div className="w-[520px]">
                 <div className="flex justify-between items-center mb-4">

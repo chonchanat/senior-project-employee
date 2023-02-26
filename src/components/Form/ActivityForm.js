@@ -22,27 +22,27 @@ function ActivityForm({ setPage }) {
         star: 0,
         x: 0,
         y: 0,
-        image: "",
+        picture: "",
     });
-    const [image, setImage] = useState(null);
+    const [picture, setPicture] = useState(null);
 
     function handlerUploadImage() {
         imageRef.current.click();
     }
     function handlerChangeImage(e) {
         if (e.target.files[0]) {
-            setImage(e.target.files[0]);
+            setPicture(e.target.files[0]);
         }
     }
     function handlerSubmit(e) {
         e.preventDefault();
-        const imageName = image.name.split(".").slice(0, -1).join("");
-        const imageFirebaseRef = ref(storage, imageName);
-        uploadBytes(imageFirebaseRef, image)
+        const pictureName = picture.name.split(".").slice(0, -1).join("");
+        const pictureFirebaseRef = ref(storage, pictureName);
+        uploadBytes(pictureFirebaseRef, picture)
             .then(() => {
-                getDownloadURL(imageFirebaseRef)
+                getDownloadURL(pictureFirebaseRef)
                     .then((url) => {
-                        const data = { ...form, name: [nameForm.th, nameForm.eng], image: url }
+                        const data = { ...form, name: [nameForm.th, nameForm.eng], picture: url }
                         postActivity(data);
                     })
                     .catch((error) => {
@@ -57,7 +57,7 @@ function ActivityForm({ setPage }) {
     return (
         <form onSubmit={handlerSubmit} className="flex flex-wrap justify-center h-fit">
             <div className="w-[400px] flex justify-center items-center mb-4">
-                <img className={image ? "w-[240px] rounded-md overflow-hidden shadow-md" : "w-[160px]"} src={image ? URL.createObjectURL(image) : defaultImage} alt="upload" onClick={handlerUploadImage} />
+                <img className={picture ? "w-[240px] rounded-md overflow-hidden shadow-md" : "w-[160px]"} src={picture ? URL.createObjectURL(picture) : defaultImage} alt="upload" onClick={handlerUploadImage} />
                 <input type="file" accept="image/*" ref={imageRef} className="hidden" onChange={handlerChangeImage} />
             </div>
             <div className="w-[520px]">
