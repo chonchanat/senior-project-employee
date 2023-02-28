@@ -1,44 +1,45 @@
-import CanvasJSReact from '../../canvasjs.react';
+import React from 'react';
+import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
+import { Doughnut } from 'react-chartjs-2';
 
-var CanvasJS = CanvasJSReact.CanvasJS;
-var CanvasJSChart = CanvasJSReact.CanvasJSChart;
+ChartJS.register(ArcElement, Tooltip, Legend);
 
-function SamplePieDonutChart() {
-    CanvasJS.addColorSet("pieDonutShades", ["#5FAAF0", "#E0E0E0"]);
+export const data = {
+    labels: ['Red', 'Blue'],
+    datasets: [
+        {
+            label: '# of Votes',
+            data: [12, 19],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+            ],
+            borderWidth: 1,
+        },
+    ],
+};
 
-    const options = {
-        animationEnabled: true,
-        height: 200,
-        width: 200,
-        colorSet: "pieDonutShades",
-        subtitles: [{
-            text: "71%",
-            verticalAlign: "center",
-            fontSize: 40,
-            dockInsidePlotArea: true
-        }],
-        data: [{
-            type: "doughnut",
-            yValueFormatString: "#,###'%'",
-            dataPoints: [
-                { name: "Acitivty", y: 71 },
-                { name: "Rest", y: 29 },
-            ]
-        }]
-    }
+export const options = {
+    responsive: true,
+    plugins: {
+        legend: {
+            position: 'top',
+        },
+        title: {
+            display: true,
+            text: 'แสดงผลสัดส่วนจำนวนคิวกิจกรรมต่อทั้งหมด',
+        },
+    },
+};
+
+export default function PieDonutChart() {
     return (
-        <div className="flex w-[400px]">
-            <div className="w-[200px]">
-                <CanvasJSChart options={options}
-                /* onRef={ref => this.chart = ref} */
-                />
-            </div>
-            <div className="flex items-center ml-4">
-                <p>กิจกรรมนี้มีสัดส่วน <br/>การจองคิวอยู่ที่ <br/>71% จากการจองคิวทั้งหมด</p>
-            </div>
-            {/*You can get reference to the chart instance as shown above using onRef. This allows you to access all chart properties and methods*/}
+        <div className="h-[250px] w-[500px] flex justify-center">
+            <Doughnut data={data} options={options} />
         </div>
     );
 }
-
-export default SamplePieDonutChart;

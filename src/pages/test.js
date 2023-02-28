@@ -2,8 +2,7 @@ import { useState } from 'react';
 import activityData from '../fakeData/ActivityData';
 
 import Wrapper from '../components/Wrapper';
-import { SampleColumnChart } from '../components/chart/ColumnChart';
-import SamplePieChart from '../components/chart/PieChart';
+import PieChart from '../components/chart/PieChart';
 import SamplePieDonutChart from '../components/chart/PieDonutChart';
 
 import { rollerCoaster } from '../fakeData/commentData';
@@ -84,8 +83,7 @@ function Test() {
 
             <p className="border-b-2 my-6"></p>
             <div className="flex justify-around">
-                <SampleColumnChart />
-                <SamplePieChart />
+                <PieChart />
             </div>
             <div>
                 <SamplePieDonutChart />

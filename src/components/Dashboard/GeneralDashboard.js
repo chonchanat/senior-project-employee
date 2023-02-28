@@ -10,16 +10,6 @@ function Card({ type, click }) {
     );
 }
 
-function ActivityCard() {
-    return (
-        <div className="w-[360px] h-[160px] overflow-hidden relative flex flex-col justify-center items-center rounded-lg">
-            <img src="https://www.changtrixget.com/wp-content/uploads/2018/09/superman-krypton-coaster.jpg" alt="activity"/>
-            <p className="bg-fha p-2 rounded-lg font-bold text-white text-sm absolute top-2 shadow-md">กิจกรรมยอดนิยม</p>
-            <p className="bg-fha p-2 rounded-lg font-bold text-white absolute bottom-2  shadow-md">รถไฟเหาะ</p>
-        </div>
-    );
-}
-
 function GeneralDashboard() {
 
     const navigate = useNavigate();
@@ -47,4 +37,4 @@ function ActionDashboard({ data, setPage }) {
     );
 }
 
-export { GeneralDashboard, ActionDashboard, ActivityCard };
+export { GeneralDashboard, ActionDashboard };

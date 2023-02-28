@@ -1,8 +1,11 @@
 import { BlockDesktop, BlockDesktopRight, HeadDesktop, ContentDesktop } from '../components/Block'
 import SideMenuDesktop from '../components/SideMenu/SideMenuDesktop';
-import { GeneralDashboard, ActivityCard } from '../components/Dashboard/GeneralDashboard';
-import { SampleColumnChart, ActivityColumnChart } from '../components/chart/ColumnChart';
-import SamplePieChart from '../components/chart/PieChart';
+import { GeneralDashboard } from '../components/Dashboard/GeneralDashboard';
+
+import PieChart from '../components/chart/PieChart';
+import CustomerDayChart from '../components/chart/CustomerDayChart';
+import PopActivityChart from '../components/chart/PopActivityChart';
+import RetrospectChart from '../components/chart/RetrospectChart';
 
 function Dashboard() {
 
@@ -15,15 +18,17 @@ function Dashboard() {
                 <HeadDesktop><p>กระดานข้อมูล</p></HeadDesktop>
                 <ContentDesktop>
                     <GeneralDashboard />
-                    <div className="flex justify-around my-8">
-                        <SampleColumnChart />
-                        <SamplePieChart />
+                    <div className="flex-1 overflow-x-hidden">
+                        <div className="flex justify-around items-center my-6">
+                            <CustomerDayChart />
+                            <PieChart />
+                        </div>
+                        <div className="flex justify-around items-center">
+                            <PopActivityChart />
+                            <RetrospectChart />
+                        </div>
                     </div>
-                    <div className="flex justify-around items-center">
-                        <ActivityCard />
-                        <ActivityColumnChart />
-                    </div>
-                    <p className="flex-1 flex items-end justify-end">แสดงข้อมูลวันที่ : {date.toLocaleString()}</p>
+                    <p className="text-end">แสดงข้อมูลวันที่ : {date.toLocaleString()}</p>
                 </ContentDesktop>
             </BlockDesktopRight>
         </BlockDesktop>
