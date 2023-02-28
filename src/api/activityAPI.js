@@ -45,7 +45,7 @@ async function postActivity(data) {
 
 async function deleteActivity(data) {
     try {
-        await axios.delete(`/activity`, { code: data.code }, {
+        await axios.post(`/activity/delete`, { code: data.code }, {
             headers: {
                 'Authorization': `Bearer ${getToken()}`,
                 'Content-Type': 'application/json',

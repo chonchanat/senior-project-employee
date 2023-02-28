@@ -30,8 +30,8 @@ function Signin() {
     }, [authReducer, navigate, dispatch]);
 
     const [user, setUser] = useState({
-        email: "davepokpong",
-        password: "dave1234",
+        email: "pokpong.no@ku.th",
+        password: "12345",
     });
 
     function handlerSignin(e) {

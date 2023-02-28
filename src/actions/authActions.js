@@ -1,6 +1,5 @@
-import { startFetch, endFetch, errorFetch, startUpdateFetch, endUpdateFetch } from './statusActions';
+import { startFetch, endFetch, errorFetch } from './statusActions';
 
-import { settingAccount } from '../api/fakeAPI';
 import { signin } from '../api/userAPI';
 
 import Cookies from 'js-cookie';

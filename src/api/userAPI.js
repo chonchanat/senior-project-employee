@@ -70,7 +70,7 @@ async function updateUser(data) {
 
 async function deleteUser(data) {
     try {
-        const response = await axios.delete(`/auth/user`, { username: data.username }, {
+        const response = await axios.post(`/auth/user/delete`, { username: data.username }, {
             headers: {
                 'Authorization': `Bearer ${getToken()}`,
                 'Content-Type': 'application/json',

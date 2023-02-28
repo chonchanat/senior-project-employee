@@ -89,7 +89,7 @@ function ActivityInfoPage() {
     }
     function handlerDelete() {
         setState({ ...state, modalDelete: false });
-        deleteActivity(data);
+        deleteActivity(data).then(() => navigate('/staff-activity'));
     }
 
     function handlerDashboard() {
