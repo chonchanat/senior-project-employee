@@ -109,11 +109,11 @@ function ActivityForm({ setPage }) {
                 </div>
                 <div className="flex justify-between items-center mb-4">
                     <p className="w-[104px]">พิกัด</p>
-                    <input type="number" className="w-[156px] h-[36px] border-black rounded-md border px-6"
+                    <input type="text" className="w-[156px] h-[36px] border-black rounded-md border px-6"
                         required
                         placeholder="X"
                         onChange={(e) => setPositionForm({ ...positionForm, x: parseFloat(e.target.value) })} />
-                    <input type="number" className="w-[156px] h-[36px] border-black rounded-md border px-6"
+                    <input type="text" className="w-[156px] h-[36px] border-black rounded-md border px-6"
                         required
                         placeholder="Y"
                         onChange={(e) => setPositionForm({ ...positionForm, y: parseFloat(e.target.value) })} />

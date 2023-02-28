@@ -68,6 +68,21 @@ async function updateUser(data) {
     }
 }
 
+async function changePassword(data) {
+    console.log(data)
+    try { 
+        const res = await axios.post(`/auth/user/changepassword`, data, {
+            headers: {
+                'Authorization': `Bearer ${getToken()}`,
+                'Content-Type': 'application/json',
+            }
+        })
+        console.log(res)
+    } catch (error) {
+        console.log(error)
+    }
+}
+
 async function deleteUser(data) {
     try {
         const response = await axios.post(`/auth/user/delete`, { username: data.username }, {
@@ -83,4 +98,4 @@ async function deleteUser(data) {
     }
 }
 
-export { signin, getAllAccount, getOneAccount, register, updateUser, deleteUser };
+export { signin, getAllAccount, getOneAccount, register, updateUser, changePassword, deleteUser };
