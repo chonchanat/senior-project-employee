@@ -44,6 +44,12 @@ export const data = {
       data: [3510,4320,4521,2100,2354,8456,6541],
       borderColor: 'rgb(255, 99, 132)',
       backgroundColor: 'rgba(255, 99, 132, 0.5)',
+      animations: {
+        tension: {
+          easing: 'linear',
+          to: 0.3,
+        }
+      },
     },
   ],
 };
