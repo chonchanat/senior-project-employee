@@ -49,7 +49,7 @@ function ActivityInfo({ data, setData, state, nameForm, setNameForm, positionFor
                 </div>
                 <div className="flex justify-between items-center mb-4">
                     <p className="w-[104px]">พิกัด</p>
-                    <input type="text" className={`w-[156px] h-[36px] rounded-md px-6 border ${state.editState ? "border-black" : "border-inputBorder"}`}
+                    <input type="number" className={`w-[156px] h-[36px] rounded-md px-6 border ${state.editState ? "border-black" : "border-inputBorder"}`}
                         placeholder="X"
                         value={positionForm.x}
                         disabled={!state.editState}
