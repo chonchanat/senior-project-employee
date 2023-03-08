@@ -21,12 +21,17 @@ function CustomerForm({ setPage }) {
 
     function handlerSubmit(event) {
         event.preventDefault();
-        register({ ...form, username: form.phone, password: "12345" });
+        const randomPassword = Math.random().toString(36).slice(-8);
+        register({ ...form, username: form.phone, password: randomPassword });
     }
 
     return (
         <div className="flex justify-center">
             <form onSubmit={handlerSubmit}>
+                <div className="w-[650px] flex justify-between items-center mb-4">อีเมล์
+                    <input type="email" className="w-[500px] h-[36px] border-black rounded-md border px-6"
+                        onChange={(e) => setForm({ ...form, email: e.target.value })} />
+                </div>
                 <div className="w-[650px] flex justify-between items-center mb-4">เบอร์โทร
                     <input type="tel" className="w-[500px] h-[36px] border-black rounded-md border px-6"
                         onChange={(e) => setForm({ ...form, phone: e.target.value })} />
