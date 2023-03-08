@@ -32,15 +32,17 @@ export const options = {
     },
 };
 
-const labels = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu'];
+const labels = ['RollerCoaster', 'Tornado', 'RideCamel', 'Vikings', 'FeedCabybara'];
 
 export const data = {
     labels,
     datasets: [
         {
             label: 'Dataset 1',
-            data: [12, 35, 12, 84, 64],
-            backgroundColor: 'rgba(255, 99, 132, 0.5)',
+            data: [99, 77, 66, 44, 22],
+            backgroundColor: 'rgba(244, 211, 94, 0.5)',
+            borderWidth: 2,
+            borderColor: 'rgba(244, 211, 94,1)'
         },
     ],
 };
