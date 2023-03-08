@@ -34,4 +34,19 @@ async function getCustomerYear(toDate) {
     }
 }
 
-export { getCustomerDay, getCustomerYear }
+async function getCustomerGroup() {
+    try {
+        const response = await axios.get(`/auth/user/customer-filter-by-member`, {
+            headers: {
+                'Authorization': `Bearer ${getToken()}`,
+                'Content-Type': 'application/json',
+            }
+        })
+        return response.data.stat;
+    } catch (error) {
+        console.log(error)
+        return [];
+    }
+}
+
+export { getCustomerDay, getCustomerYear, getCustomerGroup }

@@ -9,17 +9,16 @@ import CustomerDayChart from '../components/chart/CustomerDayChart';
 import PopActivityChart from '../components/chart/PopActivityChart';
 import RetrospectChart from '../components/chart/RetrospectChart';
 
-import { getCustomerDay, getCustomerYear } from '../api/chartAPI';
+import { getCustomerDay, getCustomerYear, getCustomerGroup } from '../api/chartAPI';
 
 function Dashboard() {
-
-    // const date = new Date();
-
+    const formattedDate = new Date(new Date()).toISOString().slice(0, 10);
     const [fromDate, setFromDate] = useState("2023-03-01");
-    const [toDate, setToDate] = useState("2023-03-09");
+    const [toDate, setToDate] = useState(formattedDate);
     const [datasets, setDatasets] = useState({
         customerDay: null,
         customerYear: null,
+        customerGroup: null,
     });
 
     function changeIso(e, func) {
@@ -31,7 +30,8 @@ function Dashboard() {
         async function getCustomerDayChart() {
             const day = await getCustomerDay(fromDate, toDate);
             const year = await getCustomerYear(toDate);
-            setDatasets({...datasets, customerDay: day, customerYear: year});
+            const group = await getCustomerGroup();
+            setDatasets({...datasets, customerDay: day, customerYear: year, customerGroup: group});
         }
         getCustomerDayChart();
     }, [toDate])
@@ -52,14 +52,14 @@ function Dashboard() {
                     <div className="flex-1 overflow-x-hidden">
                         <div className="flex justify-around items-center mb-4">
                             {datasets.customerDay && <CustomerDayChart datasets={datasets.customerDay} />}
-                            <PieChart />
+                            {datasets.customerGroup && <PieChart datasets={datasets.customerGroup}/>}
                         </div>
                         <div className="flex justify-around items-center">
                             <PopActivityChart />
                             {datasets.customerYear && <RetrospectChart datasets={datasets.customerYear}/>}
                         </div>
                     </div>
-                    {/* <p className="text-end">แสดงข้อมูลวันที่ : {date.toLocaleString()}</p> */}
+                    <p className="text-end">แสดงข้อมูลวันที่ : {formattedDate}</p>
                 </ContentDesktop>
             </BlockDesktopRight>
         </BlockDesktop>
