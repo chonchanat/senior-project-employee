@@ -15,7 +15,7 @@ function Dashboard() {
 
     // const date = new Date();
 
-    const [fromDate, setFromDate] = useState("2023-03-02");
+    const [fromDate, setFromDate] = useState("2023-03-01");
     const [toDate, setToDate] = useState("2023-03-09");
     const [datasets, setDatasets] = useState({
         customerDay: null,
@@ -56,7 +56,7 @@ function Dashboard() {
                         </div>
                         <div className="flex justify-around items-center">
                             <PopActivityChart />
-                            <RetrospectChart />
+                            {datasets.customerYear && <RetrospectChart datasets={datasets.customerYear}/>}
                         </div>
                     </div>
                     {/* <p className="text-end">แสดงข้อมูลวันที่ : {date.toLocaleString()}</p> */}
