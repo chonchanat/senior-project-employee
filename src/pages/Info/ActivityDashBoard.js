@@ -30,19 +30,27 @@ function ActivityDashboard() {
     const [data, setData] = useState(null);
     const [page, setPage] = useState("stat")
 
+    function translateStatus() {
+        if (data.status === "open") return "เปิดให้บริการ";
+        else if ( data.status === "temporarily closed") return "ปิดให้บริการชั่วคราว";
+        else if ( data.status === "closed") return "ปิดให้บริการ";
+    }
+
     return (
         <BlockDesktop>
             <SideMenuDesktop />
             <BlockDesktopRight>
                 <HeadDesktop><p>กระดานข้อมูล</p></HeadDesktop>
                 <ContentDesktop>
-                    <HeadContentDesktop>
-                        <div className="flex items-center">
-                            <IoIosArrowBack size="24px" className="cursor-pointer hover:text-[#c7c7c7] mr-2" onClick={() => navigate("/staff-activity")} />
-                            <p>{data && data.name[0]}</p>
-                        </div>
-                        <p>สถานะ : </p>
-                    </HeadContentDesktop>
+                    {data &&
+                        <HeadContentDesktop>
+                            <div className="flex items-center">
+                                <IoIosArrowBack size="24px" className="cursor-pointer hover:text-[#c7c7c7] mr-2" onClick={() => navigate("/staff-activity")} />
+                                <p>{data.name[0]}</p>
+                            </div>
+                            <p>สถานะ : {translateStatus()}</p>
+                        </HeadContentDesktop>
+                    }
 
                     <div className="flex flex-1 flex-col overflow-auto">
                         <ActionDashboard data={data} setPage={setPage} />
