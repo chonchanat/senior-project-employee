@@ -1,7 +1,6 @@
 import axios, { getToken } from "./index";
 
 async function getCustomerDay(fromDate, toDate) {
-    // console.log(fromDate, toDate)
     const isoFromDate = new Date(fromDate).toISOString();
     const isoToDate = new Date(toDate).toISOString();
     try {
@@ -49,4 +48,21 @@ async function getCustomerGroup() {
     }
 }
 
-export { getCustomerDay, getCustomerYear, getCustomerGroup }
+async function getActivityDay(fromDate, toDate, code) {
+    const isoFromDate = new Date(fromDate).toISOString();
+    const isoToDate = new Date(toDate).toISOString();
+    try {
+        const response = await axios.get(`/activity/perweek/${code}?min=${isoFromDate}&max=${isoToDate}`, {
+            headers: {
+                'Authorization': `Bearer ${getToken()}`,
+                'Content-Type': 'application/json',
+            }
+        })
+        return response.data.stat;
+    } catch (error) {
+        console.log(error)
+        return [];
+    }
+}
+
+export { getCustomerDay, getCustomerYear, getCustomerGroup, getActivityDay }

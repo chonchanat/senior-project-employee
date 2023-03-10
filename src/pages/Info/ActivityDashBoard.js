@@ -32,8 +32,8 @@ function ActivityDashboard() {
 
     function translateStatus() {
         if (data.status === "open") return "เปิดให้บริการ";
-        else if ( data.status === "temporarily closed") return "ปิดให้บริการชั่วคราว";
-        else if ( data.status === "closed") return "ปิดให้บริการ";
+        else if (data.status === "temporarily closed") return "ปิดให้บริการชั่วคราว";
+        else if (data.status === "closed") return "ปิดให้บริการ";
     }
 
     return (
@@ -62,12 +62,12 @@ function ActivityDashboard() {
                                 </div>
                                 :
                                 page === "stat" ?
-                                    <StatPage />
+                                    data && <StatPage data={data} />
                                     :
                                     page === "queue" ?
-                                        <QueuePage />
+                                        data && <QueuePage />
                                         :
-                                        <CommentPage />
+                                        data && <CommentPage />
                         }
                     </div>
 
