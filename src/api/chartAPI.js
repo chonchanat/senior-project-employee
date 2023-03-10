@@ -96,4 +96,19 @@ async function getActivityGroup(code) {
     }
 }
 
-export { getCustomerDay, getCustomerYear, getCustomerGroup, getActivityDay, getActivityYear, getActivityGroup }
+async function getActivityRatio(code) {
+    try {
+        const response = await axios.get(`/activity/member-ratio/${code}`, {
+            headers: {
+                'Authorization': `Bearer ${getToken()}`,
+                'Content-Type': 'application/json',
+            }
+        })
+        return response.data.stat;
+    } catch (error) {
+        console.log(error)
+        return [];
+    }
+}
+
+export { getCustomerDay, getCustomerYear, getCustomerGroup, getActivityDay, getActivityYear, getActivityGroup, getActivityRatio }

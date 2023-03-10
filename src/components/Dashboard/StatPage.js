@@ -5,7 +5,7 @@ import PieChart from "../chart/PieChart";
 import SamplePieDonutChart from "../chart/PieDonutChart";
 import RetrospectChart from "../chart/RetrospectChart";
 
-import { getActivityDay, getActivityYear, getActivityGroup } from "../../api/chartAPI";
+import { getActivityDay, getActivityYear, getActivityGroup, getActivityRatio } from "../../api/chartAPI";
 
 function StatPage({ data }) {
 
@@ -16,6 +16,7 @@ function StatPage({ data }) {
         activityDay: null,
         activityYear: null,
         activityGroup: null,
+        activityRatio: null,
     });
 
     useEffect(() => {
@@ -23,7 +24,8 @@ function StatPage({ data }) {
             const day = await getActivityDay(fromDate, toDate, data.code);
             const year = await getActivityYear(toDate, data.code);
             const group = await getActivityGroup(data.code);
-            setDatasets({ ...datasets, activityDay: day, activityYear: year, activityGroup: group });
+            const ratio = await getActivityRatio(data.code);
+            setDatasets({ ...datasets, activityDay: day, activityYear: year, activityGroup: group, activityRatio: ratio });
         }
         getCustomerDayChart();
     }, [toDate])
@@ -49,7 +51,7 @@ function StatPage({ data }) {
             </div>
             <div className="flex justify-around items-center">
                 {datasets.activityYear && <RetrospectChart datasets={datasets.activityYear} />}
-                <SamplePieDonutChart />
+                {datasets.activityRatio && <SamplePieDonutChart datasets={datasets.activityRatio} />}
             </div>
         </div>
     );
