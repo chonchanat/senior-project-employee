@@ -32,8 +32,6 @@ export const options = {
     },
 };
 
-const labels = ['RollerCoaster', 'Tornado', 'RideCamel', 'Vikings', 'FeedCabybara'];
-
 export default function PopActivityChart({ datasets }) {
 
     const valueArr = [];

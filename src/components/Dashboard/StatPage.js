@@ -28,7 +28,7 @@ function StatPage({ data }) {
             setDatasets({ ...datasets, activityDay: day, activityYear: year, activityGroup: group, activityRatio: ratio });
         }
         getCustomerDayChart();
-    }, [toDate])
+    }, [fromDate, toDate, data.code])
 
     function changeIso(e, func) {
         const date = e.target.value;

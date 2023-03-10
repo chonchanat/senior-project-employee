@@ -36,7 +36,7 @@ function Dashboard() {
             setDatasets({ ...datasets, customerDay: day, customerYear: year, customerGroup: group, activityPop: pop });
         }
         getCustomerDayChart();
-    }, [toDate])
+    }, [fromDate, toDate])
 
 
     return (
@@ -60,7 +60,7 @@ function Dashboard() {
                             {datasets.customerGroup && <PieChart datasets={datasets.customerGroup} />}
                         </div>
                         <div className="flex justify-around items-center">
-                            {datasets.activityPop && <PopActivityChart datasets={datasets.activityPop}/>}
+                            {datasets.activityPop && <PopActivityChart datasets={datasets.activityPop} />}
                             {datasets.customerYear && <RetrospectChart datasets={datasets.customerYear} />}
                         </div>
                     </div>

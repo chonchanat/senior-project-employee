@@ -67,7 +67,7 @@ function ActivityDashboard() {
                                     page === "queue" ?
                                         data && <QueuePage />
                                         :
-                                        data && <CommentPage />
+                                        data.comment && <CommentPage data={data.comment} />
                         }
                     </div>
 

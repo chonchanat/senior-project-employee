@@ -6,9 +6,9 @@ import { TfiHeadphoneAlt } from 'react-icons/tfi';
 function Card({ type, click }) {
     return (
         <div className="w-[32%] py-2 bg-[#F4F4F4] rounded-xl shadow-md text-center text-sm cursor-pointer relative overflow-hidden mb-2" onClick={click}>
-            {type === "customer" && <BsPerson className="absolute right-[-40px] text-8xl text-[#8876AF]" />}
-            {type === "employee" && <TfiHeadphoneAlt className="absolute right-[-20px] top-5 text-7xl text-[#7ED295]" />}
-            {type === "activity" && <SlGameController className="absolute right-[-30px] top-5 text-7xl text-[#FFA953]" />}
+            {type === "customer" && <BsPerson className="absolute right-[-40px] text-8xl text-[#8876AF] opacity-40" />}
+            {type === "employee" && <TfiHeadphoneAlt className="absolute right-[-20px] top-5 text-7xl text-[#7ED295] opacity-40" />}
+            {type === "activity" && <SlGameController className="absolute right-[-30px] top-5 text-7xl text-[#FFA953] opacity-40" />}
 
             <p>{type === "customer" ? "ลูกค้า" : type === "employee" ? "พนักงาน" : "กิจกรรม"}</p>
             <p className="my-2 text-2xl font-bold">325</p>

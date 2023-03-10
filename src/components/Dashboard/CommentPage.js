@@ -34,14 +34,14 @@ export function RatingTotal() {
     );
 }
 
-function StarRating({ rating }) {
+export function StarRating({ rating, size="text-3xl" }) {
     return (
         <div className="flex">
             {[...Array(5)].map((star, index) => {
                 return (
                     <div key={index}>
-                        <AiFillStar className={`text-yellow text-3xl ${index >= rating && "hidden"}`} />
-                        <AiOutlineStar className={`text-yellow text-3xl ${index < rating && "hidden"}`} />
+                        <AiFillStar className={`text-yellow ${size} ${index >= rating && "hidden"}`} />
+                        <AiOutlineStar className={`text-yellow ${size} ${index < rating && "hidden"}`} />
                     </div>
                 );
             })}
@@ -49,14 +49,14 @@ function StarRating({ rating }) {
     );
 }
 
-function CommentPage() {
+function CommentPage({ data }) {
     return (
         <div className="flex-1 flex pt-2 overflow-auto">
             <div className="flex flex-col items-center justify-around px-4 mr-8">
                 <RatingTotal />
                 <RatingPercent />
             </div>
-            <CommentTable commentData={commentData} />
+            <CommentTable commentData={data} />
         </div>
     );
 }
