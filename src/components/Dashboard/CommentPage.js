@@ -21,20 +21,20 @@ function RatingPercent() {
     );
 }
 
-export function RatingTotal() {
+export function RatingTotal({ data }) {
     return (
         <div className="w-fit text-center my-8">
             <p className="text-lg">Customer reviews</p>
             <div className="flex items-center bg-[#F7F7F7] p-2 my-2 rounded-xl">
-                <StarRating rating={rollerCoaster.average} />
-                <p className="text-sm ml-2">{rollerCoaster.average} out of 5</p>
+                <StarRating rating={data.rating} />
+                <p className="text-sm ml-2">{data.rating} out of 5</p>
             </div>
-            <p className="text-sm">{rollerCoaster.total} customer ratings</p>
+            <p className="text-sm">{data.comment ? data.comment.length : "0"} customer ratings</p>
         </div>
     );
 }
 
-export function StarRating({ rating, size="text-3xl" }) {
+export function StarRating({ rating, size = "text-3xl" }) {
     return (
         <div className="flex">
             {[...Array(5)].map((star, index) => {
@@ -53,10 +53,10 @@ function CommentPage({ data }) {
     return (
         <div className="flex-1 flex pt-2 overflow-auto">
             <div className="flex flex-col items-center justify-around px-4 mr-8">
-                <RatingTotal />
+                <RatingTotal data={data} />
                 <RatingPercent />
             </div>
-            <CommentTable commentData={data} />
+            <CommentTable commentData={data.comment} />
         </div>
     );
 }

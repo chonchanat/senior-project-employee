@@ -6,7 +6,7 @@ function CommentTable({ commentData }) {
             <p className="border-b-2 border-light-gray pb-4">ความคิดเห็น :</p>
             <div className="overflow-auto">
                 {
-                    commentData.length ?
+                    commentData ?
                         commentData.map((item, index) =>
                             <div key={IDBIndex} className="py-2 px-8 border-b-2 border-light-gray">
                                 <p>{item.username}</p>
