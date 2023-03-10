@@ -18,16 +18,19 @@ function fetchAuthAsync(email, password) {
             dispatch(errorFetch(''));
 
             const user = await signin(email, password);
+            const accesstoken = user.accesstoken;
+            delete user.accesstoken;
+
             if (user) {
-                dispatch(setAuth(user.data.user));
-                Cookies.set('accesstoken', user.data.accesstoken);
-                Cookies.set('userCookie', JSON.stringify(user.data.user));
+                dispatch(setAuth(user));
+                Cookies.set('accesstoken', accesstoken);
+                Cookies.set('userCookie', JSON.stringify(user));
                 dispatch(errorFetch(''));
                 dispatch(endFetch());
             }
         } catch (error) {
             dispatch(setAuth(null));
-            dispatch(errorFetch(error.response.data.message));
+            dispatch(errorFetch(error));
             dispatch(endFetch());
         }
     }

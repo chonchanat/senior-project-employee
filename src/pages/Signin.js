@@ -30,7 +30,7 @@ function Signin() {
     }, [authReducer, navigate, dispatch]);
 
     const [user, setUser] = useState({
-        email: "pokpong.no@ku.th",
+        email: "t.chonchanat@hotmail.com",
         password: "12345",
     });
 

@@ -5,10 +5,10 @@ async function signin(username, password) {
         username: username,
         password: password,
     })
-    if (user.data.user.role === "customer") {
+    if (user.data.role === "customer") {
         throw new Error("Not found user");
     }
-    return user;
+    return user.data;
 }
 
 async function getAllAccount() {
