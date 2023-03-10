@@ -49,7 +49,7 @@ export const data = {
 
 export default function PopActivityChart() {
     return (
-        <div className="h-[300px] w-[500px]">
+        <div className="w-[500px]">
             <Bar options={options} data={data} />
         </div>
     );

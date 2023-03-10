@@ -5,7 +5,7 @@ import PieChart from "../chart/PieChart";
 import SamplePieDonutChart from "../chart/PieDonutChart";
 import RetrospectChart from "../chart/RetrospectChart";
 
-import { getActivityDay } from "../../api/chartAPI";
+import { getActivityDay, getActivityYear, getActivityGroup } from "../../api/chartAPI";
 
 function StatPage({ data }) {
 
@@ -13,18 +13,17 @@ function StatPage({ data }) {
     const [fromDate, setFromDate] = useState("2023-03-01");
     const [toDate, setToDate] = useState(formattedDate);
     const [datasets, setDatasets] = useState({
-        customerDay: null,
-        customerYear: null,
-        customerGroup: null,
+        activityDay: null,
+        activityYear: null,
+        activityGroup: null,
     });
 
     useEffect(() => {
         async function getCustomerDayChart() {
             const day = await getActivityDay(fromDate, toDate, data.code);
-            // const year = await getCustomerYear(toDate);
-            // const group = await getCustomerGroup();
-            // setDatasets({ ...datasets, customerDay: day, customerYear: year, customerGroup: group });
-            setDatasets({ ...datasets, customerDay: day });
+            const year = await getActivityYear(toDate, data.code);
+            const group = await getActivityGroup(data.code);
+            setDatasets({ ...datasets, activityDay: day, activityYear: year, activityGroup: group });
         }
         getCustomerDayChart();
     }, [toDate])
@@ -45,11 +44,11 @@ function StatPage({ data }) {
                 <p>แสดงข้อมูลวันที่ : {formattedDate}</p>
             </div>
             <div className="flex justify-around items-center my-6">
-                {datasets.customerDay && <CustomerDayChart datasets={datasets.customerDay} />}
-                {datasets.customerGroup && <PieChart />}
+                {datasets.activityDay && <CustomerDayChart datasets={datasets.activityDay} />}
+                {datasets.activityGroup && <PieChart datasets={datasets.activityGroup}/>}
             </div>
             <div className="flex justify-around items-center">
-                {datasets.customerYear && <RetrospectChart />}
+                {datasets.activityYear && <RetrospectChart datasets={datasets.activityYear} />}
                 <SamplePieDonutChart />
             </div>
         </div>

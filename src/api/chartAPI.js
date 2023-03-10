@@ -65,4 +65,35 @@ async function getActivityDay(fromDate, toDate, code) {
     }
 }
 
-export { getCustomerDay, getCustomerYear, getCustomerGroup, getActivityDay }
+async function getActivityYear(toDate, code) {
+    const isoToDate = new Date(toDate).toISOString();
+    try {
+        const response = await axios.get(`/activity/peryear/${code}?&max=${isoToDate}`, {
+            headers: {
+                'Authorization': `Bearer ${getToken()}`,
+                'Content-Type': 'application/json',
+            }
+        })
+        return response.data.stat;
+    } catch (error) {
+        console.log(error)
+        return [];
+    }
+}
+
+async function getActivityGroup(code) {
+    try {
+        const response = await axios.get(`/activity/queuesize/${code}`, {
+            headers: {
+                'Authorization': `Bearer ${getToken()}`,
+                'Content-Type': 'application/json',
+            }
+        })
+        return response.data.stat;
+    } catch (error) {
+        console.log(error)
+        return [];
+    }
+}
+
+export { getCustomerDay, getCustomerYear, getCustomerGroup, getActivityDay, getActivityYear, getActivityGroup }

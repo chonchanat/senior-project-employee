@@ -55,7 +55,7 @@ export default function RetrospectChart({ datasets }) {
         ],
     };
     return (
-        <div className="h-[300px] w-[500px]">
+        <div className="w-[500px]">
             <Line options={options} data={data} />
         </div>
     );
