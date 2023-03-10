@@ -56,7 +56,7 @@ async function register(data) {
 }
 
 async function updateUser(data) {
-    try { 
+    try {
         await axios.put(`/auth/user`, data, {
             headers: {
                 'Authorization': `Bearer ${getToken()}`,
@@ -70,7 +70,7 @@ async function updateUser(data) {
 
 async function changePassword(data) {
     console.log(data)
-    try { 
+    try {
         const res = await axios.post(`/auth/user/changepassword`, data, {
             headers: {
                 'Authorization': `Bearer ${getToken()}`,
@@ -98,4 +98,18 @@ async function deleteUser(data) {
     }
 }
 
-export { signin, getAllAccount, getOneAccount, register, updateUser, changePassword, deleteUser };
+async function resetSystem() {
+    try {
+        const response = await axios.get(`/auth`, {
+            headers: {
+                'Authorization': `Bearer ${getToken()}`,
+                'Content-Type': 'application/json',
+            }
+        })
+        console.log(response)
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+export { signin, getAllAccount, getOneAccount, register, updateUser, changePassword, deleteUser, resetSystem };

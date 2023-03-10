@@ -126,4 +126,19 @@ async function getActivityPop() {
     }
 }
 
-export { getCustomerDay, getCustomerYear, getCustomerGroup, getActivityDay, getActivityYear, getActivityGroup, getActivityRatio, getActivityPop }
+async function getOverall() {
+    try {
+        const response = await axios.get(`/auth/datastat`, {
+            headers: {
+                'Authorization': `Bearer ${getToken()}`,
+                'Content-Type': 'application/json',
+            }
+        })
+        return response.data.stat;
+    } catch (error) {
+        console.log(error)
+        return [];
+    }
+}
+
+export { getCustomerDay, getCustomerYear, getCustomerGroup, getActivityDay, getActivityYear, getActivityGroup, getActivityRatio, getActivityPop, getOverall }

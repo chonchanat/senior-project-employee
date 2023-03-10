@@ -10,7 +10,7 @@ function BlockMobile({ children }) {
 
 function BlockDesktop({ children }) {
     return (
-        <div className="bg-bg-desktop px-0 min-w-[1024px] max-w-[1920px] mx-auto flex min-h-screen xl:px-20">
+        <div className="bg-bg-desktop px-0 min-w-[1024px] max-w-[1920px] mx-auto flex min-h-screen xl:px-8 2xl:px-20">
             {children}
         </div>
     );

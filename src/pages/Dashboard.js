@@ -9,7 +9,7 @@ import CustomerDayChart from '../components/chart/CustomerDayChart';
 import PopActivityChart from '../components/chart/PopActivityChart';
 import RetrospectChart from '../components/chart/RetrospectChart';
 
-import { getCustomerDay, getCustomerYear, getCustomerGroup, getActivityPop } from '../api/chartAPI';
+import { getCustomerDay, getCustomerYear, getCustomerGroup, getActivityPop, getOverall } from '../api/chartAPI';
 
 function Dashboard() {
     const formattedDate = new Date(new Date()).toISOString().slice(0, 10);
@@ -21,6 +21,7 @@ function Dashboard() {
         customerGroup: null,
         activityPop: null,
     });
+    const [overall, setOverall] = useState(null);
 
     function changeIso(e, func) {
         const date = e.target.value;
@@ -34,6 +35,8 @@ function Dashboard() {
             const group = await getCustomerGroup();
             const pop = await getActivityPop();
             setDatasets({ ...datasets, customerDay: day, customerYear: year, customerGroup: group, activityPop: pop });
+            const overallStat = await getOverall();
+            setOverall(overallStat)
         }
         getCustomerDayChart();
     }, [fromDate, toDate])
@@ -45,7 +48,7 @@ function Dashboard() {
             <BlockDesktopRight>
                 <HeadDesktop><p>กระดานข้อมูล</p></HeadDesktop>
                 <ContentDesktop>
-                    <GeneralDashboard />
+                    <GeneralDashboard data={overall}/>
                     <div className="flex items-center justify-between my-4">
                         <div className="flex items-center">
                             <input className="border-1 border px-2 rounded-md" type="date" value={fromDate} onChange={(e) => changeIso(e, setFromDate)} />
