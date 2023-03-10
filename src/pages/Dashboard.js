@@ -9,7 +9,7 @@ import CustomerDayChart from '../components/chart/CustomerDayChart';
 import PopActivityChart from '../components/chart/PopActivityChart';
 import RetrospectChart from '../components/chart/RetrospectChart';
 
-import { getCustomerDay, getCustomerYear, getCustomerGroup } from '../api/chartAPI';
+import { getCustomerDay, getCustomerYear, getCustomerGroup, getActivityPop } from '../api/chartAPI';
 
 function Dashboard() {
     const formattedDate = new Date(new Date()).toISOString().slice(0, 10);
@@ -19,6 +19,7 @@ function Dashboard() {
         customerDay: null,
         customerYear: null,
         customerGroup: null,
+        activityPop: null,
     });
 
     function changeIso(e, func) {
@@ -31,7 +32,8 @@ function Dashboard() {
             const day = await getCustomerDay(fromDate, toDate);
             const year = await getCustomerYear(toDate);
             const group = await getCustomerGroup();
-            setDatasets({ ...datasets, customerDay: day, customerYear: year, customerGroup: group });
+            const pop = await getActivityPop();
+            setDatasets({ ...datasets, customerDay: day, customerYear: year, customerGroup: group, activityPop: pop });
         }
         getCustomerDayChart();
     }, [toDate])
@@ -58,7 +60,7 @@ function Dashboard() {
                             {datasets.customerGroup && <PieChart datasets={datasets.customerGroup} />}
                         </div>
                         <div className="flex justify-around items-center">
-                            <PopActivityChart />
+                            {datasets.activityPop && <PopActivityChart datasets={datasets.activityPop}/>}
                             {datasets.customerYear && <RetrospectChart datasets={datasets.customerYear} />}
                         </div>
                     </div>

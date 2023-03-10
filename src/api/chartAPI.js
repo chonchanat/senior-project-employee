@@ -111,4 +111,19 @@ async function getActivityRatio(code) {
     }
 }
 
-export { getCustomerDay, getCustomerYear, getCustomerGroup, getActivityDay, getActivityYear, getActivityGroup, getActivityRatio }
+async function getActivityPop() {
+    try {
+        const response = await axios.get(`/activity/played-time/`, {
+            headers: {
+                'Authorization': `Bearer ${getToken()}`,
+                'Content-Type': 'application/json',
+            }
+        })
+        return response.data.stat;
+    } catch (error) {
+        console.log(error)
+        return [];
+    }
+}
+
+export { getCustomerDay, getCustomerYear, getCustomerGroup, getActivityDay, getActivityYear, getActivityGroup, getActivityRatio, getActivityPop }

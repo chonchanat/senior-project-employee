@@ -34,20 +34,29 @@ export const options = {
 
 const labels = ['RollerCoaster', 'Tornado', 'RideCamel', 'Vikings', 'FeedCabybara'];
 
-export const data = {
-    labels,
-    datasets: [
-        {
-            label: 'Dataset 1',
-            data: [99, 77, 66, 44, 22],
-            backgroundColor: 'rgba(244, 211, 94, 0.5)',
-            borderWidth: 2,
-            borderColor: 'rgba(244, 211, 94,1)'
-        },
-    ],
-};
+export default function PopActivityChart({ datasets }) {
 
-export default function PopActivityChart() {
+    const valueArr = [];
+    const labelsArr = [];
+
+    for (let i = 0; i < datasets.length; i++) {
+        labelsArr.push(String(datasets[i].name[1]));
+        valueArr.push(datasets[i].count);
+      }
+
+    const data = {
+        labels: labelsArr,
+        datasets: [
+            {
+                label: 'Dataset 1',
+                data: valueArr,
+                backgroundColor: 'rgba(244, 211, 94, 0.5)',
+                borderWidth: 2,
+                borderColor: 'rgba(244, 211, 94,1)'
+            },
+        ],
+    };
+
     return (
         <div className="w-[500px]">
             <Bar options={options} data={data} />
