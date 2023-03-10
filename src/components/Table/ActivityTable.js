@@ -49,7 +49,7 @@ function ActivityTable({ activityData }) {
                 <DataSection>
                     {activityData.length ?
                         activityData.map((row) =>
-                            <TableRow key={row.id}>
+                            <TableRow key={row.code}>
                                 <TableBody>{row.code}</TableBody>
                                 <TableBody>{row.name[0]}</TableBody>
                                 <TableBody><div className={`${handlerStatus(row.status)} w-[12px] h-[12px] rounded-full`} title={row.status} /></TableBody>

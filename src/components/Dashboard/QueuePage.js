@@ -1,8 +1,20 @@
+import { useEffect, useState } from 'react';
+
+import { getQueueOneActivity } from '../../api/queueAPI';
+
 import QueueTable from '../Table/QueueTable';
 
-import queueData from '../../fakeData/queueData';
+function QueuePage({ code }) {
 
-function QueuePage() {
+    const [queueData, setQeueuData] = useState([]);
+
+    useEffect(() => {
+        async function getQueue() {
+            const data = await getQueueOneActivity(code);
+            setQeueuData(data);
+        }
+        getQueue();
+    }, [code])
     return (
         <QueueTable queueData={queueData} />
     );
