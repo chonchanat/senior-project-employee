@@ -21,7 +21,7 @@ function PrivateRoute({ children }) {
             //call to fetch userData to save in authReducer
             dispatch(fetchUserData(accessTokenObj.username))
         }
-    }, [])
+    }, [accessToken, dispatch])
 
     // have no accessToken and redirect to signin page
     if (accessToken === undefined) {

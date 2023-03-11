@@ -29,7 +29,7 @@ function Signin() {
             }
         }
         signinWithToken();
-    }, [accesToken])
+    }, [accesToken, dispatch])
 
     // redirect to home if have authReducer (user data)
     useEffect(() => {
@@ -37,7 +37,7 @@ function Signin() {
             if(authReducer) navigate("/staff-dashboard");
         }
         redirectWithAuth();
-    }, [authReducer])
+    }, [authReducer, navigate])
 
     const [user, setUser] = useState({
         email: "t.chonchanat@hotmail.com",
