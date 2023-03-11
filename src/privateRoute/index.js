@@ -3,27 +3,42 @@ import { Navigate } from "react-router-dom";
 
 import Cookies from 'js-cookie';
 import { useEffect } from "react";
-import { setAuth } from "../actions/authActions";
+import { fetchUserData } from "../actions/authActions";
+
+import { Buffer } from 'buffer';
+Buffer.from('anything', 'base64');
 
 function PrivateRoute({ children }) {
 
     const dispatch = useDispatch();
     const reducers = useSelector(state => state);
-    // console.log(reducers);
-    const userCookie = Cookies.get("userCookie");
+    const accessToken = Cookies.get("accessToken");
 
+    // check accessToken in Cookies browser
     useEffect(() => {
-        if (userCookie) {
-            dispatch(setAuth(JSON.parse(userCookie)));
+        if (accessToken) {
+            const accessTokenObj = getOpenIDConnect(accessToken);
+            //call to fetch userData to save in authReducer
+            dispatch(fetchUserData(accessTokenObj.username))
         }
-    }, [userCookie, dispatch]);
+    }, [])
 
+    // have no accessToken and redirect to signin page
+    if (accessToken === undefined) {
+        return <Navigate to="/customer-signin" />;
+    }
+
+    // have accessToken and redirect to page
     if (reducers.authReducer) {
-        return userCookie !== undefined ? children : <Navigate to="/signin" />;
+        return children;
     }
-    if (reducers.authReducer === null && userCookie === undefined) {
-        return <Navigate to="/signin" />;
-    }
+}
+
+export function getOpenIDConnect(id_token) {
+    const openidBase64 = (id_token).split(".")[1];
+    if (!openidBase64) return "";
+    const buff = Buffer.from(openidBase64, "base64");
+    return JSON.parse(buff.toString("utf-8"));
 }
 
 export default PrivateRoute;

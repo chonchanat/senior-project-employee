@@ -5,7 +5,9 @@ import { ButtonSubmit } from '../components/Button';
 
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-import { fetchAuthAsync, setAuth } from "../actions/authActions";
+import { fetchAuthAsync, fetchUserData } from "../actions/authActions";
+
+import { getOpenIDConnect } from '../privateRoute/index.js';
 
 import Cookies from 'js-cookie';
 
@@ -15,19 +17,27 @@ function Signin() {
     const dispatch = useDispatch();
     const authReducer = useSelector(state => state.authReducer);
     const statusReducer = useSelector(state => state.statusReducer);
+    const accesToken = Cookies.get("accessToken");
 
+    // fetch accesToken
     useEffect(() => {
-        function signinWithAuth() {
-            const userCookie = Cookies.get("userCookie");
-            if (authReducer) {
-                navigate('/staff-dashboard')
+        function signinWithToken() {
+            if (accesToken) {
+                const username = getOpenIDConnect(accesToken).username;
+                //call to fetch userData to save in authReducer
+                dispatch(fetchUserData(username))
             }
-            if (userCookie) {
-                dispatch(setAuth(JSON.parse(userCookie)));
-            }
-        };
-        signinWithAuth();
-    }, [authReducer, navigate, dispatch]);
+        }
+        signinWithToken();
+    }, [accesToken])
+
+    // redirect to home if have authReducer (user data)
+    useEffect(() => {
+        function redirectWithAuth() {
+            if(authReducer) navigate("/staff-dashboard");
+        }
+        redirectWithAuth();
+    }, [authReducer])
 
     const [user, setUser] = useState({
         email: "t.chonchanat@hotmail.com",

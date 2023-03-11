@@ -1,6 +1,6 @@
 import { startFetch, endFetch, errorFetch } from './statusActions';
 
-import { signin } from '../api/userAPI';
+import { signin, getOneAccount } from '../api/userAPI';
 
 import Cookies from 'js-cookie';
 
@@ -11,26 +11,22 @@ const setAuth = (data) => {
     }
 }
 
-function fetchAuthAsync(email, password) {
+function fetchAuthAsync(phone, password) {
     return async function (dispatch) {
         try {
             dispatch(startFetch());
             dispatch(errorFetch(''));
 
-            const user = await signin(email, password);
-            const accesstoken = user.accesstoken;
-            delete user.accesstoken;
-
+            const user = await signin(phone, password);
             if (user) {
-                dispatch(setAuth(user));
-                Cookies.set('accesstoken', accesstoken);
-                Cookies.set('userCookie', JSON.stringify(user));
+                Cookies.set('accessToken', user.accesstoken);
                 dispatch(errorFetch(''));
                 dispatch(endFetch());
             }
         } catch (error) {
+            console.log(error)
             dispatch(setAuth(null));
-            dispatch(errorFetch(error));
+            dispatch(errorFetch(error.message));
             dispatch(endFetch());
         }
     }
@@ -42,4 +38,25 @@ function fetchUpdateAccount(data) {
     }
 }
 
-export { setAuth, fetchAuthAsync, fetchUpdateAccount };
+function fetchUserData(username) {
+    return async function (dispatch) {
+        try {
+            dispatch(startFetch());
+            dispatch(errorFetch(''));
+
+            const user = await getOneAccount(username);
+            if (user) {
+                dispatch(setAuth(user));
+                dispatch(errorFetch(''));
+                dispatch(endFetch());
+            }
+        } catch (error) {
+            console.log(error)
+            dispatch(setAuth(null));
+            dispatch(errorFetch(error.message));
+            dispatch(endFetch());
+        }
+    }
+}
+
+export { setAuth, fetchAuthAsync, fetchUpdateAccount, fetchUserData };

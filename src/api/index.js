@@ -8,7 +8,7 @@ axios.defaults.baseURL = "http://localhost:8080";
 // }
 
 export function getToken() {
-    return Cookies.get("accesstoken");
+    return Cookies.get("accessToken");
 }
 
 export default axios;
