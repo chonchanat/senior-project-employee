@@ -42,15 +42,13 @@ function ActivityDashboard() {
             <BlockDesktopRight>
                 <HeadDesktop><p>กระดานข้อมูล</p></HeadDesktop>
                 <ContentDesktop>
-                    {data &&
-                        <HeadContentDesktop>
-                            <div className="flex items-center">
-                                <IoIosArrowBack size="24px" className="cursor-pointer hover:text-[#c7c7c7] mr-2" onClick={() => navigate("/staff-activity")} />
-                                <p>{data.name[0]}</p>
-                            </div>
-                            <p>สถานะ : {translateStatus()}</p>
-                        </HeadContentDesktop>
-                    }
+                    <HeadContentDesktop>
+                        <div className="flex items-center">
+                            <IoIosArrowBack size="24px" className="cursor-pointer hover:text-[#c7c7c7] mr-2" onClick={() => navigate("/staff-activity")} />
+                            {data && <p>{data.name[0]}</p>}
+                        </div>
+                        {data && <p>สถานะ : {translateStatus()}</p>}
+                    </HeadContentDesktop>
 
                     <div className="flex flex-1 flex-col overflow-auto">
                         <ActionDashboard data={data} setPage={setPage} />
@@ -65,7 +63,7 @@ function ActivityDashboard() {
                                     data && <StatPage data={data} />
                                     :
                                     page === "queue" ?
-                                        data && <QueuePage code={data.code}/>
+                                        data && <QueuePage code={data.code} />
                                         :
                                         <CommentPage data={data} />
                         }
