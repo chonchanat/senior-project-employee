@@ -27,7 +27,7 @@ function PrivateRoute({ children }) {
                 navigate("/staff-signin");
             }
         }
-    }, [accessToken, dispatch])
+    }, [accessToken, dispatch, navigate])
 
     // have no accessToken and redirect to signin page
     if (accessToken === undefined) {

@@ -18,11 +18,15 @@ function CustomerForm({ setPage }) {
         star: 0,
         members: 0,
     });
+    const [error, setError] = useState("");
 
     function handlerSubmit(event) {
         event.preventDefault();
+        setError("");
         const randomPassword = Math.random().toString(36).slice(-8);
-        register({ ...form, username: form.phone, password: randomPassword });
+        register({ ...form, username: form.phone, password: randomPassword })
+            .then(() => window.location.reload(true))
+            .catch(() => setError("Failed to create account"))
     }
 
     return (
@@ -52,6 +56,8 @@ function CustomerForm({ setPage }) {
                         <Button bgColor="bg-decline" width="w-28">Cancel</Button>
                     </div>
                 </div>
+
+                {error && <p className="text-center mt-6 text-red-500">{error}</p>}
             </form>
         </div>
     );

@@ -43,17 +43,12 @@ async function getOneAccount(data) {
 }
 
 async function register(data) {
-    try {
-        const response = await axios.post(`/auth/register`, data, {
-            headers: {
-                'Authorization': `Bearer ${getToken()}`,
-                'Content-Type': 'application/json',
-            }
-        })
-        console.log(response)
-    } catch (error) {
-        console.log(error);
-    }
+    await axios.post(`/auth/register`, data, {
+        headers: {
+            'Authorization': `Bearer ${getToken()}`,
+            'Content-Type': 'application/json',
+        }
+    })
 }
 
 async function updateUser(data) {

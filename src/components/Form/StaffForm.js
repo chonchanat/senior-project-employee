@@ -18,10 +18,14 @@ function StaffForm({ setPage }) {
         star: 0,
         members: 1,
     });
+    const [error, setError] = useState("");
 
     function handlerSubmit(e) {
         e.preventDefault();
-        register({ ...form, username: form.email, password: "12345" });
+        setError("");
+        register({ ...form, username: form.email, password: "12345" })
+            .then(() => window.location.reload(true))
+            .catch(() => setError("Failed to create account"));
     }
 
     return (
@@ -63,6 +67,8 @@ function StaffForm({ setPage }) {
                     <div className="w-[60px]" />
                     <Button bgColor="bg-decline" width="w-28" click={() => setPage("Table")}>ยกเลิก</Button>
                 </div>
+
+                {error && <p className="text-center mt-6 text-red-500">{error}</p>}
             </form>
         </div>
     );
