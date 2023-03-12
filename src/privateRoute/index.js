@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from "react-redux";
-import { Navigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 
 import Cookies from 'js-cookie';
 import { useEffect } from "react";
@@ -10,6 +10,7 @@ Buffer.from('anything', 'base64');
 
 function PrivateRoute({ children }) {
 
+    const navigate = useNavigate();
     const dispatch = useDispatch();
     const reducers = useSelector(state => state);
     const accessToken = Cookies.get("accessToken");
@@ -18,8 +19,13 @@ function PrivateRoute({ children }) {
     useEffect(() => {
         if (accessToken) {
             const accessTokenObj = getOpenIDConnect(accessToken);
-            //call to fetch userData to save in authReducer
-            dispatch(fetchUserData(accessTokenObj.username))
+            // check role user, have must admin or employee role
+            if (accessTokenObj.role !== "customer") {
+                // call to fetch userData to save in authReducer
+                dispatch(fetchUserData(accessTokenObj.username))
+            } else {
+                navigate("/staff-signin");
+            }
         }
     }, [accessToken, dispatch])
 

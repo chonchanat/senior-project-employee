@@ -17,24 +17,27 @@ function Signin() {
     const dispatch = useDispatch();
     const authReducer = useSelector(state => state.authReducer);
     const statusReducer = useSelector(state => state.statusReducer);
-    const accesToken = Cookies.get("accessToken");
+    const accessToken = Cookies.get("accessToken");
 
-    // fetch accesToken
+    // fetch accessToken
     useEffect(() => {
         function signinWithToken() {
-            if (accesToken) {
-                const username = getOpenIDConnect(accesToken).username;
-                //call to fetch userData to save in authReducer
-                dispatch(fetchUserData(username))
+            if (accessToken) {
+                const accessTokenObj = getOpenIDConnect(accessToken);
+                // check role user, have must admin or employee role
+                if (accessTokenObj !== "customer") {
+                    // call to fetch userData to save in authReducer
+                    dispatch(fetchUserData(accessTokenObj.username))
+                }
             }
         }
         signinWithToken();
-    }, [accesToken, dispatch])
+    }, [accessToken, dispatch])
 
     // redirect to home if have authReducer (user data)
     useEffect(() => {
         function redirectWithAuth() {
-            if(authReducer) navigate("/staff-dashboard");
+            if (authReducer) navigate("/staff-dashboard");
         }
         redirectWithAuth();
     }, [authReducer, navigate])
@@ -76,7 +79,7 @@ function Signin() {
                             <p className="h-[28px] text-right text-sm text-decline pt-2">{statusReducer.error}</p>
                         </div>
 
-                        <ButtonSubmit width="w-full" bgColor="bg-accept" font="font-bold" title="Login"/>
+                        <ButtonSubmit width="w-full" bgColor="bg-accept" font="font-bold" title="Login" />
                         <p className="text-right text-sm pt-2 hover:underline cursor-pointer">Forget Password?</p>
 
                     </form>
