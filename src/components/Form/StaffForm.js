@@ -26,7 +26,8 @@ function StaffForm({ setPage }) {
     async function handlerSubmit(e) {
         e.preventDefault();
         setNoti({ message: "กำลังโหลดข้อมูล", error: false })
-        await register({ ...form, username: form.email, password: "12345" })
+        const randomPassword = Math.random().toString(36).slice(-8);
+        await register({ ...form, username: form.email, password: randomPassword })
             .then(() => window.location.reload(true))
             .catch(() => { setNoti({ message: "สร้างบัญชีไม่สำเร็จ", error: true }) })
     }
