@@ -6,7 +6,7 @@ import { TfiHeadphoneAlt } from 'react-icons/tfi';
 function Card({ type, click, data, icon }) {
     return (
         <div className="w-[32%] h-[104px] py-2 bg-[#F4F4F4] rounded-xl shadow-md text-center text-sm cursor-pointer relative overflow-hidden mb-2" onClick={click}>
-            {icon}
+            {/* {icon} */}
             <p>{type === "customer" ? "ลูกค้า" : type === "employee" ? "พนักงาน" : "กิจกรรม"}</p>
             {data && <p className="my-2 text-2xl font-bold">{type === "customer" ? data.customerNow : type === "employee" ? data.staffNow : data.activityNow}</p>}
             {data && type === "customer" && <p>ทั้งหมด {data.customer} คน</p>}

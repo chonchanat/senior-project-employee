@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { Button } from '../Button';
+import { ButtonSubmit, Button } from '../Button';
 
 import { register } from '../../api/userAPI';
 
@@ -18,33 +18,40 @@ function StaffForm({ setPage }) {
         star: 0,
         members: 1,
     });
-    const [error, setError] = useState("");
+    const [noti, setNoti] = useState({
+        message: "",
+        error: false,
+    });
 
-    function handlerSubmit(e) {
+    async function handlerSubmit(e) {
         e.preventDefault();
-        setError("");
-        register({ ...form, username: form.email, password: "12345" })
+        setNoti({ message: "กำลังโหลดข้อมูล", error: false })
+        await register({ ...form, username: form.email, password: "12345" })
             .then(() => window.location.reload(true))
-            .catch(() => setError("Failed to create account"));
+            .catch(() => { setNoti({ message: "สร้างบัญชีไม่สำเร็จ", error: true }) })
     }
 
     return (
         <div className="flex justify-center">
-            <form>
+            <form onSubmit={handlerSubmit}>
                 <div className="w-[650px] flex justify-between items-center mb-4">ชื่อ
                     <input type="text" className="w-[500px] h-[36px] border-black rounded-md border px-6"
+                        required
                         onChange={(e) => setForm({ ...form, firstname: e.target.value })} />
                 </div>
                 <div className="w-[650px] flex justify-between items-center mb-4">นามสกุล
                     <input type="text" className="w-[500px] h-[36px] border-black rounded-md border px-6"
+                        required
                         onChange={(e) => setForm({ ...form, lastname: e.target.value })} />
                 </div>
                 <div className="w-[650px] flex justify-between items-center mb-4">เบอร์โทร
                     <input type="tel" className="w-[500px] h-[36px] border-black rounded-md border px-6"
+                        required
                         onChange={(e) => setForm({ ...form, phone: e.target.value })} />
                 </div>
                 <div className="w-[650px] flex justify-between items-center mb-4">อีเมล์
                     <input type="email" className="w-[500px] h-[36px] border-black rounded-md border px-6"
+                        required
                         onChange={(e) => setForm({ ...form, email: e.target.value })} />
                 </div>
                 <div className="w-[650px] flex justify-between items-center mb-4">ตำแหน่ง
@@ -63,12 +70,12 @@ function StaffForm({ setPage }) {
                 </div>
 
                 <div className="flex justify-center mt-10">
-                    <Button bgColor="bg-accept" width="w-28" click={handlerSubmit}>ยืนยัน</Button>
+                    <ButtonSubmit bgColor="bg-accept" width="w-28" title="ยืนยัน" />
                     <div className="w-[60px]" />
                     <Button bgColor="bg-decline" width="w-28" click={() => setPage("Table")}>ยกเลิก</Button>
                 </div>
 
-                {error && <p className="text-center mt-6 text-red-500">{error}</p>}
+                {noti.message && <p className={`text-center mt-6 ${noti.error ? "text-red-500" : "text-accept"}`}>{noti.message}</p>}
             </form>
         </div>
     );
