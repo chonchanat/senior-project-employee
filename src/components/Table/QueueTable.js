@@ -6,11 +6,6 @@ import {
 } from '../Table/Table'
 
 function QueueTable({ queueData }) {
-
-    function calRound(round) {
-        return round - (queueData[0].round - 1);
-    }
-
     return (
         <div className="flex-1 flex flex-col pt-2 overflow-auto">
             <p className="border-b-2 border-[#E0E0E0] pb-4 mb-4">ตารางคิว</p>
@@ -28,7 +23,7 @@ function QueueTable({ queueData }) {
                                 <TableBody>{index + 1}</TableBody>
                                 <TableBody>{row.queueId}</TableBody>
                                 <TableBody>{row.queueSize}</TableBody>
-                                <TableBody>{calRound(row.round)}</TableBody>
+                                <TableBody condition="head">{row.round}</TableBody>
                             </TableRow>
                         )
                         :
