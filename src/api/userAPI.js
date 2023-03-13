@@ -52,31 +52,22 @@ async function register(data) {
 }
 
 async function updateUser(data) {
-    try {
-        await axios.put(`/auth/user`, data, {
-            headers: {
-                'Authorization': `Bearer ${getToken()}`,
-                'Content-Type': 'application/json',
-            }
-        })
-    } catch (error) {
-        console.log(error)
-    }
+    return await axios.put(`/auth/user`, data, {
+        headers: {
+            'Authorization': `Bearer ${getToken()}`,
+            'Content-Type': 'application/json',
+        }
+    })
 }
 
 async function changePassword(data) {
-    console.log(data)
-    try {
-        const res = await axios.post(`/auth/user/changepassword`, data, {
-            headers: {
-                'Authorization': `Bearer ${getToken()}`,
-                'Content-Type': 'application/json',
-            }
-        })
-        console.log(res)
-    } catch (error) {
-        console.log(error)
-    }
+    const res = await axios.post(`/auth/user/changepassword`, data, {
+        headers: {
+            'Authorization': `Bearer ${getToken()}`,
+            'Content-Type': 'application/json',
+        }
+    })
+    return res
 }
 
 async function deleteUser(data) {

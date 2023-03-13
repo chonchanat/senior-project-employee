@@ -20,6 +20,10 @@ function Setting() {
         editState: false,
         pageState: "account",
     });
+    const [noti, setNoti] = useState({
+        message: "",
+        error: false,
+    });
 
     function acceptEdit() {
         setState({ ...state, editState: false })
@@ -29,10 +33,13 @@ function Setting() {
 
         // check password problem
         updateUser(backupData)
+            .then(() => setNoti({ message: "แก้ไขข้อมูลสำเร็จ", error: false }))
+            .catch((err) => { setNoti({ message: "แก้ไขข้อมูลไม่สำเร็จ", error: true }); console.log(err) })
     }
     function declineEdit() {
         setState({ ...state, editState: false })
         setBackupdata(authReducer);
+        setNoti({ message: "", error: false });
     }
 
     return (
@@ -63,7 +70,7 @@ function Setting() {
                             <p className={`absolute right-0 top-[-60px] text-sm cursor-pointer ${state.pageState === "password" && "hidden"}`} onClick={() => setState({ ...state, editState: true })}>แก้ไขบัญชี</p>
                         }
                         {state.pageState === "account" ?
-                            <SettingInfo data={backupData} setBackupdata={setBackupdata} state={state} />
+                            <SettingInfo data={backupData} setBackupdata={setBackupdata} state={state} noti={noti} />
                             :
                             <PasswordForm />
                         }
