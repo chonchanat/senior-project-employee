@@ -59,14 +59,16 @@ function ActivityForm({ setPage }) {
                 getDownloadURL(pictureFirebaseRef)
                     .then((url) => {
                         const data = { ...form, name: [nameForm.th, nameForm.eng], picture: url, position: [positionForm.x, positionForm.y] }
-                        postActivity(data).then(() => window.location.reload(true));
+                        postActivity(data)
+                            .then(() => { setNoti({ message: "สร้างกิจกรรมสำเร็จ", error: false }); window.location.reload(true) })
+                            .catch(() => setNoti({ message: "สร้างกิจกรรมไม่สำเร็จ", error: true }))
                     })
                     .catch((error) => {
-                        console.log(error);
+                        setNoti({ message: error, error: true });
                     })
             })
             .catch((error) => {
-                console.log(error);
+                setNoti({ message: error, error: true });
             })
     }
 

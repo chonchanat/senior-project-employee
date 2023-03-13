@@ -25,6 +25,7 @@ function ActivityInfoPage() {
             setBackupData(data);
             setNameForm({ th: data.name[0], eng: data.name[1] });
             setPositionForm({ x: data.position[0], y: data.position[1] });
+            setActivityStatus(data.status);
         }
         getActivity();
     }, [code])
@@ -33,6 +34,7 @@ function ActivityInfoPage() {
     const [backupData, setBackupData] = useState(null);
     const [nameForm, setNameForm] = useState(null)
     const [positionForm, setPositionForm] = useState(null);
+    const [activityStatus, setActivityStatus] = useState(null);
     const [state, setState] = useState({
         editState: false,
         modalOpen: false,
@@ -40,11 +42,16 @@ function ActivityInfoPage() {
         modalClose: false,
         modalTempClose: false,
     });
+    const [noti, setNoti] = useState({
+        message: "",
+        error: false,
+    });
 
     const imageRef = useRef();
 
 
     function acceptEdit() {
+        setNoti({ message: "กำลังโหลดช้อมูล", error: false })
         setState({ ...state, editState: false });
         setBackupData({ ...data, name: [nameForm.th, nameForm.eng], position: [positionForm.x, positionForm.y] });
         if (typeof (data.picture) !== "string") {
@@ -55,17 +62,23 @@ function ActivityInfoPage() {
                     getDownloadURL(pictureFirebaseRef)
                         .then((url) => {
                             const updateData = { ...data, name: [nameForm.th, nameForm.eng], picture: url, position: [positionForm.x, positionForm.y] }
-                            putActivity(updateData);
+                            putActivity(updateData)
+                                .then(() => setNoti({ message: "แก้ไขข้อมูลสำเร็จ", error: false }))
+                                .catch(() => setNoti({ message: "แก้ไขข้อมูลไม่สำเร็จ", error: true }))
                         })
                         .catch((error) => {
                             console.log(error);
+                            setNoti({ message: error, error: true })
                         })
                 })
                 .catch((error) => {
                     console.log(error);
+                    setNoti({ message: error, error: true })
                 })
         } else {
-            putActivity({ ...data, name: [nameForm.th, nameForm.eng], position: [positionForm.x, positionForm.y] });
+            putActivity({ ...data, name: [nameForm.th, nameForm.eng], position: [positionForm.x, positionForm.y] })
+                .then(() => setNoti({ message: "แก้ไขข้อมูลสำเร็จ", error: false }))
+                .catch(() => setNoti({ message: "แก้ไขข้อมูลไม่สำเร็จ", error: true }))
         }
     }
     function declineEdit() {
@@ -73,18 +86,22 @@ function ActivityInfoPage() {
         setData(backupData);
         setNameForm({ th: backupData.name[0], eng: backupData.name[1] });
         setPositionForm({ x: backupData.position[0], y: backupData.position[1] });
+        setNoti({ message: "", error: false });
     }
 
     function handlerOpen() {
         setState({ ...state, modalOpen: false });
+        setActivityStatus("open");
         putActivity({ ...data, status: "open" })
     }
     function handlerTempClose() {
         setState({ ...state, modalTempClose: false });
+        setActivityStatus("temporarily closed");
         putActivity({ ...data, status: "temporarily closed" })
     }
     function handlerClose() {
         setState({ ...state, modalClose: false });
+        setActivityStatus("closed");
         putActivity({ ...data, status: "closed" })
     }
     function handlerDelete() {
@@ -130,7 +147,7 @@ function ActivityInfoPage() {
                             {state.editState ?
                                 <HandlerEdit acceptEdit={acceptEdit} declineEdit={declineEdit} />
                                 :
-                                <HandlerDropdown state={state} setState={setState} click={handlerDashboard} />
+                                <HandlerDropdown state={state} setState={setState} click={handlerDashboard} activityStatus={activityStatus} />
                             }
 
                             <ActivityInfo data={data}
@@ -143,6 +160,9 @@ function ActivityInfoPage() {
                                 imageRef={imageRef}
                                 handlerChangeImage={handlerChangeImage}
                                 handlerUploadImage={handlerUploadImage} />
+
+                            {noti.message && <p className={`text-center mt-6 ${noti.error ? "text-red-500" : "text-accept"}`}>{noti.message}</p>}
+
                         </div>
                     }
                 </ContentDesktop>

@@ -9,7 +9,7 @@ import Wrapper from '../Wrapper';
 import { BsThreeDots } from 'react-icons/bs';
 import { MdCheck, MdClose, MdAnalytics } from 'react-icons/md';
 
-function HandlerDropdown({ state, setState, click }) {
+function HandlerDropdown({ state, setState, click, activityStatus }) {
     return (
         <div>
             <Wrapper state={state.dropState}
@@ -20,9 +20,9 @@ function HandlerDropdown({ state, setState, click }) {
                     <DropdownButton click={() => setState({ ...state, dropState: true })}><BsThreeDots size="28px" /></DropdownButton>
                     <DropdownBody state={state.dropState} offset="right-0">
                         <DropdownMenu click={() => setState({ ...state, editState: true, dropState: false })}>แก้ไขรายละเอียด</DropdownMenu>
-                        <DropdownMenu click={() => setState({ ...state, dropState: false, modalOpen: true })}>เปิดให้บริการ</DropdownMenu>
-                        <DropdownMenu click={() => setState({ ...state, dropState: false, modalTempClose: true })}>ปิดปรับปรุงชั่วคราว</DropdownMenu>
-                        <DropdownMenu click={() => setState({ ...state, dropState: false, modalClose: true })}>ปิดให้บริการ</DropdownMenu>
+                        {activityStatus !== "open" && <DropdownMenu click={() => setState({ ...state, dropState: false, modalOpen: true })}>เปิดให้บริการ</DropdownMenu>}
+                        {activityStatus !== "temporarily closed" && <DropdownMenu click={() => setState({ ...state, dropState: false, modalTempClose: true })}>ปิดปรับปรุงชั่วคราว</DropdownMenu>}
+                        {activityStatus !== "closed" && <DropdownMenu click={() => setState({ ...state, dropState: false, modalClose: true })}>ปิดให้บริการ</DropdownMenu>}
                         <DropdownMenu click={() => setState({ ...state, dropState: false, modalDelete: true })}>ลบกิจกรรม</DropdownMenu>
                     </DropdownBody>
                 </Dropdown>

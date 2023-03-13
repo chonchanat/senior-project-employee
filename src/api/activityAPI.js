@@ -54,16 +54,12 @@ async function deleteActivity(data) {
 }
 
 async function putActivity(data) {
-    try {
-        await axios.put(`/activity`, data, {
-            headers: {
-                'Authorization': `Bearer ${getToken()}`,
-                'Content-Type': 'application/json',
-            }
-        })
-    } catch (error) {
-        console.log(error);
-    }
+    await axios.put(`/activity`, data, {
+        headers: {
+            'Authorization': `Bearer ${getToken()}`,
+            'Content-Type': 'application/json',
+        }
+    })
 }
 
 export { getAllActivity, getOneActivity, postActivity, deleteActivity, putActivity };
