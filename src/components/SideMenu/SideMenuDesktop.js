@@ -30,9 +30,9 @@ function SideMenuDesktop() {
             <div className="w-[50px] h-full min-h-[800px] bg-fha-desktop rounded-xl shadow-xl mx-4 xl:w-[300px] xl:px-6 xl:pt-6 xl:pb-4 hidden xl:flex flex-col">
                 <div className="border-b-2 border-white flex pb-6">
                     <div className="pr-2">
-                        <CgProfile size="56px" color="black" />
+                        <CgProfile size="56px" className="text-yellow" />
                     </div>
-                    <div className="truncate pt-1">
+                    <div className="truncate pt-1 text-white">
                         <p className="text-lg font-bold">{authReducer.firstname} {authReducer.lastname}</p>
                         <p>{authReducer.role}</p>
                     </div>
