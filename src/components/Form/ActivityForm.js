@@ -30,6 +30,10 @@ function ActivityForm({ setPage }) {
         position: [],
     });
     const [picture, setPicture] = useState(null);
+    const [noti, setNoti] = useState({
+        message: "",
+        error: false,
+    });
 
     function handlerUploadImage() {
         imageRef.current.click();
@@ -41,6 +45,13 @@ function ActivityForm({ setPage }) {
     }
     function handlerSubmit(e) {
         e.preventDefault();
+        setNoti({ message: "กำลังโหลดข้อมูล", error: false });
+
+        if (!picture) {
+            setNoti({ message: "กรุณาอัปโหลดรูปภาพ", error: true });
+            return;
+        }
+
         const pictureName = picture.name.split(".").slice(0, -1).join("");
         const pictureFirebaseRef = ref(storage, pictureName);
         uploadBytes(pictureFirebaseRef, picture)
@@ -60,70 +71,74 @@ function ActivityForm({ setPage }) {
     }
 
     return (
-        <form onSubmit={handlerSubmit} className="flex flex-wrap justify-center h-fit">
-            <div className="w-[400px] flex justify-center items-center mb-4">
-                <img className={picture ? "w-[240px] rounded-md overflow-hidden shadow-md" : "w-[160px]"} src={picture ? URL.createObjectURL(picture) : defaultImage} alt="upload" onClick={handlerUploadImage} />
-                <input type="file" accept="image/*" ref={imageRef} className="hidden" onChange={handlerChangeImage} />
+        <form onSubmit={handlerSubmit}>
+            <div className="flex flex-wrap justify-center h-fit">
+                <div className="w-[400px] flex justify-center items-center mb-4">
+                    <img className={picture ? "w-[240px] rounded-md overflow-hidden shadow-md" : "w-[160px]"} src={picture ? URL.createObjectURL(picture) : defaultImage} alt="upload" onClick={handlerUploadImage} />
+                    <input type="file" accept="image/*" ref={imageRef} className="hidden" onChange={handlerChangeImage} />
+                </div>
+                <div className="w-[520px]">
+                    <div className="flex justify-between items-center mb-4">
+                        ชื่อกิจกรรม
+                        <input type="text" className="w-[364px] h-[36px] border-black rounded-md border px-6"
+                            required
+                            placeholder="ภาษาไทย"
+                            onChange={(e) => setNameForm({ ...nameForm, th: e.target.value })} />
+                    </div>
+                    <div className="flex justify-between items-center mb-4">
+                        ชื่อกิจกรรม
+                        <input type="text" className="w-[364px] h-[36px] border-black rounded-md border px-6"
+                            required
+                            placeholder="ภาษาอังกฤษ"
+                            onChange={(e) => setNameForm({ ...nameForm, eng: e.target.value })} />
+                    </div>
+                    <div className="flex justify-between items-center mb-4">
+                        รหัสกิจกรรม
+                        <input type="text" className="w-[364px] h-[36px] border-black rounded-md border px-6"
+                            required
+                            onChange={(e) => setForm({ ...form, code: e.target.value })} />
+                    </div>
+                    <div className="flex justify-between items-center mb-4">
+                        <p className="w-[104px]">จำนวนผู้เข้าร่วม</p>
+                        <input type="number" className="h-[36px] border-black rounded-md border px-6"
+                            required
+                            onChange={(e) => setForm({ ...form, size: parseInt(e.target.value) })} />
+                        <p className="w-[80px] text-right">คน/รอบ</p>
+                    </div>
+                    <div className="flex justify-between items-center mb-4">
+                        <p className="w-[104px]">ระยะเวลาเล่น</p>
+                        <input type="number" className="h-[36px] border-black rounded-md border px-6"
+                            required
+                            onChange={(e) => setForm({ ...form, duration: parseInt(e.target.value) })} />
+                        <p className="w-[80px] text-right">นาที/รอบ</p>
+                    </div>
+                    <div className="flex justify-between items-center mb-4">
+                        <p className="w-[104px]">จำนวนดาว</p>
+                        <input type="number" className="h-[36px] border-black rounded-md border px-6"
+                            required
+                            onChange={(e) => setForm({ ...form, star: parseInt(e.target.value) })} />
+                        <p className="w-[80px] text-right">ดวง/คน</p>
+                    </div>
+                    <div className="flex justify-between items-center mb-4">
+                        <p className="w-[104px]">พิกัด</p>
+                        <input type="text" className="w-[156px] h-[36px] border-black rounded-md border px-6"
+                            required
+                            placeholder="X"
+                            onChange={(e) => setPositionForm({ ...positionForm, x: parseFloat(e.target.value) })} />
+                        <input type="text" className="w-[156px] h-[36px] border-black rounded-md border px-6"
+                            required
+                            placeholder="Y"
+                            onChange={(e) => setPositionForm({ ...positionForm, y: parseFloat(e.target.value) })} />
+                    </div>
+                </div>
+                <div className="flex justify-center mt-10">
+                    <ButtonSubmit title="Submit" bgColor="bg-accept" width="w-[200px]" />
+                    <div className="w-[60px]" />
+                    <Button bgColor="bg-decline" width="w-[200px]" click={() => setPage("Table")}>Cancel</Button>
+                </div>
             </div>
-            <div className="w-[520px]">
-                <div className="flex justify-between items-center mb-4">
-                    ชื่อกิจกรรม
-                    <input type="text" className="w-[364px] h-[36px] border-black rounded-md border px-6"
-                        required
-                        placeholder="ภาษาไทย"
-                        onChange={(e) => setNameForm({ ...nameForm, th: e.target.value })} />
-                </div>
-                <div className="flex justify-between items-center mb-4">
-                    ชื่อกิจกรรม
-                    <input type="text" className="w-[364px] h-[36px] border-black rounded-md border px-6"
-                        required
-                        placeholder="ภาษาอังกฤษ"
-                        onChange={(e) => setNameForm({ ...nameForm, eng: e.target.value })} />
-                </div>
-                <div className="flex justify-between items-center mb-4">
-                    รหัสกิจกรรม
-                    <input type="text" className="w-[364px] h-[36px] border-black rounded-md border px-6"
-                        required
-                        onChange={(e) => setForm({ ...form, code: e.target.value })} />
-                </div>
-                <div className="flex justify-between items-center mb-4">
-                    <p className="w-[104px]">จำนวนผู้เข้าร่วม</p>
-                    <input type="number" className="h-[36px] border-black rounded-md border px-6"
-                        required
-                        onChange={(e) => setForm({ ...form, size: parseInt(e.target.value) })} />
-                    <p className="w-[80px] text-right">คน/รอบ</p>
-                </div>
-                <div className="flex justify-between items-center mb-4">
-                    <p className="w-[104px]">ระยะเวลาเล่น</p>
-                    <input type="number" className="h-[36px] border-black rounded-md border px-6"
-                        required
-                        onChange={(e) => setForm({ ...form, duration: parseInt(e.target.value) })} />
-                    <p className="w-[80px] text-right">นาที/รอบ</p>
-                </div>
-                <div className="flex justify-between items-center mb-4">
-                    <p className="w-[104px]">จำนวนดาว</p>
-                    <input type="number" className="h-[36px] border-black rounded-md border px-6"
-                        required
-                        onChange={(e) => setForm({ ...form, star: parseInt(e.target.value) })} />
-                    <p className="w-[80px] text-right">ดวง/คน</p>
-                </div>
-                <div className="flex justify-between items-center mb-4">
-                    <p className="w-[104px]">พิกัด</p>
-                    <input type="text" className="w-[156px] h-[36px] border-black rounded-md border px-6"
-                        required
-                        placeholder="X"
-                        onChange={(e) => setPositionForm({ ...positionForm, x: parseFloat(e.target.value) })} />
-                    <input type="text" className="w-[156px] h-[36px] border-black rounded-md border px-6"
-                        required
-                        placeholder="Y"
-                        onChange={(e) => setPositionForm({ ...positionForm, y: parseFloat(e.target.value) })} />
-                </div>
-            </div>
-            <div className="flex justify-center mt-10">
-                <ButtonSubmit title="Submit" bgColor="bg-accept" width="w-[200px]" />
-                <div className="w-[60px]" />
-                <Button bgColor="bg-decline" width="w-[200px]" click={() => setPage("Table")}>Cancel</Button>
-            </div>
+
+            {noti.message && <p className={`text-center mt-6 ${noti.error ? "text-red-500" : "text-accept"}`}>{noti.message}</p>}
         </form>
     );
 }

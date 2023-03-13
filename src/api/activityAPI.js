@@ -32,16 +32,12 @@ async function getOneActivity(data) {
 }
 
 async function postActivity(data) {
-    try {
-        await axios.post(`/activity`, data, {
-            headers: {
-                'Authorization': `Bearer ${getToken()}`,
-                'Content-Type': 'application/json',
-            }
-        })
-    } catch (error) {
-        console.log(error);
-    }
+    await axios.post(`/activity`, data, {
+        headers: {
+            'Authorization': `Bearer ${getToken()}`,
+            'Content-Type': 'application/json',
+        }
+    })
 }
 
 async function deleteActivity(data) {
