@@ -33,26 +33,29 @@ function PasswordForm() {
             password: form.oldPassword,
             newPassword: form.newPassword,
         })
-            .then(() => setNoti({ message: "เปลี่ยนรหัสผ่านสำเร็จ", error: false }))
-            .catch((err) => {setNoti({ message: "เปลี่ยนรหัสผ่านไม่สำเร็จ", error: true }); console.log(err)})
+            .then(() => { setNoti({ message: "เปลี่ยนรหัสผ่านสำเร็จ", error: false }); setForm({ oldPassword: "", newPassword: "", confirmPassword: "" }) })
+            .catch((err) => { setNoti({ message: "เปลี่ยนรหัสผ่านไม่สำเร็จ", error: true }); console.log(err) })
     }
 
     return (
         <form onSubmit={handlerChangePassword} className="flex flex-col items-center">
             <div className="w-[650px] flex justify-between items-center mb-4 mb-[40px]">รหัสผ่านเดิม
-                <input type="text" className={`w-[500px] h-[36px] rounded-md px-6 border-black border`} required
+                <input type="password" className={`w-[500px] h-[36px] rounded-md px-6 border-black border`}
+                    value={form.oldPassword} required
                     onChange={(e) => setForm({ ...form, oldPassword: e.target.value })} />
             </div>
             <div className="w-[650px] flex justify-between items-center mb-4 ">รหัสผ่านใหม่
-                <input type="text" className={`w-[500px] h-[36px] rounded-md px-6 border-black border`} required
+                <input type="password" className={`w-[500px] h-[36px] rounded-md px-6 border-black border`} 
+                    value={form.newPassword} required
                     onChange={(e) => setForm({ ...form, newPassword: e.target.value })} />
             </div>
             <div className="w-[650px] flex justify-between items-center mb-4 ">ยืนยันรหัสผ่าน
-                <input type="text" className={`w-[500px] h-[36px] rounded-md px-6 border-black border`} required
+                <input type="password" className={`w-[500px] h-[36px] rounded-md px-6 border-black border`} 
+                    value={form.confirmPassword} required
                     onChange={(e) => setForm({ ...form, confirmPassword: e.target.value })} />
             </div>
 
-            <ButtonSubmit bgColor="bg-accept" width="w-28" title="ยืนยัwน" />
+            <ButtonSubmit bgColor="bg-accept" width="w-28" title="ยืนยัน" />
 
             {noti.message && <p className={`text-center mt-6 ${noti.error ? "text-red-500" : "text-accept"}`}>{noti.message}</p>}
 
