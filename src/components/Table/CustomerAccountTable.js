@@ -7,15 +7,25 @@ import {
     TableRow,
     DataSection,
 } from '../Table/Table'
-
 import { ButtonTransparent } from '../Button';
 
 import { RiDeleteBin7Fill } from 'react-icons/ri';
+
+import { deleteUser } from '../../api/userAPI';
 
 function CustomerAccountTable({ accountData }) {
 
     const statusReducer = useSelector(state => state.statusReducer);
     const authReducer = useSelector(state => state.authReducer);
+
+    function convertUCTtoICT(time) {
+        const now = new Date(time);
+        const ictTimeString = now.toLocaleString('en-US', { timeZone: 'Asia/Bangkok' });
+        return ictTimeString;
+    }
+    function handlerDelete(row) {
+        deleteUser(row)
+    }
 
     return (
         statusReducer.loading ?
@@ -26,7 +36,7 @@ function CustomerAccountTable({ accountData }) {
             :
             <div className="h-full flex flex-col overflow-auto">
                 <TableRow condition="head">
-                    <TableHead>ID</TableHead>
+                    <TableHead>PHONE</TableHead>
                     <TableHead>MEMBER</TableHead>
                     <TableHead>STAR</TableHead>
                     <TableHead>TIME</TableHead>
@@ -36,13 +46,13 @@ function CustomerAccountTable({ accountData }) {
                     {accountData.length ?
                         accountData.map((row, index) =>
                             <TableRow key={index}>
-                                <TableBody>{row._id}</TableBody>
+                                <TableBody>{row.phone}</TableBody>
                                 <TableBody>{row.members}</TableBody>
                                 <TableBody>{row.star}</TableBody>
-                                <TableBody>{row.createdAt}</TableBody>
+                                <TableBody>{convertUCTtoICT(row.createdAt)}</TableBody>
                                 {authReducer.role === "admin" &&
                                     <TableBody>
-                                        <ButtonTransparent>
+                                        <ButtonTransparent click={() => handlerDelete(row)}>
                                             <RiDeleteBin7Fill size="24px" />
                                         </ButtonTransparent>
                                     </TableBody>}

@@ -53,7 +53,7 @@ function ActivityTable({ activityData }) {
                                 <TableBody>{row.code}</TableBody>
                                 <TableBody>{row.name[0]}</TableBody>
                                 <TableBody><div className={`${handlerStatus(row.status)} w-[12px] h-[12px] rounded-full`} title={row.status} /></TableBody>
-                                <TableBody>{row.duration}</TableBody>
+                                <TableBody>{row.allRounds.length}</TableBody>
                                 <TableBody>{row.rating}</TableBody>
                                 {authReducer.role === "admin" &&
                                     <TableBody>

@@ -1,11 +1,11 @@
 import { useNavigate } from 'react-router-dom'
 
 import { CgProfile } from 'react-icons/cg';
-import { BiLogOut } from 'react-icons/bi';
 import { RiArtboardFill, RiGamepadFill } from 'react-icons/ri';
 import { MdPeople } from 'react-icons/md';
 import { GiBilledCap } from 'react-icons/gi';
 import { IoMdSettings } from 'react-icons/io';
+import { IoLogOut} from 'react-icons/io5';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { setAuth } from '../../actions/authActions';
@@ -67,7 +67,7 @@ function SideMenuDesktop() {
                     </div>
                     <div className="px-5 py-3 rounded-md hover:bg-white hover:text-black flex cursor-pointer"
                         onClick={handlerLogout}>
-                        <BiLogOut size="20px" />
+                        <IoLogOut size="20px" />
                         <p className="pl-2">ออกจากระบบ</p>
                     </div>
                 </div>
@@ -90,7 +90,7 @@ function SideMenuDesktop() {
                 <div className="h-[120px] py-4 border-t-2 border-white text-white flex-col flex items-center justify-center">
                     <IoMdSettings size="28px" className="mb-4 cursor-pointer hover:text-black"
                         onClick={() => navigate("/staff-setting")} />
-                    <BiLogOut size="28px" className="cursor-pointer hover:text-black"
+                    <IoLogOut size="28px" className="cursor-pointer hover:text-black"
                         onClick={handlerLogout} />
                 </div>
             </div>

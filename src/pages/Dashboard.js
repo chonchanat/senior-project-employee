@@ -48,14 +48,11 @@ function Dashboard() {
             <BlockDesktopRight>
                 <HeadDesktop><p>กระดานข้อมูล</p></HeadDesktop>
                 <ContentDesktop>
-                    <GeneralDashboard data={overall}/>
-                    <div className="flex items-center justify-between my-4">
-                        <div className="flex items-center">
-                            <input className="border-1 border px-2 rounded-md" type="date" value={fromDate} onChange={(e) => changeIso(e, setFromDate)} />
-                            <p className="mx-2">to</p>
-                            <input className="border-1 border px-2 rounded-md" type="date" value={toDate} onChange={(e) => changeIso(e, setToDate)} />
-                        </div>
-                        <p>แสดงข้อมูลวันที่ : {formattedDate}</p>
+                    <GeneralDashboard data={overall} />
+                    <div className="flex items-center my-4">
+                        <input className="border-1 border px-2 rounded-md" type="date" value={fromDate} onChange={(e) => changeIso(e, setFromDate)} />
+                        <p className="mx-2">to</p>
+                        <input className="border-1 border px-2 rounded-md" type="date" value={toDate} onChange={(e) => changeIso(e, setToDate)} />
                     </div>
                     <div className="flex-1 overflow-x-hidden">
                         <div className="flex justify-around items-center mb-4">
