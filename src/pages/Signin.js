@@ -80,7 +80,6 @@ function Signin() {
                         </div>
 
                         <ButtonSubmit width="w-full" bgColor="bg-accept" font="font-bold" title="Login" />
-                        <p className="text-right text-sm pt-2 hover:underline cursor-pointer">Forget Password?</p>
 
                     </form>
                 </div>

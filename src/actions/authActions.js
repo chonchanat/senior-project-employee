@@ -19,7 +19,7 @@ function fetchAuthAsync(phone, password) {
 
             const user = await signin(phone, password);
             if (user) {
-                Cookies.set('accessToken', user.accesstoken);
+                Cookies.set('accessToken', user.accesstoken, { sameSite: "None", secure: true });
                 dispatch(errorFetch(''));
                 dispatch(endFetch());
             }
