@@ -18,46 +18,47 @@ function CustomerForm({ setPage }) {
         star: 0,
         members: 0,
     });
-    const [error, setError] = useState("");
+    const [noti, setNoti] = useState({
+        message: "",
+        error: false,
+    });
 
-    function handlerSubmit(event) {
+    async function handlerSubmit(event) {
         event.preventDefault();
-        setError("");
+        setNoti({ message: "กำลังโหลดข้อมูล", error: false })
         const randomPassword = Math.random().toString(36).slice(-8);
-        register({ ...form, username: form.phone, password: randomPassword })
+        await register({ ...form, username: form.phone, password: randomPassword })
             .then(() => window.location.reload(true))
-            .catch(() => setError("Failed to create account"))
+            .catch(() => { setNoti({ message: "สร้างบัญชีไม่สำเร็จ", error: true }) })
     }
 
     return (
         <div className="flex justify-center">
             <form onSubmit={handlerSubmit}>
                 <div className="w-[650px] flex justify-between items-center mb-4">อีเมล์
-                    <input type="email" className="w-[500px] h-[36px] border-black rounded-md border px-6"
+                    <input type="email" className="w-[500px] h-[36px] border-black rounded-md border px-6" required
                         onChange={(e) => setForm({ ...form, email: e.target.value })} />
                 </div>
                 <div className="w-[650px] flex justify-between items-center mb-4">เบอร์โทร
-                    <input type="tel" className="w-[500px] h-[36px] border-black rounded-md border px-6"
+                    <input type="tel" className="w-[500px] h-[36px] border-black rounded-md border px-6" required
                         onChange={(e) => setForm({ ...form, phone: e.target.value })} />
                 </div>
                 <div className="w-[650px] flex justify-between items-center mb-4">จำนวนลูกค้า
-                    <input type="number" className={`border-black w-[500px] h-[36px] rounded-md border px-6`}
+                    <input type="number" className={`border-black w-[500px] h-[36px] rounded-md border px-6`} required
                         onChange={(e) => setForm({ ...form, members: parseInt(e.target.value) })} />
                 </div>
                 <div className="w-[650px] flex justify-between items-center mb-4">จำนวนดาว
-                    <input type="number" className={`border-black w-[500px] h-[36px] rounded-md border px-6`}
+                    <input type="number" className={`border-black w-[500px] h-[36px] rounded-md border px-6`} required
                         onChange={(e) => setForm({ ...form, star: parseInt(e.target.value) })} />
                 </div>
 
                 <div className="flex justify-center mt-10">
-                    <ButtonSubmit title="Submit" bgColor="bg-accept" width="w-28" />
+                    <ButtonSubmit title="ยืนยัน" bgColor="bg-accept" width="w-28" />
                     <div className="w-[60px]" />
-                    <div onClick={() => setPage("Table")}>
-                        <Button bgColor="bg-decline" width="w-28">Cancel</Button>
-                    </div>
+                    <Button bgColor="bg-decline" width="w-28" click={() => setPage("Table")}>ยกเลิก</Button>
                 </div>
 
-                {error && <p className="text-center mt-6 text-red-500">{error}</p>}
+                {noti.message && <p className={`text-center mt-6 ${noti.error ? "text-red-500" : "text-accept"}`}>{noti.message}</p>}
             </form>
         </div>
     );
