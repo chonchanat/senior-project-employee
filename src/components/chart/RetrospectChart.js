@@ -41,9 +41,10 @@ export default function RetrospectChart({ datasets }) {
         labels,
         datasets: [
             {
-                label: 'Dataset 1',
+                label: 'จำนวนลูกค้า',
                 data: [datasets.jan, datasets.feb, datasets.mar, datasets.apr, datasets.may, datasets.jun, datasets.jul, datasets.aug, datasets.sep, datasets.oct, datasets.nov, datasets.dec],
                 borderColor: 'rgb(255, 99, 132)',
+                borderWidth: 2,
                 backgroundColor: 'rgba(255, 99, 132, 0.5)',
                 animations: {
                     tension: {

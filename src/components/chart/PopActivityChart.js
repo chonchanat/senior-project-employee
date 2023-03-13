@@ -27,7 +27,7 @@ export const options = {
         },
         title: {
             display: true,
-            text: 'แสดงผลกิจกรรมยอดนิยม',
+            text: 'แสดงผลกิจกรรมยอดนิยม (รวมเล่นซ้ำ)',
         },
     },
 };
@@ -46,7 +46,7 @@ export default function PopActivityChart({ datasets }) {
         labels: labelsArr,
         datasets: [
             {
-                label: 'Dataset 1',
+                label: 'จำนวนลูกค้า',
                 data: valueArr,
                 backgroundColor: 'rgba(244, 211, 94, 0.5)',
                 borderWidth: 2,

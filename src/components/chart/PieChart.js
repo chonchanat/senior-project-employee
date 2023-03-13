@@ -8,11 +8,11 @@ export const options = {
   responsive: true,
   plugins: {
     legend: {
-      position: 'top',
+      position: 'right',
     },
     title: {
       display: true,
-      text: 'แสดงผลจำนวนกลุ่มลูกค้า',
+      text: 'แสดงจำนวนขนาดของกลุ่มลูกค้า',
     },
   },
 };
@@ -38,7 +38,7 @@ export default function PieChart({ datasets }) {
   ];
 
   for (let i = 0; i < datasets.length; i++) {
-    labelsArr.push(String(datasets[i].member));
+    labelsArr.push(String(datasets[i].member)+" คน");
     valueArr.push(datasets[i].count);
   }
 
@@ -46,11 +46,11 @@ export default function PieChart({ datasets }) {
     labels: labelsArr,
     datasets: [
       {
-        label: '# of Votes',
+        label: 'จำนวน',
         data: valueArr,
         backgroundColor: backgroundColorArr.slice(0, datasets.length),
         borderColor: borderColor.slice(0, datasets.length),
-        borderWidth: 1,
+        borderWidth: 2,
       },
     ],
   };

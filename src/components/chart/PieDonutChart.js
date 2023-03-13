@@ -19,7 +19,7 @@ export const options = {
 
 export default function PieDonutChart({ datasets }) {
     const data = {
-        labels: ['Rest', 'Activity'],
+        labels: ['คิวที่เหลือ', 'คิวกิจกรรมนี้'],
         datasets: [
             {
                 label: '# of Votes',
