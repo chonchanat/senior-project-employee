@@ -78,7 +78,6 @@ async function deleteUser(data) {
                 'Content-Type': 'application/json',
             }
         })
-        console.log(response)
         window.location.reload(true)
     } catch (error) {
         console.log(error)

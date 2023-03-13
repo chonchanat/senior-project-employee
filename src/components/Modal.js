@@ -150,4 +150,33 @@ function ModalDeleteAccount({ data, state, setState, click }) {
     );
 }
 
-export { ModalOpen, ModalDelete, ModalClose, ModalTempClose, ModalDeleteAccount };
+function ModalDeleteCustomer({ data, state, setState, click }) {
+    return (
+        <div>
+            <Wrapper state={state} bgColor="bg-black/20"
+                click={() => setState(false)} />
+
+            <div className={`${styleModal}
+            ${state ? "top-[140px]" : "top-[120px] invisible"}`}
+                style={{ transition: "all 0.1s ease-out" }}>
+                <div className="px-6 py-4 flex flex-1 items-center">
+                    <AiOutlineDelete size="48px" className="bg-red-300 text-white rounded-full p-2 mr-4" />
+                    <div className="flex-1">
+                        <p className="text-lg font-bold">ลบลูกค้า</p>
+                        <p className="py-2">คุณแน่ใจว่าต้องการลบ <label className="font-bold">{data && data.username}</label> ออกจากบัญชีพนักงาน ข้อมูลที่ถูกบันทึกทั้งหมดจะหายไปอย่างถาวร โปรดตรวจสอบความถูกต้องก่อนกดยืนยัน</p>
+                    </div>
+                </div>
+                <div className="px-6 py-4 bg-[#F4F4F4] flex justify-end">
+                    <ButtonTransparent color="white" css="mr-6" width="w-24"
+                        click={() => setState(false)}>ยกเลิก</ButtonTransparent>
+                    <div className="w-24 p-2 bg-decline rounded-md border-2 border-decline text-center text-white text-sm cursor-pointer hover:text-decline hover:bg-white transition ease-in-out duration-150"
+                        onClick={() => click(data)}>
+                        <p>ยืนยัน</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+}
+
+export { ModalOpen, ModalDelete, ModalClose, ModalTempClose, ModalDeleteAccount, ModalDeleteCustomer };

@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useSelector } from 'react-redux';
 
 import Spinner from '../Spinner';
@@ -8,6 +9,7 @@ import {
     DataSection,
 } from '../Table/Table'
 import { ButtonTransparent } from '../Button';
+import { ModalDeleteCustomer } from '../Modal';
 
 import { RiDeleteBin7Fill } from 'react-icons/ri';
 
@@ -18,13 +20,20 @@ function CustomerAccountTable({ accountData }) {
     const statusReducer = useSelector(state => state.statusReducer);
     const authReducer = useSelector(state => state.authReducer);
 
+    const [data, setData] = useState(null);
+    const [modalDelete, setModalDelete] = useState(false);
+
     function convertUCTtoICT(time) {
         const now = new Date(time);
         const ictTimeString = now.toLocaleString('en-US', { timeZone: 'Asia/Bangkok' });
         return ictTimeString;
     }
+    function handlerClick(row) {
+        setData(row);
+        setModalDelete(true);
+    }
     function handlerDelete(row) {
-        deleteUser(row)
+        deleteUser(row);
     }
 
     return (
@@ -35,6 +44,8 @@ function CustomerAccountTable({ accountData }) {
             </div>
             :
             <div className="h-full flex flex-col overflow-auto">
+                <ModalDeleteCustomer data={data} state={modalDelete} setState={setModalDelete} click={handlerDelete} />
+
                 <TableRow condition="head">
                     <TableHead>PHONE</TableHead>
                     <TableHead>MEMBER</TableHead>
@@ -52,7 +63,7 @@ function CustomerAccountTable({ accountData }) {
                                 <TableBody>{convertUCTtoICT(row.createdAt)}</TableBody>
                                 {authReducer.role === "admin" &&
                                     <TableBody>
-                                        <ButtonTransparent click={() => handlerDelete(row)}>
+                                        <ButtonTransparent click={() => handlerClick(row)}>
                                             <RiDeleteBin7Fill size="24px" />
                                         </ButtonTransparent>
                                     </TableBody>}

@@ -1,8 +1,8 @@
 import axios from "axios";
 import Cookies from 'js-cookie';
 
-axios.defaults.baseURL = "http://localhost:8080";
-// axios.defaults.baseURL = "http://eticket.kraikub.com";
+// axios.defaults.baseURL = "http://localhost:8080";
+axios.defaults.baseURL = "https://eticket.kraikub.com";
 // axios.defaults.headers.common = {
 //     'Authorization': `Bearer ${token}`,
 //     'Content-Type': 'application/json'
