@@ -12,25 +12,40 @@ export const options = {
         },
         title: {
             display: true,
-            text: 'แสดงผลสัดส่วนจำนวนคิวกิจกรรมต่อทั้งหมด',
+            text: 'แสดงผลสัดส่วนจำนวนคิวกิจกรรมต่อทั้งหมด (%)',
         },
     },
 };
 
 export default function PieDonutChart({ datasets }) {
+
+    const labelsArr = [];
+    const valueArr = [];
+    if (datasets.all === 0) {
+        labelsArr.push("ไม่มีข้อมูล");
+        valueArr.push(1);
+    } else {
+        const restPercent = (datasets.all - datasets.one) / datasets.all * 100;
+        const onePercent = datasets.one / datasets.all * 100;
+        labelsArr.push("คิวกิจกรรมนี้");
+        labelsArr.push("คิวที่เหลือ");
+        valueArr.push(onePercent);
+        valueArr.push(restPercent);
+    }
+
     const data = {
-        labels: ['คิวที่เหลือ', 'คิวกิจกรรมนี้'],
+        labels: labelsArr,
         datasets: [
             {
-                label: '# of Votes',
-                data: [datasets.all - datasets.one, datasets.one],
+                label: 'เปอร์เซ็นต์',
+                data: valueArr,
                 backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(75, 192, 192, 0.3)',
+                    'rgba(255, 99, 132, 0.3)',
                 ],
                 borderColor: [
+                    'rgba(75, 192, 192, 1)',
                     'rgba(255, 99, 132, 1)',
-                    'rgba(54, 162, 235, 1)',
                 ],
                 borderWidth: 1,
             },

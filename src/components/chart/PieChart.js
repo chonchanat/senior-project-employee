@@ -38,8 +38,12 @@ export default function PieChart({ datasets }) {
   // ];
 
   for (let i = 0; i < datasets.length; i++) {
-    labelsArr.push(String(datasets[i].member)+" คน");
+    labelsArr.push(String(datasets[i].member) + " คน");
     valueArr.push(datasets[i].count);
+  }
+  if(datasets.length === 0) {
+    labelsArr.push("ไม่มีข้อมูล");
+    valueArr.push(1);
   }
 
   const data = {
@@ -51,24 +55,24 @@ export default function PieChart({ datasets }) {
         // data: [99, 70, 60, 45, 38],
         data: valueArr,
         backgroundColor: [
-          'rgba(255, 99, 132, 0.4)',
-          'rgba(54, 162, 235, 0.4)',
-          'rgba(255, 206, 86, 0.4)',
-          'rgba(160, 180, 255, 0.4)',
-          'rgba(75, 192, 192, 0.4)',
-          'rgba(255, 204, 229,0.4)'
+          'rgba(54, 162, 235, 0.3)',
+          'rgba(255, 206, 86, 0.3)',
+          'rgba(160, 180, 255, 0.3)',
+          'rgba(75, 192, 192, 0.3)',
+          'rgba(255, 204, 229,0.3)',
+          'rgba(255, 99, 132, 0.3)',
         ],
         // backgroundColor: backgroundColorArr.slice(0, datasets.length),
         borderColor: [
-          'rgba(255, 99, 132, 1)',
           'rgba(54, 162, 235, 1)',
           'rgba(255, 206, 86, 1)',
           'rgba(160, 180, 255, 1)',
           'rgba(75, 192, 192, 1)',
-          'rgba(255, 204, 229, 1)'
+          'rgba(255, 204, 229, 1)',
+          'rgba(255, 99, 132, 1)',
         ],
         // borderColor: borderColor.slice(0, datasets.length),
-        borderWidth: 2,
+        borderWidth: 1,
       },
     ],
   };
