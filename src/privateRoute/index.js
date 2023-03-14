@@ -13,7 +13,7 @@ function PrivateRoute({ children }) {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const reducers = useSelector(state => state);
-    const accessToken = Cookies.get("accessToken");
+    const accessToken = Cookies.get("accessStaffToken");
 
     // check accessToken in Cookies browser
     useEffect(() => {

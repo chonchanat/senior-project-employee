@@ -20,7 +20,7 @@ function SideMenuDesktop() {
     const authReducer = useSelector(state => state.authReducer);
 
     function handlerLogout() {
-        Cookies.remove("accessToken");
+        Cookies.remove("accessStaffToken");
         dispatch(setAuth(null));
         navigate('/signin');
     }

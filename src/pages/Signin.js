@@ -17,7 +17,7 @@ function Signin() {
     const dispatch = useDispatch();
     const authReducer = useSelector(state => state.authReducer);
     const statusReducer = useSelector(state => state.statusReducer);
-    const accessToken = Cookies.get("accessToken");
+    const accessToken = Cookies.get("accessStaffToken");
 
     // fetch accessToken
     useEffect(() => {

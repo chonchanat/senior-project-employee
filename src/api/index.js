@@ -9,7 +9,7 @@ axios.defaults.baseURL = "https://eticket.kraikub.com";
 // }
 
 export function getToken() {
-    return Cookies.get("accessToken");
+    return Cookies.get("accessStaffToken");
 }
 
 export default axios;
