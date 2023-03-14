@@ -14,7 +14,6 @@ import { IoMdSettings } from 'react-icons/io';
 import { HiClipboard } from 'react-icons/hi';
 
 function ActivityTable({ activityData }) {
-    
     const navigate = useNavigate();
 
     const statusReducer = useSelector(state => state.statusReducer);
@@ -29,6 +28,20 @@ function ActivityTable({ activityData }) {
             return "bg-decline";
         }
     }
+    function showQueue(row) {
+        let countQueue = 0;
+        for (const q of row) {
+            countQueue += q.queueId.length;
+        };
+        return countQueue;
+    }
+    function showMember(row, size) {
+        let countMember = 0;
+        for (const q of row) {
+            countMember += size - q.space;
+        };
+        return countMember;
+    }
 
     return (
         statusReducer.loading ?
@@ -42,7 +55,8 @@ function ActivityTable({ activityData }) {
                     <TableHead>CODE</TableHead>
                     <TableHead>NAME</TableHead>
                     <TableHead>STATUS</TableHead>
-                    <TableHead>ROUND</TableHead>
+                    <TableHead>C.QUEUE</TableHead>
+                    <TableHead>C.MEMBER</TableHead>
                     <TableHead>RATING</TableHead>
                     {authReducer.role === "admin" && <TableHead>ACTION</TableHead>}
                 </TableRow>
@@ -53,7 +67,8 @@ function ActivityTable({ activityData }) {
                                 <TableBody>{row.activity.code}</TableBody>
                                 <TableBody>{row.activity.name[0]}</TableBody>
                                 <TableBody><div className={`${handlerStatus(row.activity.status)} w-[12px] h-[12px] rounded-full`} title={row.status} /></TableBody>
-                                <TableBody>{row.waitRound}</TableBody>
+                                <TableBody>{showQueue(row.activity.allRounds)}</TableBody>
+                                <TableBody>{showMember(row.activity.allRounds, row.activity.size)}</TableBody>
                                 <TableBody>{row.activity.rating}</TableBody>
                                 {authReducer.role === "admin" &&
                                     <TableBody>
