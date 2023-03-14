@@ -62,4 +62,13 @@ async function putActivity(data) {
     })
 }
 
-export { getAllActivity, getOneActivity, postActivity, deleteActivity, putActivity };
+async function temporaryClosed(data) {
+    await axios.get(`/activity/temporary-close/${data}`, {
+        headers: {
+            'Authorization': `Bearer ${getToken()}`,
+            'Content-Type': 'application/json',
+        }
+    })
+}
+
+export { getAllActivity, getOneActivity, postActivity, deleteActivity, putActivity, temporaryClosed };

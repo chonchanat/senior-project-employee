@@ -47,7 +47,7 @@ function ActivityTable({ activityData }) {
                     {authReducer.role === "admin" && <TableHead>ACTION</TableHead>}
                 </TableRow>
                 <DataSection>
-                    {activityData !== undefined ?
+                    {activityData.length ?
                         activityData.map((row) =>
                             <TableRow key={row.activity.code}>
                                 <TableBody>{row.activity.code}</TableBody>

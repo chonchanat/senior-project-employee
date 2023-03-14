@@ -43,8 +43,8 @@ function Signin() {
     }, [authReducer, navigate])
 
     const [user, setUser] = useState({
-        email: "t.chonchanat@hotmail.com",
-        password: "12345",
+        email: "",
+        password: "",
     });
 
     function handlerSignin(e) {

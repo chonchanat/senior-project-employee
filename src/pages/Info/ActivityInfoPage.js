@@ -9,7 +9,7 @@ import { HandlerDropdown, HandlerEdit } from '../../components/Etc/ActivityInfoP
 
 import { IoIosArrowBack } from 'react-icons/io';
 
-import { getOneActivity, deleteActivity, putActivity } from '../../api/activityAPI';
+import { getOneActivity, deleteActivity, putActivity, temporaryClosed } from '../../api/activityAPI';
 
 import { storage } from '../../firebase';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
@@ -97,7 +97,8 @@ function ActivityInfoPage() {
     function handlerTempClose() {
         setState({ ...state, modalTempClose: false });
         setActivityStatus("temporarily closed");
-        putActivity({ ...data, status: "temporarily closed" })
+        putActivity({ ...data, status: "temporarily closed" });
+        temporaryClosed(data.code);
     }
     function handlerClose() {
         setState({ ...state, modalClose: false });

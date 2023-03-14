@@ -25,8 +25,13 @@ function CustomerAccountTable({ accountData }) {
 
     function convertUCTtoICT(time) {
         const now = new Date(time);
-        const ictTimeString = now.toLocaleString('en-US', { timeZone: 'Asia/Bangkok' });
-        return ictTimeString;
+        const ictTimeString = now.toLocaleString('en-US', { timeZone: 'Asia/Bangkok' }).split(",");
+        return (
+            <div>
+                <p>{ictTimeString[0]}</p>
+                <p>{ictTimeString[1]}</p>
+            </div>
+        );
     }
     function handlerClick(row) {
         setData(row);
@@ -48,6 +53,7 @@ function CustomerAccountTable({ accountData }) {
 
                 <TableRow condition="head">
                     <TableHead>PHONE</TableHead>
+                    <TableHead>FIRSTNAME</TableHead>
                     <TableHead>MEMBER</TableHead>
                     <TableHead>STAR</TableHead>
                     <TableHead>TIME</TableHead>
@@ -58,6 +64,7 @@ function CustomerAccountTable({ accountData }) {
                         accountData.map((row, index) =>
                             <TableRow key={index}>
                                 <TableBody>{row.phone}</TableBody>
+                                <TableBody>{row.firstname}</TableBody>
                                 <TableBody>{row.members}</TableBody>
                                 <TableBody>{row.star}</TableBody>
                                 <TableBody>{convertUCTtoICT(row.createdAt)}</TableBody>
