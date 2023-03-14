@@ -42,6 +42,7 @@ export default function RetrospectChart({ datasets }) {
         datasets: [
             {
                 label: 'จำนวนลูกค้า',
+                // data: [521, 423, 567, 622, 862, 487, 678, 876, 612, 764, 865, 687],
                 data: [datasets.jan, datasets.feb, datasets.mar, datasets.apr, datasets.may, datasets.jun, datasets.jul, datasets.aug, datasets.sep, datasets.oct, datasets.nov, datasets.dec],
                 borderColor: 'rgb(255, 99, 132)',
                 borderWidth: 2,

@@ -41,6 +41,7 @@ export default function CustomerDayChart({ datasets }) {
         datasets: [
             {
                 label: 'จำนวนลูกค้า',
+                // data: [782, 601, 729, 902, 802, 1023, 1321],
                 data: [datasets.sun, datasets.mon, datasets.tue, datasets.wed, datasets.thu, datasets.fri, datasets.sat],
                 backgroundColor: [
                     'rgba(255, 80, 80, 0.5)',

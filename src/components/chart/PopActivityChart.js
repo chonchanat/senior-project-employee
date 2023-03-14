@@ -43,10 +43,12 @@ export default function PopActivityChart({ datasets }) {
       }
 
     const data = {
+        // labels: ["Roller Coaster", "Feed Cabybara", "Tornado", "Vikings", "Ride Camel"],
         labels: labelsArr,
         datasets: [
             {
                 label: 'จำนวนลูกค้า',
+                // data: [321, 289, 268, 230, 199],
                 data: valueArr,
                 backgroundColor: 'rgba(244, 211, 94, 0.5)',
                 borderWidth: 2,

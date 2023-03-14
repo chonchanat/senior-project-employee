@@ -14,7 +14,7 @@ import { IoMdSettings } from 'react-icons/io';
 import { HiClipboard } from 'react-icons/hi';
 
 function ActivityTable({ activityData }) {
-
+    
     const navigate = useNavigate();
 
     const statusReducer = useSelector(state => state.statusReducer);
@@ -42,26 +42,26 @@ function ActivityTable({ activityData }) {
                     <TableHead>CODE</TableHead>
                     <TableHead>NAME</TableHead>
                     <TableHead>STATUS</TableHead>
-                    <TableHead>QUEUE</TableHead>
+                    <TableHead>ROUND</TableHead>
                     <TableHead>RATING</TableHead>
                     {authReducer.role === "admin" && <TableHead>ACTION</TableHead>}
                 </TableRow>
                 <DataSection>
-                    {activityData.length ?
+                    {activityData !== undefined ?
                         activityData.map((row) =>
-                            <TableRow key={row.code}>
-                                <TableBody>{row.code}</TableBody>
-                                <TableBody>{row.name[0]}</TableBody>
-                                <TableBody><div className={`${handlerStatus(row.status)} w-[12px] h-[12px] rounded-full`} title={row.status} /></TableBody>
-                                <TableBody>{row.allRounds.length}</TableBody>
-                                <TableBody>{row.rating}</TableBody>
+                            <TableRow key={row.activity.code}>
+                                <TableBody>{row.activity.code}</TableBody>
+                                <TableBody>{row.activity.name[0]}</TableBody>
+                                <TableBody><div className={`${handlerStatus(row.activity.status)} w-[12px] h-[12px] rounded-full`} title={row.status} /></TableBody>
+                                <TableBody>{row.waitRound}</TableBody>
+                                <TableBody>{row.activity.rating}</TableBody>
                                 {authReducer.role === "admin" &&
                                     <TableBody>
-                                        <ButtonTransparent click={() => navigate("/staff-dashboard/" + row.code)}>
+                                        <ButtonTransparent click={() => navigate("/staff-dashboard/" + row.activity.code)}>
                                             <HiClipboard size="24px" />
                                         </ButtonTransparent>
                                         <div className="w-2" />
-                                        <ButtonTransparent click={() => navigate("/staff-activity/" + row.code)}>
+                                        <ButtonTransparent click={() => navigate("/staff-activity/" + row.activity.code)}>
                                             <IoMdSettings size="24px" />
                                         </ButtonTransparent>
                                     </TableBody>}
